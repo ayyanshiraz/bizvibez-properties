@@ -1,0 +1,62 @@
+<?php
+// Use the PHPMailer library for reliable email sending
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// You will need to upload the PHPMailer library to your server
+// The path should be public_html/PHPMailer/src/...
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+// Allow your live website to make requests to this script
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Headers: Content-Type");
+
+$response = ['status' => 'error', 'message' => 'An error occurred.'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Sanitize user inputs
+    $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+    $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+    $message = filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING);
+    $attachment = $_FILES['attachment'];
+
+    if ($email) {
+        $mail = new PHPMailer(true);
+        try {
+            // --- Your GoDaddy Email Server Settings ---
+            $mail->isSMTP();
+            $mail->Host       = 'smtpout.secureserver.net'; // This is your Outgoing Server
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'info@bizvibezproperties.com'; // Your full email username
+            $mail->Password   = 'Your-Email-Password-Here!'; // The password for info@bizvibezproperties.com
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = 465; // The SSL Port
+
+            // --- Email Recipients ---
+            $mail->setFrom('info@bizvibezproperties.com', 'BizVibez Contact Form'); // The "From" address
+            $mail->addAddress('ayyanshiraz@gmail.com');     // The address where you will RECEIVE the mail
+
+            // --- Attachments ---
+            if (isset($attachment) && $attachment['error'] == UPLOAD_ERR_OK) {
+                $mail->addAttachment($attachment['tmp_name'], $attachment['name']);
+            }
+
+            // --- Email Content ---
+            $mail->isHTML(true);
+            $mail->Subject = "New message from: $name";
+            $mail->Body    = "<b>Name:</b> $name<br><b>Email:</b> $email<br><br><b>Message:</b><br>$message";
+
+            $mail->send();
+            $response = ['status' => 'success', 'message' => 'Message sent successfully!'];
+        } catch (Exception $e) {
+            $response['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    } else {
+        $response['message'] = 'Invalid email address provided.';
+    }
+}
+
+echo json_encode($response);
+?>
