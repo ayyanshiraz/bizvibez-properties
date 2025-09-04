@@ -19,5 +19,6 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # This line tells it to upload to the current directory, which is public_html
         server-dir: ./
+        # This new line forces a clean upload
+        dangerous-clean-slate: true
