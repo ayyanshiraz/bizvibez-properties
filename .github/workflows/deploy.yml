@@ -1,0 +1,41 @@
+# GitHub Action for deploying a Next.js static site to GoDaddy via FTP
+
+name: Deploy to GoDaddy
+
+on:
+  push:
+    branches:
+      - main # This workflow runs on pushes to the main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Use a standard Linux environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18' # Use Node.js version 18
+
+    - name: Install dependencies
+      run: npm install
+
+    # This build command assumes you are doing a STATIC export.
+    # Your API routes WILL NOT work with this build.
+    - name: Build static Next.js app
+      run: npm run build
+
+    - name: Deploy to GoDaddy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # This is the destination directory on your GoDaddy server.
+        # It's usually public_html, but VERIFY this is correct for your setup.
+        server-dir: public_html/
+        # This is the folder created by `next export`.
+        local-dir: ./out/
