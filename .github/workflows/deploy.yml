@@ -3,7 +3,7 @@ name: 🚀 Deploy Website to GoDaddy
 on:
   push:
     branches:
-      - master
+      - master  # CORRECT: This is set to 'master' for your project
 
 jobs:
   web-deploy:
@@ -19,5 +19,5 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # This line tells it to upload to the current directory, which is public_html
-        server-dir: ./
+        # This uploads all files from your repository to the public_html folder
+        server-dir: public_html/
