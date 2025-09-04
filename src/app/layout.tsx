@@ -1,28 +1,36 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Using the standard Next.js font
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-
-// Initialize the standard font
-const inter = Inter({ subsets: ["latin"] });
+// Using relative paths to fix build errors
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import ClientSlideshow from "../components/ClientSlideshow";
 
 export const metadata: Metadata = {
-  title: "My Professional Website",
-  description: "Built from scratch with Next.js",
+  title: "BizVibez Properties",
+  description: "Luxury Real Estate",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      {/* Apply the standard font's className to the body */}
-      <body className={inter.className}>
-        <Navbar />
-        <main>{children}</main>
+      {/* Removed custom font to resolve build issues */}
+      <body>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <div className="my-8">
+            <ClientSlideshow />
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
 }
+
