@@ -2,25 +2,25 @@
 
 import React, { useState } from 'react';
 
-// --- SVG Icon components (Full Code Restored) ---
+// --- SVG Icon components ---
 const MapPin = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
-    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-    <circle cx="12" cy="10" r="3" />
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
 );
 
 const Phone = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
 );
 
 const Mail = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
-    <rect width="20" height="16" x="2" y="4" rx="2" />
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
 );
 
 const WhatsApp = () => (
@@ -45,26 +45,37 @@ export default function ContactPage() {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
+  // ==================================================================
+  // === AMENDMENT 2: UPDATED handleSubmit FUNCTION ===================
+  // ==================================================================
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatusMessage('');
 
+    // Create a FormData object from the form element to handle file uploads
+    const formElementData = new FormData(e.currentTarget);
+
     try {
-      const response = await fetch('/api/contact', {
+      // Send the request to your new PHP script
+      const response = await fetch('https://bizvibezproperties.com/send_email.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formElementData, // Send the FormData object
+        // NOTE: Do NOT set a 'Content-Type' header. 
+        // The browser automatically sets it to 'multipart/form-data' for you.
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message.');
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        setStatusMessage('Message sent successfully!');
+        // Reset the form fields after successful submission
+        (e.target as HTMLFormElement).reset();
+        setFormData({ fullName: '', email: '', subject: '', message: '' });
+      } else {
+        // Use the detailed error message from the PHP script
+        throw new Error(result.message || 'Failed to send message.');
       }
-      
-      setStatusMessage('Message sent successfully!');
-      setFormData({ fullName: '', email: '', subject: '', message: '' });
 
     } catch (error: any) {
       setStatusMessage(`Error: ${error.message}`);
@@ -167,6 +178,14 @@ export default function ContactPage() {
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                   <textarea name="message" id="message" rows={5} required value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"></textarea>
+                </div>
+                
+                {/* ================================================================== */}
+                {/* === AMENDMENT 1: ADDED FILE INPUT ================================ */}
+                {/* ================================================================== */}
+                <div>
+                  <label htmlFor="attachment" className="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
+                  <input type="file" name="attachment" id="attachment" className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#891e6d] file:text-white hover:file:opacity-90"/>
                 </div>
                 
                 {statusMessage && (
