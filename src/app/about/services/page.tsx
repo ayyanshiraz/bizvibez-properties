@@ -157,7 +157,7 @@ const App = () => {
                                 Buy Property
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
-                                "Your new home address is here: Seven Luxury Real Estate expert will guide you to bespoke property investments that perfectly match your needs."
+                                "Your new home address is here: BizVibez expert will guide you to bespoke property investments that perfectly match your needs."
                             </p>
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 "Unlock Your new home address: Schedule a meeting with us. Join our exclusive offers community, and benefit from our top UAE real estate developers' alliance and our reputation."
