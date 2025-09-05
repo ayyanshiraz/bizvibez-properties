@@ -248,13 +248,12 @@ const countries = [
 ];
 
 
-// --- COUNTRY CODE PICKER COMPONENT (MODIFIED) ---
-const CountryCodePicker = ({ selectedCode, onCodeSelect }: { selectedCode: string, onCodeSelect: (code: string) => void }) => {
+// --- COUNTRY CODE PICKER COMPONENT (ENHANCED) ---
+const CountryCodePicker = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.iso === "AE") || countries[0]);
     const [searchTerm, setSearchTerm] = useState("");
     const pickerRef = useRef<HTMLDivElement>(null);
-
-    const selectedCountry = countries.find(c => c.code === selectedCode) || countries.find(c => c.iso === "AE")!;
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -291,7 +290,7 @@ const CountryCodePicker = ({ selectedCode, onCodeSelect }: { selectedCode: strin
                             <input
                                 type="text"
                                 placeholder="Search countries..."
-                                className="w-full pl-9 pr-3 py-1.5 border rounded-md text-sm outline-none focus:ring-1 focus:ring-[#891e6d]"
+                                className="w-full pl-9 pr-3 py-1.5 border rounded-md text-sm outline-none focus:ring-1 focus:ring-purple-500"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 autoFocus
@@ -304,7 +303,7 @@ const CountryCodePicker = ({ selectedCode, onCodeSelect }: { selectedCode: strin
                                 key={country.name}
                                 className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                                 onClick={() => {
-                                    onCodeSelect(country.code);
+                                    setSelectedCountry(country);
                                     setIsOpen(false);
                                     setSearchTerm("");
                                 }}
@@ -326,52 +325,13 @@ const CountryCodePicker = ({ selectedCode, onCodeSelect }: { selectedCode: strin
 export default function PlotDetailClient({ plot }: { plot: Plot }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // --- ADDED: State and submission handler for the form ---
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [countryCode, setCountryCode] = useState('+971');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState(`I am interested in ${plot.title} (ID: ${plot.propertyId}).`);
-
-  const [loading, setLoading] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatusMessage('');
-
-    const fullPhoneNumber = `${countryCode} ${phone}`;
-
-    try {
-        const response = await fetch('/api/property-inquiry', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                fullName,
-                email,
-                phone: fullPhoneNumber,
-                message,
-                propertyTitle: plot.title,
-            }),
-        });
-
-        if (!response.ok) throw new Error('Request failed. Please try again.');
-
-        setStatusMessage('Inquiry sent successfully!');
-        setFullName('');
-        setEmail('');
-        setPhone('');
-    } catch (error: any) {
-        setStatusMessage(`Error: ${error.message}`);
-    } finally {
-        setLoading(false);
-    }
+  const handleNextImage = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % plot.images.length);
   };
-  // --- END OF ADDED LOGIC ---
 
-  const handleNextImage = () => setCurrentIndex((prev) => (prev + 1) % plot.images.length);
-  const handlePrevImage = () => setCurrentIndex((prev) => (prev - 1 + plot.images.length) % plot.images.length);
+  const handlePrevImage = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + plot.images.length) % plot.images.length);
+  };
 
   return (
     <div className="bg-white font-sans text-[#333]">
@@ -395,15 +355,18 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
         </div>
       </div>
 
+      {/* This wrapper centers the content block below the hero */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12">
           {/* --- LEFT (MAIN CONTENT) COLUMN --- */}
           <div className="lg:col-span-2">
             
+            {/* --- BREADCRUMBS --- */}
             <div className="text-sm text-gray-500 mb-6">
               Home / Land / {plot.title}
             </div>
 
+            {/* --- HEADER --- */}
             <div className="flex flex-col md:flex-row justify-between md:items-start border-b pb-4 mb-6">
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800">{plot.title}</h1>
@@ -420,6 +383,7 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
               </div>
             </div>
             
+            {/* --- DETAILS SECTION --- */}
             <Section title="Details">
                 <div className="flex items-center text-xs text-gray-500 mb-4">
                     <CalendarDays className="w-3.5 h-3.5 mr-1.5" /> Updated on {plot.updatedOn}
@@ -434,6 +398,7 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
                 </div>
             </Section>
 
+            {/* --- DESCRIPTION SECTION --- */}
             <Section title="Description">
               <div className="text-gray-700 space-y-6 leading-relaxed">
                 <p>{plot.mainDescription}</p>
@@ -450,13 +415,15 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
               </div>
             </Section>
 
+            {/* --- ADDRESS SECTION --- */}
             <Section title="Address">
-                   <div className="grid grid-cols-2 border-t border-b divide-x">
-                       <AddressItem label="City" value={plot.city} />
-                       <AddressItem label="Area" value={plot.area} />
-                   </div>
+                 <div className="grid grid-cols-2 border-t border-b divide-x">
+                    <AddressItem label="City" value={plot.city} />
+                    <AddressItem label="Area" value={plot.area} />
+                 </div>
             </Section>
             
+            {/* --- GALLERY SECTION --- */}
             <Section title="Gallery">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {plot.galleryImages.map((src, index) => (
@@ -467,6 +434,7 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
                 </div>
             </Section>
             
+            {/* --- ABOUT COMMUNITY SECTION --- */}
             {plot.communityFeatures && (
               <Section title={`About ${plot.location}`}>
                 <div className="text-gray-700 space-y-6 leading-relaxed">
@@ -475,7 +443,7 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
                   <ul className="space-y-4">
                     {plot.communityFeatures.features.map(feature => (
                       <li key={feature.title} className="flex items-start">
-                        <span className="text-[#891e6d] font-bold mr-3 mt-1">•</span>
+                        <span className="text-purple-500 font-bold mr-3 mt-1">•</span>
                         <div>
                           <strong>{feature.title}:</strong> {feature.text}
                         </div>
@@ -486,94 +454,50 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
               </Section>
             )}
 
+            {/* --- MAP SECTION (CONDITIONAL) --- */}
             {plot.mapEmbedUrl && (
               <Section title="Map">
-                    <div className="relative w-full h-[400px] rounded-md overflow-hidden border">
-                        <iframe
-                          src={plot.mapEmbedUrl}
-                          width="100%"
-                          height="100%"
-                          style={{ border: 0 }}
-                          allowFullScreen={false}
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
-                    </div>
+                  <div className="relative w-full h-[400px] rounded-md overflow-hidden border">
+                      <iframe
+                        src={plot.mapEmbedUrl}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen={false}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                  </div>
               </Section>
             )}
           </div>
 
           {/* --- RIGHT (SIDEBAR) COLUMN --- */}
           <div className="lg:col-span-1 mt-8 lg:mt-0">
-              <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
+             <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
                 <div className="flex items-start pb-4 border-b">
                    <div className="bg-gray-200 p-4 rounded-md mr-4">
-                     <User className="w-8 h-8 text-gray-500" />
+                      <User className="w-8 h-8 text-gray-500" />
                    </div>
                    <div>
-                     <div className="flex items-center">
-                       <User className="w-4 h-4 mr-2 text-gray-500" />
-                       <p className="font-semibold text-gray-800">BizVibez Properties</p>
-                     </div>
-                     <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
+                      <div className="flex items-center">
+                        <User className="w-4 h-4 mr-2 text-gray-500" />
+                        <p className="font-semibold text-gray-800">BizVibez Properties</p>
+                      </div>
+                      <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
                    </div>
                 </div>
-                
-                {/* --- UPDATED FORM --- */}
-                <form onSubmit={handleSubmit} className="space-y-4 pt-6">
-                    <input
-                        type="text"
-                        placeholder="Full Name"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        required
-                        className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none"
-                    />
-                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
-                        <CountryCodePicker
-                            selectedCode={countryCode}
-                            onCodeSelect={setCountryCode}
-                        />
-                        <input
-                            type="tel"
-                            placeholder="50 123 4567"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            required
-                            className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md"
-                        />
-                    </div>
-                    <textarea
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                        rows={4}
-                        className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none"
-                    ></textarea>
-
-                    {statusMessage && (
-                        <p className={`text-sm text-center ${statusMessage.startsWith('Error') ? 'text-red-600' : 'text-green-600'}`}>
-                            {statusMessage}
-                        </p>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
-                    >
-                        {loading ? 'Sending...' : 'Request Information'}
-                    </button>
+                <form className="space-y-4 pt-6">
+                  <input type="text" placeholder="Full Name" className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" />
+                  <input type="email" placeholder="Email" className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" />
+                  <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
+                    <CountryCodePicker />
+                    <input type="tel" placeholder="050 123 4567" className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" />
+                  </div>
+                  <textarea placeholder="I am interested in this property" rows={4} className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none"></textarea>
+                  <button type="submit" className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors">Request Information</button>
                 </form>
-              </div>
+             </div>
           </div>
         </div>
       </div>
@@ -602,3 +526,4 @@ const AddressItem = ({ label, value }: { label: string, value: string }) => (
         <p className="text-gray-600 text-base">{value}</p>
     </div>
 );
+
