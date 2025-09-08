@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-// --- SVG Icon components (Full Code Restored) ---
+// --- SVG Icon components ---
 const MapPin = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-white">
     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
@@ -45,29 +45,38 @@ export default function ContactPage() {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
+  // --- UPDATED SUBMIT FUNCTION ---
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatusMessage('');
 
+    // Use FormData to send the data, which is what PHP expects.
+    const formPayload = new FormData();
+    formPayload.append('name', formData.fullName);
+    formPayload.append('email', formData.email);
+    
+    // Combine subject and message for the PHP script
+    const fullMessage = `Subject: ${formData.subject}\n\n${formData.message}`;
+    formPayload.append('message', fullMessage);
+
     try {
-      const response = await fetch('/api/contact', {
+      // IMPORTANT: Replace with the full URL to your PHP script on GoDaddy
+      const response = await fetch('https://www.yourdomain.com/send_email.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formPayload, // Send FormData, not JSON
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message.');
-      }
+      const result = await response.json();
       
-      setStatusMessage('Message sent successfully!');
-      setFormData({ fullName: '', email: '', subject: '', message: '' });
+      // Use the message from the PHP script's JSON response
+      setStatusMessage(result.message);
 
+      if (result.status === 'success') {
+        setFormData({ fullName: '', email: '', subject: '', message: '' }); // Clear the form
+      }
     } catch (error: any) {
-      setStatusMessage(`Error: ${error.message}`);
+      setStatusMessage('An error occurred while sending the message. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -133,19 +142,19 @@ export default function ContactPage() {
                  </div>
                </div>
               
-               <div>
-                 <div className="rounded-lg overflow-hidden shadow-lg h-80">
-                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.5649920970577!2d55.26127867490336!3d25.184162232229475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f435782172a35%3A0xf6b77d7ae225eee7!2sBizVibeZ%20Consultants!5e0!3m2!1sen!2s!4v1719232909267!5m2!1sen!2s"
-                     width="100%"
-                     height="100%"
-                     style={{ border: 0 }}
-                     allowFullScreen={false}
-                     loading="lazy"
-                     referrerPolicy="no-referrer-when-downgrade"
-                   ></iframe>
-                 </div>
-               </div>
+              <div>
+                <div className="rounded-lg overflow-hidden shadow-lg h-80">
+                  <iframe
+                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.5649920970577!2d55.26127867490336!3d25.184162232229475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f435782172a35%3A0xf6b77d7ae225eee7!2sBizVibeZ%20Consultants!5e0!3m2!1sen!2s!4v1719232909267!5m2!1sen!2s"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
             </div>
 
             {/* Right Column: Contact Form */}
@@ -170,7 +179,7 @@ export default function ContactPage() {
                 </div>
                 
                 {statusMessage && (
-                  <div className={`p-3 text-center rounded-md text-sm ${statusMessage.startsWith('Error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                  <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().startsWith('error') || statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
                     {statusMessage}
                   </div>
                 )}
@@ -194,3 +203,4 @@ export default function ContactPage() {
     </>
   );
 }
+
