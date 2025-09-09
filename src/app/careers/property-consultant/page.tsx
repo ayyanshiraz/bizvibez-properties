@@ -70,8 +70,7 @@ const PropertyConsultantPage = () => {
         data.set('resume', resumeFile);
 
         try {
-            const response = await fetch('/', {
-                method: 'POST',
+            const response = await fetch('/.netlify/functions/send-email', { // <-- THIS IS CORRECT                method: 'POST',
                 body: data,
             });
 
