@@ -53,7 +53,7 @@ export const handler: Handler = async (event) => {
     const { fields, files }: any = await parseMultipartForm(event);
 
     const transporter = nodemailer.createTransport({
-      host: 'smtp.office3office365.com',
+      host: 'smtp.office365.com',
       port: 587,
       secure: false,
       auth: {
