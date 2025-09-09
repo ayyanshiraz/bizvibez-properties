@@ -249,9 +249,8 @@ const countries = [
 
 
 // --- COUNTRY CODE PICKER COMPONENT (ENHANCED) ---
-const CountryCodePicker = () => {
+const CountryCodePicker = ({ selectedCountry, onCountrySelect }: { selectedCountry: any, onCountrySelect: (country: any) => void }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.iso === "AE") || countries[0]);
     const [searchTerm, setSearchTerm] = useState("");
     const pickerRef = useRef<HTMLDivElement>(null);
 
@@ -303,7 +302,7 @@ const CountryCodePicker = () => {
                                 key={country.name}
                                 className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                                 onClick={() => {
-                                    setSelectedCountry(country);
+                                    onCountrySelect(country); // Use the function passed in props
                                     setIsOpen(false);
                                     setSearchTerm("");
                                 }}
@@ -324,7 +323,62 @@ const CountryCodePicker = () => {
 // --- MAIN CLIENT COMPONENT ---
 export default function PlotDetailClient({ plot }: { plot: Plot }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  // State for the form fields, loading status, and messages
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    message: `I am interested in this property: ${plot.title}`,
+  });
+  const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.iso === "AE") || countries[0]);
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
+  // Update state when the user types in the form
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  // Handle the form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatusMessage('');
+
+    const fullPhoneNumber = `${selectedCountry.code} ${formData.phone}`;
+
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: fullPhoneNumber, // Send the combined phone number
+          message: formData.message,
+          subject: `Property Inquiry: ${plot.title}`, // Auto-includes the property title
+        }),
+      });
+
+      const result = await response.json();
+      setStatusMessage(result.message);
+
+      if (response.ok) {
+        // Clear the form on success
+        setFormData({
+            fullName: '',
+            email: '',
+            phone: '',
+            message: `I am interested in this property: ${plot.title}`,
+        });
+      }
+    } catch (error) {
+      setStatusMessage('An error occurred while sending the message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
   const handleNextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % plot.images.length);
   };
@@ -472,38 +526,48 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
             )}
           </div>
 
-          {/* --- RIGHT (SIDEBAR) COLUMN --- */}
-          <div className="lg:col-span-1 mt-8 lg:mt-0">
-             <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
-                <div className="flex items-start pb-4 border-b">
-                   <div className="bg-gray-200 p-4 rounded-md mr-4">
-                      <User className="w-8 h-8 text-gray-500" />
-                   </div>
-                   <div>
-                      <div className="flex items-center">
-                        <User className="w-4 h-4 mr-2 text-gray-500" />
-                        <p className="font-semibold text-gray-800">BizVibez Properties</p>
-                      </div>
-                      <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
-                   </div>
-                </div>
-                <form className="space-y-4 pt-6">
-                  <input type="text" placeholder="Full Name" className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" />
-                  <input type="email" placeholder="Email" className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" />
-                  <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
-                    <CountryCodePicker />
-                    <input type="tel" placeholder="050 123 4567" className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" />
+            {/* --- RIGHT (SIDEBAR) COLUMN --- */}
+            <div className="lg:col-span-1 mt-8 lg:mt-0">
+              <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
+                  <div className="flex items-start pb-4 border-b">
+                    <div className="bg-gray-200 p-4 rounded-md mr-4">
+                        <User className="w-8 h-8 text-gray-500" />
+                    </div>
+                    <div>
+                        <div className="flex items-center">
+                          <User className="w-4 h-4 mr-2 text-gray-500" />
+                          <p className="font-semibold text-gray-800">BizVibez Properties</p>
+                        </div>
+                        <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
+                    </div>
                   </div>
-                  <textarea placeholder="I am interested in this property" rows={4} className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none"></textarea>
-                  <button type="submit" className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors">Request Information</button>
-                </form>
-             </div>
+                  <form onSubmit={handleSubmit} className="space-y-4 pt-6">
+                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.fullName} onChange={handleChange} />
+                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.email} onChange={handleChange} />
+                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
+                      <CountryCodePicker selectedCountry={selectedCountry} onCountrySelect={setSelectedCountry} />
+                      <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" value={formData.phone} onChange={handleChange} />
+                    </div>
+                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.message} onChange={handleChange}></textarea>
+                    
+                    {/* Add this block to show success/error messages */}
+                    {statusMessage && (
+                      <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                        {statusMessage}
+                      </div>
+                    )}
+
+                    <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
+                      {loading ? 'Sending...' : 'Request Information'}
+                    </button>
+                  </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 // --- HELPER COMPONENTS ---
 const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
