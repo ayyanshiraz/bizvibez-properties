@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-// --- ANIMATION COMPONENT (for scroll animations) ---
+// --- ANIMATION COMPONENT (No changes) ---
 interface AnimatedSectionProps {
   children: React.ReactNode;
 }
@@ -42,6 +42,7 @@ const PropertyConsultantPage = () => {
     const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [statusMessage, setStatusMessage] = useState('');
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -54,7 +55,7 @@ const PropertyConsultantPage = () => {
         }
     };
     
-    // --- UPDATED handleSubmit FUNCTION FOR NETLIFY ---
+    // --- FINAL CORRECTED handleSubmit FUNCTION ---
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
@@ -66,29 +67,46 @@ const PropertyConsultantPage = () => {
             return;
         }
 
-        const data = new FormData(e.target as HTMLFormElement);
-        data.set('resume', resumeFile);
+        const data = new FormData();
+        // Append all text fields from state
+        data.append('form-name', 'application-form');
+        data.append('name', formData.name);
+        data.append('email', formData.email);
+        data.append('phone', formData.phone);
+        data.append('linkedin', formData.linkedin);
+        data.append('coverLetter', formData.coverLetter);
+        data.append('jobTitle', 'Property Consultant');
+        // Append the file from its own state
+        data.append('resume', resumeFile);
 
         try {
-            const response = await fetch('/.netlify/functions/send-email', { // <-- THIS IS CORRECT                method: 'POST',
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
                 body: data,
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            const result = await response.json();
 
-            setStatusMessage('Your application has been submitted successfully!');
+            if (!response.ok) {
+                throw new Error(result.message || 'Network response was not ok');
+            }
+            
+            setStatusMessage(result.message);
+
+            // Clear the form on success
             setFormData({ name: '', email: '', phone: '', linkedin: '', coverLetter: '' });
             setResumeFile(null);
-            (e.target as HTMLFormElement).reset();
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
 
         } catch (error: any) {
-            setStatusMessage(`An error occurred while sending the message. Please try again.`);
+            setStatusMessage(error.message || `An error occurred while sending the message. Please try again.`);
         } finally {
             setLoading(false);
         }
     };
+
     return (
         <div className="font-sans bg-white text-gray-800">
             {/* --- HERO SECTION --- */}
@@ -161,19 +179,11 @@ const PropertyConsultantPage = () => {
                             <h2 className="text-3xl font-bold text-center text-[#891e6d] mb-10">Submit Your Application</h2>
                             <form 
                                 name="application-form"
-                                method="POST"
-                                data-netlify="true"
-                                data-netlify-honeypot="bot-field" 
                                 onSubmit={handleSubmit} 
                                 className="space-y-6 bg-gray-50 p-8 rounded-lg shadow-lg"
                             >
                                 <input type="hidden" name="form-name" value="application-form" />
-                                <p className="hidden">
-                                    <label>
-                                        Don’t fill this out if you’re human: <input name="bot-field" />
-                                    </label>
-                                </p>
-
+                                
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -196,8 +206,7 @@ const PropertyConsultantPage = () => {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Upload Resume</label>
-                                    <input type="file" name="resume" required className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#891e6d]/10 file:text-[#891e6d] hover:file:bg-[#891e6d]/20" onChange={handleFileChange}/>
-                                    <input type="hidden" name="jobTitle" value="Property Consultant" />
+                                    <input ref={fileInputRef} type="file" name="resume" required className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#891e6d]/10 file:text-[#891e6d] hover:file:bg-[#891e6d]/20" onChange={handleFileChange}/>
                                 </div>
                                 <div>
                                     <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-1">Cover Letter</label>
