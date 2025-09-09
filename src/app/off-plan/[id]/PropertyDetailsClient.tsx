@@ -175,11 +175,20 @@ const countries = [
 ];
 
 // --- Helper component for the sticky contact form (remains mostly the same) ---
-const ContactForm = () => {
-    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+// --- UPDATED ContactForm Component ---
+const ContactForm = ({ propertyName }: { propertyName: string }) => {
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: 'I am interested in this property and would like more information.',
+    });
+    const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.code === 'AE') || countries[0]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const [loading, setLoading] = useState(false);
+    const [statusMessage, setStatusMessage] = useState('');
 
     const filteredCountries = countries.filter(country =>
         country.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -195,8 +204,43 @@ const ContactForm = () => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatusMessage('');
+
+        const fullPhoneNumber = `+${selectedCountry.dial} ${formData.phone}`;
+
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName: formData.fullName,
+                    email: formData.email,
+                    phone: fullPhoneNumber,
+                    message: formData.message,
+                    subject: `Property Inquiry: ${propertyName}`,
+                }),
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.message || 'Something went wrong');
+            setStatusMessage(result.message);
+            setFormData({ fullName: '', email: '', phone: '', message: 'I am interested in this property...' });
+        } catch (error: any) {
+            setStatusMessage(error.message || 'An error occurred while sending the message. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+        <div className="bg-white p-6 border rounded-md shadow-lg">
             <style>{`
                 ::placeholder { color: black !important; opacity: 1; }
                 :-ms-input-placeholder { color: black !important; }
@@ -211,26 +255,19 @@ const ContactForm = () => {
                     <a href="#" className="text-sm text-[#891e6d] hover:underline">View Listings</a>
                 </div>
             </div>
-            <form className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" />
-                <input type="email" placeholder="Email" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" />
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <input type="text" name="fullName" placeholder="Full Name" required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" value={formData.fullName} onChange={handleChange} />
+                <input type="email" name="email" placeholder="Email" required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" value={formData.email} onChange={handleChange} />
                 <div className="flex">
                     <div className="relative" ref={dropdownRef}>
                         <button type="button" onClick={() => setDropdownOpen(!dropdownOpen)} className="inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-sm rounded-l-md h-full">
-                            {/* Using standard img for flags as they are external */}
                             <img src={`https://flagcdn.com/w20/${selectedCountry.code.toLowerCase()}.png`} alt={selectedCountry.name} className="w-5 h-auto mr-2" />
                             +{selectedCountry.dial}
                             <svg className={`w-4 h-4 ml-1 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         {dropdownOpen && (
                             <div className="absolute bottom-full mb-2 w-72 bg-white border border-gray-300 rounded-md shadow-lg z-10">
-                                <input
-                                    type="text"
-                                    placeholder="Search country..."
-                                    className="w-full px-4 py-2 border-b border-gray-300 text-gray-900"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
+                                <input type="text" placeholder="Search country..." className="w-full px-4 py-2 border-b border-gray-300 text-gray-900" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                                 <ul className="max-h-60 overflow-y-auto">
                                     {filteredCountries.map(country => (
                                         <li key={country.code} onClick={() => { setSelectedCountry(country); setDropdownOpen(false); setSearchTerm(''); }} className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
@@ -243,15 +280,23 @@ const ContactForm = () => {
                             </div>
                         )}
                     </div>
-                    <input type="tel" placeholder="050 123 4567" className="w-full px-4 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" />
+                    <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full px-4 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" value={formData.phone} onChange={handleChange} />
                 </div>
-                <textarea placeholder="Your Message" rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900"></textarea>
-                <button type="submit" className="w-full bg-[#891e6d] text-white font-bold py-3 px-4 rounded-md hover:bg-[#890e6d] transition duration-300">Request Information</button>
+                <textarea name="message" placeholder="Your Message" rows={4} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" value={formData.message} onChange={handleChange}></textarea>
+                
+                {statusMessage && (
+                  <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                    {statusMessage}
+                  </div>
+                )}
+
+                <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 px-4 rounded-md hover:bg-[#890e6d] transition duration-300 disabled:opacity-70">
+                    {loading ? 'Sending...' : 'Request Information'}
+                </button>
             </form>
         </div>
     );
 };
-
 // --- Lightbox Component (using Next/Image) ---
 const Lightbox: React.FC<{ images: string[]; currentIndex: number; onClose: () => void; onNext: () => void; onPrev: () => void; }> = ({ images, currentIndex, onClose, onNext, onPrev }) => {
     return (
@@ -464,8 +509,7 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                     {/* --- Sticky Contact Form (Right Column) --- */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-8">
-                            <ContactForm />
-                        </div>
+                            <ContactForm propertyName={property.name} />                        </div>
                     </div>
                 </div>
             </div>
