@@ -7,3 +7,6 @@
 # Production
 /out
 /.next
+
+# Local Netlify folder
+.netlify

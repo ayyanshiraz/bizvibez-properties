@@ -51,36 +51,28 @@ export default function ContactPage() {
     setLoading(true);
     setStatusMessage('');
 
-    // Use FormData to send the data, which is what PHP expects.
-    const formPayload = new FormData();
-    formPayload.append('name', formData.fullName);
-    formPayload.append('email', formData.email);
-    
-    // Combine subject and message for the PHP script
-    const fullMessage = `Subject: ${formData.subject}\n\n${formData.message}`;
-    formPayload.append('message', fullMessage);
+try {
+      // Send data to our Netlify Function
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    try {
-      // IMPORTANT: Replace with the full URL to your PHP script on GoDaddy
-      const response = await fetch('https://www.yourdomain.com/send_email.php', {
-        method: 'POST',
-        body: formPayload, // Send FormData, not JSON
-      });
-
-      const result = await response.json();
-      
-      // Use the message from the PHP script's JSON response
+      const result = await response.json();
       setStatusMessage(result.message);
 
-      if (result.status === 'success') {
-        setFormData({ fullName: '', email: '', subject: '', message: '' }); // Clear the form
-      }
-    } catch (error: any) {
-      setStatusMessage('An error occurred while sending the message. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+      if (response.ok) {
+        // Clear the form on success
+        setFormData({ fullName: '', email: '', subject: '', message: '' }); 
+      }
+    } catch (error) {
+      setStatusMessage('Sorry, An error occurred while sending the message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   return (
     <>
@@ -161,7 +153,7 @@ export default function ContactPage() {
             <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Send us a message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
+                <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                   <input type="text" name="fullName" id="fullName" required value={formData.fullName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" />
                 </div>
