@@ -37,9 +37,9 @@ const PropertyConsultantPage = () => {
         email: '',
         phone: '',
         linkedin: '',
-        resume: null as File | null,
         coverLetter: '',
     });
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [statusMessage, setStatusMessage] = useState('');
 
@@ -50,54 +50,46 @@ const PropertyConsultantPage = () => {
     
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
-            setFormData(prevState => ({ ...prevState, resume: e.target.files![0] }));
+            setResumeFile(e.target.files[0]);
         }
     };
-
+    
+    // --- UPDATED handleSubmit FUNCTION FOR NETLIFY ---
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setStatusMessage('');
 
-        if (!formData.resume) {
+        if (!resumeFile) {
             setStatusMessage('Error: Please upload a resume.');
             setLoading(false);
             return;
         }
 
-        const data = new FormData();
-        data.append('name', formData.name);
-        data.append('email', formData.email);
-        data.append('phone', formData.phone);
-        data.append('linkedin', formData.linkedin);
-        data.append('coverLetter', formData.coverLetter);
-        data.append('resume', formData.resume);
+        const data = new FormData(e.target as HTMLFormElement);
+        data.set('resume', resumeFile);
 
         try {
-            const response = await fetch('/api/apply', {
+            const response = await fetch('/', {
                 method: 'POST',
                 body: data,
             });
 
             if (!response.ok) {
-                const result = await response.json();
-                throw new Error(result.error || 'Network response was not ok');
+                throw new Error('Network response was not ok');
             }
 
             setStatusMessage('Your application has been submitted successfully!');
-            setFormData({
-                name: '', email: '', phone: '', linkedin: '',
-                resume: null, coverLetter: ''
-            });
+            setFormData({ name: '', email: '', phone: '', linkedin: '', coverLetter: '' });
+            setResumeFile(null);
             (e.target as HTMLFormElement).reset();
 
         } catch (error: any) {
-            setStatusMessage(`Error: ${error.message}`);
+            setStatusMessage(`An error occurred while sending the message. Please try again.`);
         } finally {
             setLoading(false);
         }
     };
-
     return (
         <div className="font-sans bg-white text-gray-800">
             {/* --- HERO SECTION --- */}
@@ -166,56 +158,70 @@ const PropertyConsultantPage = () => {
                     
                     {/* --- APPLICATION FORM --- */}
                     <AnimatedSection>
-                       <div className="mt-20">
-                         <h2 className="text-3xl font-bold text-center text-[#891e6d] mb-10">Submit Your Application</h2>
-                         <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-lg shadow-lg">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                    <input type="text" name="name" id="name" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.name} onChange={handleChange} />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="email" name="email" id="email" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.email} onChange={handleChange} />
-                                </div>
-                            </div>
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone No.</label>
-                                    <input type="tel" name="phone" id="phone" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.phone} onChange={handleChange} />
-                                </div>
-                                <div>
-                                    <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 mb-1">LinkedIn Profile (URL)</label>
-                                    <input type="url" name="linkedin" id="linkedin" className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.linkedin} onChange={handleChange} />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Upload Resume</label>
-                                <input type="file" name="resume" required className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#891e6d]/10 file:text-[#891e6d] hover:file:bg-[#891e6d]/20" onChange={handleFileChange}/>
-                                <input type="hidden" name="jobTitle" value="Property Consultant" />
-                            </div>
-                            <div>
-                                <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-1">Cover Letter</label>
-                                <textarea name="coverLetter" id="coverLetter" rows={6} required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.coverLetter} onChange={handleChange}></textarea>
-                            </div>
+                        <div className="mt-20">
+                            <h2 className="text-3xl font-bold text-center text-[#891e6d] mb-10">Submit Your Application</h2>
+                            <form 
+                                name="application-form"
+                                method="POST"
+                                data-netlify="true"
+                                data-netlify-honeypot="bot-field" 
+                                onSubmit={handleSubmit} 
+                                className="space-y-6 bg-gray-50 p-8 rounded-lg shadow-lg"
+                            >
+                                <input type="hidden" name="form-name" value="application-form" />
+                                <p className="hidden">
+                                    <label>
+                                        Don’t fill this out if you’re human: <input name="bot-field" />
+                                    </label>
+                                </p>
 
-                           {statusMessage && (
-                             <div className={`p-3 rounded-md text-center text-sm ${statusMessage.startsWith('Error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
-                               {statusMessage}
-                             </div>
-                           )}
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                        <input type="text" name="name" id="name" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.name} onChange={handleChange} />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input type="email" name="email" id="email" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.email} onChange={handleChange} />
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone No.</label>
+                                        <input type="tel" name="phone" id="phone" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.phone} onChange={handleChange} />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 mb-1">LinkedIn Profile (URL)</label>
+                                        <input type="url" name="linkedin" id="linkedin" className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.linkedin} onChange={handleChange} />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Upload Resume</label>
+                                    <input type="file" name="resume" required className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#891e6d]/10 file:text-[#891e6d] hover:file:bg-[#891e6d]/20" onChange={handleFileChange}/>
+                                    <input type="hidden" name="jobTitle" value="Property Consultant" />
+                                </div>
+                                <div>
+                                    <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-1">Cover Letter</label>
+                                    <textarea name="coverLetter" id="coverLetter" rows={6} required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.coverLetter} onChange={handleChange}></textarea>
+                                </div>
 
-                           <div className="text-right">
-                             <button
-                               type="submit"
-                               disabled={loading}
-                               className="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-[#891e6d] hover:bg-opacity-90 disabled:bg-opacity-70"
-                             >
-                               {loading ? "Submitting..." : "Submit"}
-                             </button>
-                           </div>
-                         </form>
-                       </div>
+                                {statusMessage && (
+                                    <div className={`p-3 rounded-md text-center text-sm ${statusMessage.startsWith('Error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                        {statusMessage}
+                                    </div>
+                                )}
+
+                                <div className="text-right">
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-[#891e6d] hover:bg-opacity-90 disabled:bg-opacity-70"
+                                    >
+                                        {loading ? "Submitting..." : "Submit"}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </AnimatedSection>
                 </div>
             </main>
