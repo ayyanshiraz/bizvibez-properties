@@ -2,43 +2,95 @@
 
 import { Handler } from '@netlify/functions';
 import nodemailer from 'nodemailer';
+import busboy from 'busboy';
+
+// Helper function to parse multipart form data
+const parseMultipartForm = (event: any) => {
+  return new Promise((resolve, reject) => {
+    const bb = busboy({ headers: event.headers });
+    const fields: { [key: string]: string } = {};
+    const files: { [key: string]: { filename: string; content: Buffer; contentType: string } } = {};
+
+    bb.on('file', (name, file, info) => {
+      const { filename, mimeType } = info;
+      const chunks: Buffer[] = [];
+      file.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+      file.on('end', () => {
+        files[name] = {
+          filename,
+          content: Buffer.concat(chunks),
+          contentType: mimeType,
+        };
+      });
+    });
+
+    bb.on('field', (name, val) => {
+      fields[name] = val;
+    });
+
+    bb.on('close', () => {
+      resolve({ fields, files });
+    });
+
+    bb.on('error', err => {
+      reject(err);
+    });
+
+    // Use Buffer.from to handle base64 encoding if necessary
+    bb.end(Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'binary'));
+  });
+};
 
 export const handler: Handler = async (event) => {
-  // 1. Check for the POST method
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // 2. Parse the form data
-  const { fullName, email, subject, message } = JSON.parse(event.body || '{}');
-
-  // 3. Set up the email transporter using environment variables
-  //    (You will set these in the Netlify UI)
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.office365.com', // For Outlook/Microsoft 365
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.EMAIL_USER, // Your info@... email
-      pass: process.env.EMAIL_PASS, // Your email password or app password
-    },
-  });
-
-  // 4. Define the email options
-  const mailOptions = {
-    from: `"${fullName}" <${process.env.EMAIL_USER}>`, // Use your own email as the sender
-    to: process.env.EMAIL_USER, // Send the email to yourself (info@...)
-    replyTo: email, // Set the user's email as the reply-to address
-    subject: `New Contact Form Submission: ${subject}`,
-    text: `You have a new message from:\n\nName: ${fullName}\nEmail: ${email}\n\nMessage:\n${message}`,
-  };
-
-  // 5. Send the email and return a response
   try {
+    // 1. Parse the form data, which now includes files
+    const { fields, files }: any = await parseMultipartForm(event);
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.office3office365.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    // 2. Prepare email attachments from the parsed files
+    const attachments = Object.values(files).map((file: any) => ({
+      filename: file.filename,
+      content: file.content,
+      contentType: file.contentType,
+    }));
+
+    // 3. Create the email body text from the fields
+    let emailBody = 'You have a new form submission:\n\n';
+    for (const key in fields) {
+      if (key !== 'form-name' && key !== 'bot-field') {
+         emailBody += `${key}: ${fields[key]}\n`;
+      }
+    }
+
+    const mailOptions = {
+      from: `"${fields.name || 'Website Form'}" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: fields.email,
+      subject: `New Application: ${fields.name} - ${fields.jobTitle || 'Property Consultant'}`,
+      text: emailBody,
+      attachments: attachments, // Add the attachments here
+    };
+
     await transporter.sendMail(mailOptions);
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Your query has been submitted successfully!' }),
+      body: JSON.stringify({ message: 'Your application has been submitted successfully!' }),
     };
   } catch (error) {
     console.error(error);
