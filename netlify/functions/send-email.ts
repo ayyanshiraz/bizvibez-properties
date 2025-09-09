@@ -1,11 +1,11 @@
 // File path: netlify/functions/send-email.ts
 
-import { Handler } from '@netlify/functions';
+import { Handler, HandlerEvent } from '@netlify/functions';
 import nodemailer from 'nodemailer';
 import busboy from 'busboy';
 
-// Helper function to parse multipart form data
-const parseMultipartForm = (event: any) => {
+// This is the parser for forms WITH file uploads
+const parseMultipartForm = (event: HandlerEvent) => {
   return new Promise((resolve, reject) => {
     const bb = busboy({ headers: event.headers });
     const fields: { [key: string]: string } = {};
@@ -14,9 +14,7 @@ const parseMultipartForm = (event: any) => {
     bb.on('file', (name, file, info) => {
       const { filename, mimeType } = info;
       const chunks: Buffer[] = [];
-      file.on('data', (chunk) => {
-        chunks.push(chunk);
-      });
+      file.on('data', (chunk) => chunks.push(chunk));
       file.on('end', () => {
         files[name] = {
           filename,
@@ -30,18 +28,13 @@ const parseMultipartForm = (event: any) => {
       fields[name] = val;
     });
 
-    bb.on('close', () => {
-      resolve({ fields, files });
-    });
+    bb.on('close', () => resolve({ fields, files }));
+    bb.on('error', (err) => reject(err));
 
-    bb.on('error', err => {
-      reject(err);
-    });
-
-    // Use Buffer.from to handle base64 encoding if necessary
-    bb.end(Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'binary'));
+    bb.end(Buffer.from(event.body || '', event.isBase64Encoded ? 'base64' : 'binary'));
   });
 };
+
 
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -49,8 +42,20 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    // 1. Parse the form data, which now includes files
-    const { fields, files }: any = await parseMultipartForm(event);
+    let fields: any;
+    let files: any = {};
+    const contentType = event.headers['content-type'] || '';
+
+    // --- SMART PARSING LOGIC ---
+    // Check if the form is multipart (has files) or json (simple text)
+    if (contentType.includes('multipart/form-data')) {
+        const parsed = await parseMultipartForm(event) as any;
+        fields = parsed.fields;
+        files = parsed.files;
+    } else {
+        // This handles the simple contact form
+        fields = JSON.parse(event.body || '{}');
+    }
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.office365.com',
@@ -62,35 +67,41 @@ export const handler: Handler = async (event) => {
       },
     });
 
-    // 2. Prepare email attachments from the parsed files
     const attachments = Object.values(files).map((file: any) => ({
       filename: file.filename,
       content: file.content,
       contentType: file.contentType,
     }));
-
-    // 3. Create the email body text from the fields
+    
+    // Create a flexible email body
     let emailBody = 'You have a new form submission:\n\n';
     for (const key in fields) {
+      // Use more descriptive names from the form
+      const fieldName = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
       if (key !== 'form-name' && key !== 'bot-field') {
-         emailBody += `${key}: ${fields[key]}\n`;
+         emailBody += `${fieldName}: ${fields[key]}\n`;
       }
     }
 
     const mailOptions = {
-      from: `"${fields.name || 'Website Form'}" <${process.env.EMAIL_USER}>`,
+      from: `"${fields.fullName || fields.name || 'Website Form'}" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: fields.email,
-      subject: `New Application: ${fields.name} - ${fields.jobTitle || 'Property Consultant'}`,
+      subject: fields.jobTitle ? `New Application: ${fields.name}` : `New Contact Form: ${fields.subject}`,
       text: emailBody,
-      attachments: attachments, // Add the attachments here
+      attachments: attachments,
     };
 
     await transporter.sendMail(mailOptions);
+    
+    // Determine the success message based on which form was submitted
+    const successMessage = fields.jobTitle 
+        ? 'Your application has been submitted successfully!'
+        : 'Your query has been submitted successfully!';
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Your application has been submitted successfully!' }),
+      body: JSON.stringify({ message: successMessage }),
     };
   } catch (error) {
     console.error(error);
