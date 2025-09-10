@@ -29,7 +29,7 @@ const AnimatedSection = ({ children }: AnimatedSectionProps) => {
     return <div ref={sectionRef} className={classes}>{children}</div>;
 };
 
-// --- SVG ICON COMPONENTS (Filled, matching new screenshots) ---
+// --- SVG ICON COMPONENTS (Unchanged) ---
 const ValuationIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 text-black flex-shrink-0">
         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V9h2v2zm0-4H6V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2z"/>
@@ -61,7 +61,6 @@ const SecurityIcon = () => (
     </svg>
 );
 
-
 // --- SELL PAGE COMPONENT ---
 const SellPage = () => {
     const [formData, setFormData] = useState({
@@ -71,21 +70,48 @@ const SellPage = () => {
         message: '',
     });
     const [loading, setLoading] = useState(false);
+    // ADDED: State for submission status message
+    const [statusMessage, setStatusMessage] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }));
     };
+    
+    // ADDED: Helper function to encode data for Netlify
+    const encode = (data: { [key: string]: any }) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // MODIFIED: Replaced placeholder logic with Netlify submission logic
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        console.log("Form Data Submitted:", formData);
-        setTimeout(() => {
+        setStatusMessage(''); // Reset status on new submission
+
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: encode({
+                    "form-name": "sell-contact-form", // This name must match the form's name attribute
+                    ...formData,
+                }),
+            });
+
+            if (response.ok) {
+                setStatusMessage("Thank you! Your message has been sent successfully.");
+                setFormData({ name: '', email: '', phone: '', message: '' }); // Clear form on success
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        } catch (error) {
+            setStatusMessage("Error: Could not send your message. Please try again.");
+        } finally {
             setLoading(false);
-            alert('Thank you for your message!');
-            setFormData({ name: '', email: '', phone: '', message: '' });
-        }, 1500);
+        }
     };
 
     return (
@@ -112,7 +138,7 @@ const SellPage = () => {
                 }
             `}</style>
             <div className="font-sans bg-white text-gray-800">
-                {/* --- HERO SECTION --- */}
+                {/* --- HERO SECTION (Unchanged) --- */}
                 <section className="relative h-[70vh] text-white overflow-hidden hero-container">
                     <div
                         className="absolute inset-0 bg-cover bg-center hero-bg-zoom"
@@ -126,7 +152,7 @@ const SellPage = () => {
                     </div>
                 </section>
                 
-                {/* --- SELL WITH CONFIDENCE SECTION --- */}
+                {/* --- SELL WITH CONFIDENCE SECTION (Unchanged) --- */}
                  <section className="py-28 bg-white">
                     <div className="container mx-auto px-6">
                         <AnimatedSection>
@@ -154,14 +180,13 @@ const SellPage = () => {
                     </div>
                 </section>
     
-                {/* --- TAILORED SOLUTIONS SECTION (Exact Match) --- */}
+                {/* --- TAILORED SOLUTIONS SECTION (Unchanged) --- */}
                 <section className="py-20 bg-white">
                     <div className="container mx-auto px-6 text-center">
                         <AnimatedSection>
                             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#891e6d]">Tailored Solutions For Your Property Sale</h2>
                             <div className="max-w-6xl mx-auto border-4 border-[#891e6d] rounded-2xl shadow-lg px-8 md:px-12 py-20 md:py-24 bg-[#FEF8F1]">
                                 <div className="grid md:grid-cols-3 gap-y-16 gap-x-8">
-                                    {/* Feature Item */}
                                     <div className="flex items-start text-left gap-4">
                                         <ValuationIcon />
                                         <div>
@@ -169,7 +194,6 @@ const SellPage = () => {
                                             <p className="text-gray-700 leading-relaxed">Our representatives will offer a dependable property assessment, enabling you to initiate the selling process.</p>
                                         </div>
                                     </div>
-                                    {/* Feature Item */}
                                     <div className="flex items-start text-left gap-4">
                                         <AdviceIcon />
                                         <div>
@@ -177,7 +201,6 @@ const SellPage = () => {
                                             <p className="text-gray-700 leading-relaxed">At Seven Luxury Real Estate, our agents stay current with the latest market trends. Armed with expert insights, they can protect the interests of their clients.</p>
                                         </div>
                                     </div>
-                                    {/* Feature Item */}
                                     <div className="flex items-start text-left gap-4">
                                         <MarketingIcon />
                                         <div>
@@ -185,7 +208,6 @@ const SellPage = () => {
                                             <p className="text-gray-700 leading-relaxed">Our committed in-house team possesses a deep understanding of the real estate industry. They implement highly effective marketing strategies tailored for optimal lead generation.</p>
                                         </div>
                                     </div>
-                                     {/* Feature Item */}
                                     <div className="flex items-start text-left gap-4">
                                         <TeamIcon />
                                         <div>
@@ -193,7 +215,6 @@ const SellPage = () => {
                                             <p className="text-gray-700 leading-relaxed">Our team undergoes training to ensure clients receive a memorable experience throughout their entire real estate journey.</p>
                                         </div>
                                     </div>
-                                     {/* Feature Item */}
                                     <div className="flex items-start text-left gap-4">
                                         <ServiceIcon />
                                         <div>
@@ -201,7 +222,6 @@ const SellPage = () => {
                                             <p className="text-gray-700 leading-relaxed">The culture at Seven Luxury Real Estate places a strong emphasis on delivering top-notch customer service, making it a paramount priority within our firm.</p>
                                         </div>
                                     </div>
-                                     {/* Feature Item */}
                                     <div className="flex items-start text-left gap-4">
                                         <SecurityIcon />
                                         <div>
@@ -215,7 +235,7 @@ const SellPage = () => {
                     </div>
                 </section>
                 
-                {/* --- FINAL CTA SECTION (Exact Match with Animation) --- */}
+                {/* --- FINAL CTA SECTION (Unchanged) --- */}
                 <section className="relative h-[70vh] text-white overflow-hidden cta-container">
                      <div
                         className="absolute inset-0 bg-cover bg-center cta-bg-zoom"
@@ -227,10 +247,10 @@ const SellPage = () => {
                             Unlock the full potential of your property by choosing us as your trusted partner in the selling process. Our dedicated team of real estate experts is committed to maximizing the value of your asset
                         </p>
                         <a
-                           href="https://bizvibezproperties.com/contact"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="mt-8 inline-block px-10 py-3 bg-[#891e6d] text-white font-semibold rounded-lg border-2 border-white transition-all"
+                            href="https://bizvibezproperties.com/contact"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-8 inline-block px-10 py-3 bg-[#891e6d] text-white font-semibold rounded-lg border-2 border-white transition-all"
                         >
                             Get Started
                         </a>
@@ -243,7 +263,17 @@ const SellPage = () => {
                         <AnimatedSection>
                             <div className="max-w-2xl mx-auto text-center">
                                 <h2 className="text-3xl md:text-4xl font-bold text-[#891e6d] mb-12">Contact Us</h2>
-                                <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* MODIFIED: Form tag updated for Netlify */}
+                                <form 
+                                    name="sell-contact-form" 
+                                    method="POST" 
+                                    data-netlify="true" 
+                                    onSubmit={handleSubmit} 
+                                    className="space-y-6"
+                                >
+                                    {/* ADDED: Hidden input for Netlify */}
+                                    <input type="hidden" name="form-name" value="sell-contact-form" />
+
                                     <input
                                         type="text"
                                         name="name"
@@ -280,6 +310,14 @@ const SellPage = () => {
                                         onChange={handleChange}
                                         required
                                     />
+
+                                    {/* ADDED: Status Message Display */}
+                                    {statusMessage && (
+                                        <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().startsWith('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                            {statusMessage}
+                                        </div>
+                                    )}
+
                                     <button
                                         type="submit"
                                         disabled={loading}
@@ -298,4 +336,3 @@ const SellPage = () => {
 };
 
 export default SellPage;
-

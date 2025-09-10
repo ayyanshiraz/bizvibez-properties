@@ -612,44 +612,45 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
                         </div>
 
                         {/* --- RIGHT (SIDEBAR) COLUMN --- */}
-                        <div className="lg:col-span-1 mt-8 lg:mt-0">
-                            <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
-                                <div className="flex items-start pb-4 border-b">
-                                    <div className="bg-gray-200 p-4 rounded-md mr-4">
-                                        <User className="w-8 h-8 text-gray-500" />
-                                    </div>
-                                    <div>
-                                        <div className="flex items-center">
-                                            <User className="w-4 h-4 mr-2 text-gray-500" />
-                                            <p className="font-semibold text-gray-800">BizVibez Properties</p>
-                                        </div>
-                                        <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
-                                    </div>
-                                </div>
-                                <form onSubmit={handleSubmit} className="space-y-4 pt-6">
-                                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.fullName} onChange={handleChange} />
-                                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.email} onChange={handleChange} />
-                                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
-                                        <CountryCodePicker selectedCountry={selectedCountry} onCountrySelect={setSelectedCountry} />
-                                        <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" value={formData.phone} onChange={handleChange} />
-                                    </div>
-                                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.message} onChange={handleChange}></textarea>
-                                    
-                                    {statusMessage && (
-                                        <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
-                                            {statusMessage}
-                                        </div>
-                                    )}
-
-                                    <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
-                                        {loading ? 'Sending...' : 'Request Information'}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+            <div className="lg:col-span-1 mt-8 lg:mt-0">
+              <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
+                  <div className="flex items-start pb-4 border-b">
+                    <div className="bg-gray-200 p-4 rounded-md mr-4">
+                        <User className="w-8 h-8 text-gray-500" />
                     </div>
-                </div>
+                    <div>
+                        <div className="flex items-center">
+                          <User className="w-4 h-4 mr-2 text-gray-500" />
+                          <p className="font-semibold text-gray-800">BizVibez Properties</p>
+                        </div>
+                        <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
+                    </div>
+                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-4 pt-6">
+                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.fullName} onChange={handleChange} />
+                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.email} onChange={handleChange} />
+                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
+                      <CountryCodePicker selectedCountry={selectedCountry} onCountrySelect={setSelectedCountry} />
+                      <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" value={formData.phone} onChange={handleChange} />
+                    </div>
+                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.message} onChange={handleChange}></textarea>
+                    
+                    {/* Add this block to show success/error messages */}
+                    {statusMessage && (
+                      <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                        {statusMessage}
+                      </div>
+                    )}
+
+                    <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
+                      {loading ? 'Sending...' : 'Request Information'}
+                    </button>
+                  </form>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
             {isLightboxOpen && (
                 <Lightbox 
                     images={allImages}

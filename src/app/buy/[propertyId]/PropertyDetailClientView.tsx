@@ -6,7 +6,7 @@ import { ForSaleProperty } from '../buy-data';
 import CountrySelector from './CountrySelector';
 import { Country } from '../countries';
 
-// --- SVG ICONS ---
+// --- SVG ICONS (Unchanged) ---
 const ChevronLeftIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>;
 const ChevronRightIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>;
 const CheckmarkIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>;
@@ -15,66 +15,52 @@ const MapPinIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 
 
 const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSaleProperty }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [selectedDialCode, setSelectedDialCode] = useState('+971');
     const images = propertyData.images || [];
 
-    // State for Netlify form
+    // --- ADDED: State for the form ---
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
         phone: '',
-        message: `I'm interested in the property "${propertyData.title}" (ID: ${propertyData.propertyId}). Please send me more information.`,
+        message: `I'm interested in this property: ${propertyData.title} (ID: ${propertyData.propertyId})`,
     });
+    const [selectedDialCode, setSelectedDialCode] = useState('+971');
     const [loading, setLoading] = useState(false);
     const [statusMessage, setStatusMessage] = useState('');
-
-    const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     
-    const mapSrc = `https://maps.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}&hl=en&z=14&output=embed`;
-
-    const handleCountrySelect = (country: Country) => {
-        setSelectedDialCode(country.dial_code);
+    // --- ADDED: Helper to encode form data for Netlify ---
+    const encode = (data: { [key: string]: any }) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
     };
 
-    // Handler to update form state
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({ ...prevState, [name]: value }));
-    };
-
-    // Handler for Netlify form submission
+    // --- ADDED: Form submission handler ---
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setStatusMessage('');
 
-        const form = e.target as HTMLFormElement;
-        const data = new FormData(form);
+        const fullPhoneNumber = `${selectedDialCode} ${formData.phone}`;
         
-        // Combine selected dial code with the phone number for submission
-        const fullPhoneNumber = `${selectedDialCode}${formData.phone}`;
-        data.set('phone', fullPhoneNumber);
-        
-        // Add property details to the form data for context in the submission
-        data.set('propertyTitle', propertyData.title);
-        data.set('propertyId', propertyData.propertyId);
-
-
         try {
             const response = await fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(data as any).toString(),
+                body: encode({
+                    "form-name": "property-inquiry",
+                    ...formData,
+                    phone: fullPhoneNumber, // Send the full phone number
+                }),
             });
 
             if (response.ok) {
-                setStatusMessage("Success! Your request has been sent.");
+                setStatusMessage("Thank you! Your request has been sent successfully.");
                 setFormData({
                     fullName: '',
                     email: '',
                     phone: '',
-                    message: `I'm interested in the property "${propertyData.title}" (ID: ${propertyData.propertyId}). Please send me more information.`,
+                    message: `I'm interested in this property: ${propertyData.title} (ID: ${propertyData.propertyId})`,
                 });
             } else {
                 throw new Error('Network response was not ok.');
@@ -86,9 +72,24 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
         }
     };
 
+    // --- ADDED: Handler to update form state ---
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    
+    const mapSrc = `https://maps.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}&hl=en&z=14&output=embed`;
+
+    const handleCountrySelect = (country: Country) => {
+        setSelectedDialCode(country.dial_code);
+    };
+
     return (
         <div className="bg-white font-sans">
-            {/* --- HERO IMAGE CAROUSEL --- */}
+            {/* --- HERO IMAGE CAROUSEL (Unchanged) --- */}
             {images.length > 0 && (
                 <div className="relative w-full h-[60vh] bg-gray-900">
                     <img src={images[currentImageIndex]} alt={`Property view ${currentImageIndex + 1}`} className="w-full h-full object-cover" />
@@ -99,7 +100,7 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
             )}
             
             <div className="container mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
-                 <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-4">
                     <p className="text-sm text-gray-500">
                         <Link href="/" className="hover:text-black">Home</Link> / <Link href="/buy" className="hover:text-black">Commercial</Link> / <Link href="/buy" className="hover:text-black">Office space</Link> / <span>{propertyData.title}</span>
                     </p>
@@ -114,18 +115,16 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     
-                    {/* --- LEFT (MAIN CONTENT) COLUMN --- */}
+                    {/* --- LEFT (MAIN CONTENT) COLUMN (Unchanged) --- */}
                     <div className="lg:col-span-2">
-                        {/* Header */}
                         <div className="pb-6 mb-6">
                             <h1 className="text-3xl font-semibold text-black">{propertyData.title}</h1>
                             <div className="mt-2"><span className="bg-gray-700 text-white text-xs font-semibold px-3 py-1 rounded-sm">FOR SALE</span></div>
                             <p className="text-gray-500 mt-2 flex items-center"><MapPinIcon /> {propertyData.location}</p>
                         </div>
                         
-                        {/* --- Details Box --- */}
                         <div className="border-b-2 pb-6 mb-6">
-                             <div className="flex justify-between items-center mb-4">
+                            <div className="flex justify-between items-center mb-4">
                                 <h2 className="text-xl font-semibold text-black">Details</h2>
                                 <p className="text-sm text-gray-500">Updated on {propertyData.updatedOn}</p>
                             </div>
@@ -139,7 +138,6 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
                             </div>
                         </div>
 
-                        {/* --- Description --- */}
                         <div className="border-b-2 pb-6 mb-6">
                             <h2 className="text-xl font-semibold text-black mb-4">Description</h2>
                             <p className="text-black leading-relaxed mb-4">{propertyData.description}</p>
@@ -147,9 +145,8 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
                             <ul className="space-y-1 text-black">{propertyData.propertyFeatures.map((f, i) => <li key={i}>• {f}</li>)}</ul>
                         </div>
 
-                        {/* --- Address & Map --- */}
                         <div className="border-b-2 pb-6 mb-6">
-                             <div className="flex justify-between items-center mb-4">
+                            <div className="flex justify-between items-center mb-4">
                                 <h2 className="text-xl font-semibold text-black">Address</h2>
                                 <a href={`https://www.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}`} target="_blank" rel="noopener noreferrer" className="text-sm bg-black text-white px-3 py-1 rounded hover:bg-gray-800">Open on Google Maps</a>
                             </div>
@@ -161,13 +158,11 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
                             <div className="w-full h-80 rounded overflow-hidden"><iframe width="100%" height="100%" frameBorder="0" scrolling="no" src={mapSrc}></iframe></div>
                         </div>
                         
-                         {/* --- Features Section --- */}
-                         <div className="border-b-2 pb-6 mb-6">
+                        <div className="border-b-2 pb-6 mb-6">
                             <h2 className="text-xl font-semibold text-black mb-4">Features</h2>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-black">{propertyData.features.map((f, i) => <div key={i} className="flex items-center"><CheckmarkIcon /> {f}</div>)}</div>
                         </div>
 
-                        {/* --- Additional Images Gallery --- */}
                         <div>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                 {images.map((img, i) => (
@@ -191,7 +186,8 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
                                     <Link href="#" className="text-sm hover:underline" style={{ color: '#891e6d' }}>View Listings</Link>
                                 </div>
                             </div>
-                            {/* --- AMENDED NETLIFY FORM --- */}
+                            
+                            {/* --- MODIFIED NETLIFY FORM --- */}
                             <form
                                 name="property-inquiry"
                                 method="POST"
