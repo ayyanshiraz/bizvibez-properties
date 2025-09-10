@@ -252,33 +252,54 @@ const ContactForm = () => {
     );
 };
 
-// --- Lightbox Component (using Next/Image) ---
+// Replace your existing Lightbox component with this
 const Lightbox: React.FC<{ images: string[]; currentIndex: number; onClose: () => void; onNext: () => void; onPrev: () => void; }> = ({ images, currentIndex, onClose, onNext, onPrev }) => {
-    return (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50" onClick={onClose}>
-            <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300">&times;</button>
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'ArrowRight') onNext();
+            else if (event.key === 'ArrowLeft') onPrev();
+            else if (event.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onNext, onPrev, onClose]);
+
+    return (
+        <div className="fixed inset-0 bg-black/90 z-50" onClick={onClose}>
+            <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300 z-30">&times;</button>
+            
+            <button 
+                onClick={(e) => { e.stopPropagation(); onPrev(); }} 
+                // CHANGE 1: Added top-1/2 and -translate-y-1/2 for vertical centering
+                className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 rounded-full hover:bg-black/60 transition-colors duration-300 z-20"
+            >
+                {/* CHANGE 2: Increased SVG icon size for better visibility */}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <Image 
+                src={images[currentIndex]} 
+                alt="Property full view"
+                width={1920}
+                height={1080}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90vw] max-h-[85vh] object-contain w-auto h-auto"
+                priority
+                onClick={(e) => e.stopPropagation()} 
+            />
             
-            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-4 md:left-10 bg-white/20 p-2 rounded-full hover:bg-white/30 transition">
-                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-
-            {/* Use Next/Image for optimized loading */}
-            <div className="relative max-w-[90vw] max-h-[85vh] flex items-center justify-center">
-                <Image 
-                    src={images[currentIndex]} 
-                    alt="Property full view" 
-                    fill // Fills the parent div
-                    style={{ objectFit: 'contain' }} // Ensures the image fits within boundaries
-                    priority // Prioritize loading for the main image
-                    onClick={(e) => e.stopPropagation()} 
-                />
-            </div>
-
-            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-4 md:right-10 bg-white/20 p-2 rounded-full hover:bg-white/30 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-        </div>
-    );
+            <button 
+                onClick={(e) => { e.stopPropagation(); onNext(); }} 
+                // CHANGE 1: Added top-1/2 and -translate-y-1/2 for vertical centering
+                className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 rounded-full hover:bg-black/60 transition-colors duration-300 z-20"
+            >
+                {/* CHANGE 2: Increased SVG icon size for better visibility */}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+    );
 };
 
 
