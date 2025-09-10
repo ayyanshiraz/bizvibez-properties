@@ -319,255 +319,349 @@ const CountryCodePicker = ({ selectedCountry, onCountrySelect }: { selectedCount
     );
 };
 
+// --- Lightbox Component ---
+const Lightbox: React.FC<{ images: string[]; currentIndex: number; onClose: () => void; onNext: () => void; onPrev: () => void; }> = ({ images, currentIndex, onClose, onNext, onPrev }) => {
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'ArrowRight') onNext();
+            else if (event.key === 'ArrowLeft') onPrev();
+            else if (event.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onNext, onPrev, onClose]);
+
+    return (
+        <div className="fixed inset-0 bg-black/90 z-50" onClick={onClose}>
+            <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300 z-30">&times;</button>
+            
+            <button 
+                onClick={(e) => { e.stopPropagation(); onPrev(); }} 
+                className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 rounded-full hover:bg-black/60 transition-colors duration-300 z-20"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <Image 
+                src={images[currentIndex]} 
+                alt="Property full view"
+                width={1920}
+                height={1080}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90vw] max-h-[85vh] object-contain w-auto h-auto"
+                priority
+                onClick={(e) => e.stopPropagation()} 
+            />
+            
+            <button 
+                onClick={(e) => { e.stopPropagation(); onNext(); }} 
+                className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 rounded-full hover:bg-black/60 transition-colors duration-300 z-20"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+    );
+};
+
 
 // --- MAIN CLIENT COMPONENT ---
 export default function PlotDetailClient({ plot }: { plot: Plot }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  // State for the form fields, loading status, and messages
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    message: `I am interested in this property: ${plot.title}`,
-  });
-  const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.iso === "AE") || countries[0]);
-  const [loading, setLoading] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+    const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
 
-  // Update state when the user types in the form
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
-  };
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: `I am interested in this property: ${plot.title}`,
+    });
+    const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.iso === "AE") || countries[0]);
+    const [loading, setLoading] = useState(false);
+    const [statusMessage, setStatusMessage] = useState('');
 
-  // Handle the form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatusMessage('');
+    const allImages = [...plot.images, ...plot.galleryImages];
 
-    const fullPhoneNumber = `${selectedCountry.code} ${formData.phone}`;
+    const openLightbox = (index: number) => {
+        setLightboxImageIndex(index);
+        setIsLightboxOpen(true);
+    };
 
-    try {
-      const response = await fetch('/.netlify/functions/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: fullPhoneNumber, // Send the combined phone number
-          message: formData.message,
-          subject: `Property Inquiry: ${plot.title}`, // Auto-includes the property title
-        }),
-      });
+    const closeLightbox = () => {
+        setIsLightboxOpen(false);
+    };
 
-      const result = await response.json();
-      setStatusMessage(result.message);
+    const nextLightboxImage = () => {
+        setLightboxImageIndex(prev => (prev + 1) % allImages.length);
+    };
 
-      if (response.ok) {
-        // Clear the form on success
-        setFormData({
-            fullName: '',
-            email: '',
-            phone: '',
-            message: `I am interested in this property: ${plot.title}`,
-        });
-      }
-    } catch (error) {
-      setStatusMessage('An error occurred while sending the message. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-  const handleNextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % plot.images.length);
-  };
+    const prevLightboxImage = () => {
+        setLightboxImageIndex(prev => (prev - 1 + allImages.length) % allImages.length);
+    };
 
-  const handlePrevImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + plot.images.length) % plot.images.length);
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
 
-  return (
-    <div className="bg-white font-sans text-[#333]">
-      {/* --- HERO IMAGE CAROUSEL --- */}
-      <div className="relative w-full h-[40vh] md:h-[65vh] overflow-hidden group">
-        <div className="w-full h-full whitespace-nowrap transition-transform duration-500 ease-in-out" style={{ transform: `translateX(${-currentIndex * 100}%)`}}>
-            {plot.images.map((src, index) => (
-                <div className="inline-block w-full h-full relative" key={index}>
-                    <Image src={src} alt={`${plot.title} image ${index + 1}`} layout="fill" objectFit="cover" priority={index === 0} />
-                </div>
-            ))}
-        </div>
-        <button onClick={handlePrevImage} className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-sm text-white hover:bg-black/60 transition opacity-0 group-hover:opacity-100">
-            <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button onClick={handleNextImage} className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-sm text-white hover:bg-black/60 transition opacity-0 group-hover:opacity-100">
-            <ChevronRight className="w-6 h-6" />
-        </button>
-        <div className="absolute top-4 right-4 bg-black/40 p-2 rounded-sm text-white hover:bg-black/60 transition cursor-pointer">
-            <Maximize className="w-5 h-5" />
-        </div>
-      </div>
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatusMessage('');
 
-      {/* This wrapper centers the content block below the hero */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12">
-          {/* --- LEFT (MAIN CONTENT) COLUMN --- */}
-          <div className="lg:col-span-2">
-            
-            {/* --- BREADCRUMBS --- */}
-            <div className="text-sm text-gray-500 mb-6">
-              Home / Land / {plot.title}
-            </div>
+        const fullPhoneNumber = `${selectedCountry.code} ${formData.phone}`;
 
-            {/* --- HEADER --- */}
-            <div className="flex flex-col md:flex-row justify-between md:items-start border-b pb-4 mb-6">
-              <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-800">{plot.title}</h1>
-                <div className="flex items-center text-gray-500 mt-2 space-x-4">
-                   <span className="bg-gray-700 text-white text-xs font-semibold px-2.5 py-1 rounded-sm">{plot.status.toUpperCase()}</span>
-                   <div className="flex items-center"><MapPin className="w-4 h-4 mr-1.5" /><span>{plot.location}</span></div>
-                </div>
-              </div>
-              <div className="mt-4 md:mt-0 text-left md:text-right flex-shrink-0">
-                <p className="text-2xl md:text-3xl font-bold text-gray-900">{plot.price}</p>
-                <button className="p-2 border rounded-md mt-2 hover:bg-gray-100">
-                    <Share2 className="w-5 h-5 text-gray-600" />
-                </button>
-              </div>
-            </div>
-            
-            {/* --- DETAILS SECTION --- */}
-            <Section title="Details">
-                <div className="flex items-center text-xs text-gray-500 mb-4">
-                    <CalendarDays className="w-3.5 h-3.5 mr-1.5" /> Updated on {plot.updatedOn}
-                </div>
-                <div className="border border-green-200 bg-green-50/50 rounded-md p-6 grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                    <DetailItem label="Property ID:" value={plot.propertyId} />
-                    <DetailItem label="Property Size:" value={plot.size} />
-                    <DetailItem label="Price:" value={plot.price} />
-                    <DetailItem label="Property Type:" value={plot.propertyType} />
-                    <DetailItem label="City, Dubai:" value={plot.location} />
-                    <DetailItem label="Property Status:" value={plot.status} />
-                </div>
-            </Section>
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName: formData.fullName,
+                    email: formData.email,
+                    phone: fullPhoneNumber,
+                    message: formData.message,
+                    subject: `Property Inquiry: ${plot.title}`,
+                }),
+            });
 
-            {/* --- DESCRIPTION SECTION --- */}
-            <Section title="Description">
-              <div className="text-gray-700 space-y-6 leading-relaxed">
-                <p>{plot.mainDescription}</p>
-                <h3 className="text-lg font-bold text-gray-800 pt-2">Property Details:</h3>
-                <ul className="list-disc list-inside space-y-1">
-                  {plot.propertyDetails.map(item => <li key={item.label}><strong>{item.label}:</strong> {item.value}</li>)}
-                </ul>
-                <h3 className="text-lg font-bold text-gray-800 pt-2">About {plot.location}:</h3>
-                <p>{plot.aboutLocation}</p>
-                <h3 className="text-lg font-bold text-gray-800 pt-2">Key Features & Nearby Landmarks:</h3>
-                <ul className="list-disc list-inside space-y-1">
-                   {plot.keyFeatures.map(item => <li key={item.title}><strong>{item.title}:</strong> {item.text}</li>)}
-                </ul>
-              </div>
-            </Section>
+            const result = await response.json();
+            setStatusMessage(result.message);
 
-            {/* --- ADDRESS SECTION --- */}
-            <Section title="Address">
-                 <div className="grid grid-cols-2 border-t border-b divide-x">
-                    <AddressItem label="City" value={plot.city} />
-                    <AddressItem label="Area" value={plot.area} />
-                 </div>
-            </Section>
-            
-            {/* --- GALLERY SECTION --- */}
-            <Section title="Gallery">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {plot.galleryImages.map((src, index) => (
-                        <div key={index} className="relative w-full aspect-video rounded-md overflow-hidden">
-                            <Image src={src} alt={`Gallery image ${index + 1}`} layout="fill" objectFit="cover" />
-                        </div>
-                    ))}
-                </div>
-            </Section>
-            
-            {/* --- ABOUT COMMUNITY SECTION --- */}
-            {plot.communityFeatures && (
-              <Section title={`About ${plot.location}`}>
-                <div className="text-gray-700 space-y-6 leading-relaxed">
-                  <p>{plot.communityFeatures.aboutText}</p>
-                  <h3 className="text-lg font-bold text-gray-800 pt-2">Community Features</h3>
-                  <ul className="space-y-4">
-                    {plot.communityFeatures.features.map(feature => (
-                      <li key={feature.title} className="flex items-start">
-                        <span className="text-purple-500 font-bold mr-3 mt-1">•</span>
-                        <div>
-                          <strong>{feature.title}:</strong> {feature.text}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Section>
-            )}
+            if (response.ok) {
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    message: `I am interested in this property: ${plot.title}`,
+                });
+            }
+        } catch (error) {
+            setStatusMessage('An error occurred while sending the message. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-            {/* --- MAP SECTION (CONDITIONAL) --- */}
-            {plot.mapEmbedUrl && (
-              <Section title="Map">
-                  <div className="relative w-full h-[400px] rounded-md overflow-hidden border">
-                      <iframe
-                        src={plot.mapEmbedUrl}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen={false}
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                      ></iframe>
-                  </div>
-              </Section>
-            )}
-          </div>
+    const handleNextImage = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % plot.images.length);
+    };
 
-            {/* --- RIGHT (SIDEBAR) COLUMN --- */}
-            <div className="lg:col-span-1 mt-8 lg:mt-0">
-              <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
-                  <div className="flex items-start pb-4 border-b">
-                    <div className="bg-gray-200 p-4 rounded-md mr-4">
-                        <User className="w-8 h-8 text-gray-500" />
+    const handlePrevImage = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + plot.images.length) % plot.images.length);
+    };
+
+    return (
+        <>
+            <div className="bg-white font-sans text-[#333]">
+                {/* --- HERO IMAGE CAROUSEL --- */}
+                <div className="relative w-full h-[40vh] md:h-[65vh] overflow-hidden group">
+                    <div 
+                        className="w-full h-full whitespace-nowrap transition-transform duration-500 ease-in-out" 
+                        style={{ transform: `translateX(${-currentIndex * 100}%)`}}
+                    >
+                        {plot.images.map((src, index) => (
+                            <div 
+                                className="inline-block w-full h-full relative cursor-pointer" 
+                                key={index}
+                                onClick={() => openLightbox(index)}
+                            >
+                                <Image src={src} alt={`${plot.title} image ${index + 1}`} layout="fill" objectFit="cover" priority={index === 0} />
+                            </div>
+                        ))}
                     </div>
-                    <div>
-                        <div className="flex items-center">
-                          <User className="w-4 h-4 mr-2 text-gray-500" />
-                          <p className="font-semibold text-gray-800">BizVibez Properties</p>
-                        </div>
-                        <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
-                    </div>
-                  </div>
-                  <form onSubmit={handleSubmit} className="space-y-4 pt-6">
-                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.fullName} onChange={handleChange} />
-                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.email} onChange={handleChange} />
-                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
-                      <CountryCodePicker selectedCountry={selectedCountry} onCountrySelect={setSelectedCountry} />
-                      <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" value={formData.phone} onChange={handleChange} />
-                    </div>
-                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.message} onChange={handleChange}></textarea>
-                    
-                    {/* Add this block to show success/error messages */}
-                    {statusMessage && (
-                      <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
-                        {statusMessage}
-                      </div>
-                    )}
-
-                    <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
-                      {loading ? 'Sending...' : 'Request Information'}
+                    <button onClick={(e) => { e.stopPropagation(); handlePrevImage(); }} className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-sm text-white hover:bg-black/60 transition opacity-0 group-hover:opacity-100 z-10">
+                        <ChevronLeft className="w-6 h-6" />
                     </button>
-                  </form>
-              </div>
+                    <button onClick={(e) => { e.stopPropagation(); handleNextImage(); }} className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-sm text-white hover:bg-black/60 transition opacity-0 group-hover:opacity-100 z-10">
+                        <ChevronRight className="w-6 h-6" />
+                    </button>
+                    <div 
+                        className="absolute top-4 right-4 bg-black/40 p-2 rounded-sm text-white hover:bg-black/60 transition cursor-pointer z-10"
+                        onClick={() => openLightbox(currentIndex)}
+                    >
+                        <Maximize className="w-5 h-5" />
+                    </div>
+                </div>
+
+                {/* This wrapper centers the content block below the hero */}
+                <div className="max-w-6xl mx-auto px-4 py-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12">
+                        {/* --- LEFT (MAIN CONTENT) COLUMN --- */}
+                        <div className="lg:col-span-2">
+                            
+                            {/* --- BREADCRUMBS --- */}
+                            <div className="text-sm text-gray-500 mb-6">
+                                Home / Land / {plot.title}
+                            </div>
+
+                            {/* --- HEADER --- */}
+                            <div className="flex flex-col md:flex-row justify-between md:items-start border-b pb-4 mb-6">
+                                <div>
+                                    <h1 className="text-2xl md:text-3xl font-bold text-gray-800">{plot.title}</h1>
+                                    <div className="flex items-center text-gray-500 mt-2 space-x-4">
+                                        <span className="bg-gray-700 text-white text-xs font-semibold px-2.5 py-1 rounded-sm">{plot.status.toUpperCase()}</span>
+                                        <div className="flex items-center"><MapPin className="w-4 h-4 mr-1.5" /><span>{plot.location}</span></div>
+                                    </div>
+                                </div>
+                                <div className="mt-4 md:mt-0 text-left md:text-right flex-shrink-0">
+                                    <p className="text-2xl md:text-3xl font-bold text-gray-900">{plot.price}</p>
+                                    <button className="p-2 border rounded-md mt-2 hover:bg-gray-100">
+                                        <Share2 className="w-5 h-5 text-gray-600" />
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            {/* --- DETAILS SECTION --- */}
+                            <Section title="Details">
+                                <div className="flex items-center text-xs text-gray-500 mb-4">
+                                    <CalendarDays className="w-3.5 h-3.5 mr-1.5" /> Updated on {plot.updatedOn}
+                                </div>
+                                <div className="border border-green-200 bg-green-50/50 rounded-md p-6 grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
+                                    <DetailItem label="Property ID:" value={plot.propertyId} />
+                                    <DetailItem label="Property Size:" value={plot.size} />
+                                    <DetailItem label="Price:" value={plot.price} />
+                                    <DetailItem label="Property Type:" value={plot.propertyType} />
+                                    <DetailItem label="City, Dubai:" value={plot.location} />
+                                    <DetailItem label="Property Status:" value={plot.status} />
+                                </div>
+                            </Section>
+
+                            {/* --- DESCRIPTION SECTION --- */}
+                            <Section title="Description">
+                                <div className="text-gray-700 space-y-6 leading-relaxed">
+                                    <p>{plot.mainDescription}</p>
+                                    <h3 className="text-lg font-bold text-gray-800 pt-2">Property Details:</h3>
+                                    <ul className="list-disc list-inside space-y-1">
+                                        {plot.propertyDetails.map(item => <li key={item.label}><strong>{item.label}:</strong> {item.value}</li>)}
+                                    </ul>
+                                    <h3 className="text-lg font-bold text-gray-800 pt-2">About {plot.location}:</h3>
+                                    <p>{plot.aboutLocation}</p>
+                                    <h3 className="text-lg font-bold text-gray-800 pt-2">Key Features & Nearby Landmarks:</h3>
+                                    <ul className="list-disc list-inside space-y-1">
+                                        {plot.keyFeatures.map(item => <li key={item.title}><strong>{item.title}:</strong> {item.text}</li>)}
+                                    </ul>
+                                </div>
+                            </Section>
+
+                            {/* --- ADDRESS SECTION --- */}
+                            <Section title="Address">
+                                <div className="grid grid-cols-2 border-t border-b divide-x">
+                                    <AddressItem label="City" value={plot.city} />
+                                    <AddressItem label="Area" value={plot.area} />
+                                </div>
+                            </Section>
+                            
+                            {/* --- GALLERY SECTION --- */}
+                            <Section title="Gallery">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    {plot.galleryImages.map((src, index) => (
+                                        <div 
+                                            key={index} 
+                                            className="relative w-full aspect-video rounded-md overflow-hidden cursor-pointer group/gallery"
+                                            onClick={() => openLightbox(plot.images.length + index)}
+                                        >
+                                            <Image 
+                                                src={src} 
+                                                alt={`Gallery image ${index + 1}`} 
+                                                layout="fill" 
+                                                objectFit="cover" 
+                                                className="transition-transform duration-300 group-hover/gallery:scale-110"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </Section>
+                            
+                            {/* --- ABOUT COMMUNITY SECTION --- */}
+                            {plot.communityFeatures && (
+                                <Section title={`About ${plot.location}`}>
+                                    <div className="text-gray-700 space-y-6 leading-relaxed">
+                                        <p>{plot.communityFeatures.aboutText}</p>
+                                        <h3 className="text-lg font-bold text-gray-800 pt-2">Community Features</h3>
+                                        <ul className="space-y-4">
+                                            {plot.communityFeatures.features.map(feature => (
+                                                <li key={feature.title} className="flex items-start">
+                                                    <span className="text-purple-500 font-bold mr-3 mt-1">•</span>
+                                                    <div>
+                                                        <strong>{feature.title}:</strong> {feature.text}
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </Section>
+                            )}
+
+                            {/* --- MAP SECTION (CONDITIONAL) --- */}
+                            {plot.mapEmbedUrl && (
+                                <Section title="Map">
+                                    <div className="relative w-full h-[400px] rounded-md overflow-hidden border">
+                                        <iframe
+                                            src={plot.mapEmbedUrl}
+                                            width="100%"
+                                            height="100%"
+                                            style={{ border: 0 }}
+                                            allowFullScreen={false}
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                        ></iframe>
+                                    </div>
+                                </Section>
+                            )}
+                        </div>
+
+                        {/* --- RIGHT (SIDEBAR) COLUMN --- */}
+                        <div className="lg:col-span-1 mt-8 lg:mt-0">
+                            <div className="sticky top-8 border rounded-lg p-6 shadow-sm">
+                                <div className="flex items-start pb-4 border-b">
+                                    <div className="bg-gray-200 p-4 rounded-md mr-4">
+                                        <User className="w-8 h-8 text-gray-500" />
+                                    </div>
+                                    <div>
+                                        <div className="flex items-center">
+                                            <User className="w-4 h-4 mr-2 text-gray-500" />
+                                            <p className="font-semibold text-gray-800">BizVibez Properties</p>
+                                        </div>
+                                        <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
+                                    </div>
+                                </div>
+                                <form onSubmit={handleSubmit} className="space-y-4 pt-6">
+                                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.fullName} onChange={handleChange} />
+                                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.email} onChange={handleChange} />
+                                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
+                                        <CountryCodePicker selectedCountry={selectedCountry} onCountrySelect={setSelectedCountry} />
+                                        <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" value={formData.phone} onChange={handleChange} />
+                                    </div>
+                                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.message} onChange={handleChange}></textarea>
+                                    
+                                    {statusMessage && (
+                                        <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                            {statusMessage}
+                                        </div>
+                                    )}
+
+                                    <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
+                                        {loading ? 'Sending...' : 'Request Information'}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+            {isLightboxOpen && (
+                <Lightbox 
+                    images={allImages}
+                    currentIndex={lightboxImageIndex}
+                    onClose={closeLightbox}
+                    onNext={nextLightboxImage}
+                    onPrev={prevLightboxImage}
+                />
+            )}
+        </>
     );
-  }
+}
 
 // --- HELPER COMPONENTS ---
 const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
@@ -590,4 +684,3 @@ const AddressItem = ({ label, value }: { label: string, value: string }) => (
         <p className="text-gray-600 text-base">{value}</p>
     </div>
 );
-
