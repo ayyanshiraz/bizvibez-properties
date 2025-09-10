@@ -49,95 +49,35 @@ const ShareIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w
 const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-gray-700" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>;
 const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg>;
 
-// --- UPDATED Agent/Enquiry Form Component ---
-const EnquiryForm = ({ propertyTitle }: { propertyTitle: string }) => {
-    // State for the form fields, loading status, and messages
-    const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
-        phone: '',
-        message: 'I am interested in this property and would like more information.',
-    });
-    const [loading, setLoading] = useState(false);
-    const [statusMessage, setStatusMessage] = useState('');
-
-    // Update state when the user types
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({ ...prevState, [name]: value }));
-    };
-
-    // Handle the form submission
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        setStatusMessage('');
-
-        try {
-            const response = await fetch('/.netlify/functions/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    ...formData,
-                    subject: `Property Inquiry: ${propertyTitle}`, // Auto-includes the property title
-                }),
-            });
-
-            const result = await response.json();
-            setStatusMessage(result.message);
-
-            if (response.ok) {
-                setFormData({ // Clear the form on success
-                    fullName: '',
-                    email: '',
-                    phone: '',
-                    message: 'I am interested in this property and would like more information.',
-                });
-            }
-        } catch (error) {
-            setStatusMessage('An error occurred while sending the message. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div className="bg-white p-6 border rounded-md shadow-lg">
-            <div className="flex items-center mb-4">
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                    <UserIcon />
-                </div>
-                <div>
-                    <p className="font-bold text-lg">Bizvibez Properties</p>
-                    <a href="/listings" className="text-teal-600 hover:underline">View Listings</a>
-                </div>
+// --- Agent/Enquiry Form Component ---
+const EnquiryForm = () => (
+    <div className="bg-white p-6 border rounded-md shadow-lg">
+        <div className="flex items-center mb-4">
+            <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                <UserIcon />
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <input type="text" name="fullName" placeholder="Full Name" required className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" value={formData.fullName} onChange={handleChange} />
-                <input type="email" name="email" placeholder="Email" required className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" value={formData.email} onChange={handleChange} />
-                <div className="flex">
-                    <select className="border rounded-l-md p-3 bg-gray-100 focus:outline-none">
-                        <option>🇦🇪 +971</option>
-                        {/* You can add more country codes here if needed */}
-                    </select>
-                    <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 border rounded-r-md focus:outline-none focus:ring-2 focus:ring-teal-500" value={formData.phone} onChange={handleChange} />
-                </div>
-                <textarea name="message" placeholder="Your message..." rows={4} required className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" value={formData.message} onChange={handleChange}></textarea>
-                
-                {/* This block will display success or error messages */}
-                {statusMessage && (
-                    <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
-                        {statusMessage}
-                    </div>
-                )}
-                
-                <button type="submit" disabled={loading} className="w-full bg-[#1e3c35] text-white font-bold py-3 rounded-md hover:bg-opacity-90 transition-colors disabled:opacity-70">
-                    {loading ? 'Sending...' : 'Request Information'}
-                </button>
-            </form>
+            <div>
+                <p className="font-bold text-lg">Seven Luxury Real Estate</p>
+                <a href="#" className="text-teal-600 hover:underline">View Listings</a>
+            </div>
         </div>
-    );
-};
+        <form className="space-y-4">
+            <input type="text" placeholder="Full Name" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" />
+            <input type="email" placeholder="Email" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" />
+            <div className="flex">
+                <select className="border rounded-l-md p-3 bg-gray-100 focus:outline-none">
+                    <option>🇦🇪 +971</option>
+                </select>
+                <input type="tel" placeholder="050 123 4567" className="w-full p-3 border rounded-r-md focus:outline-none focus:ring-2 focus:ring-teal-500" />
+            </div>
+            <textarea placeholder="Your message..." rows={4} className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+            <button type="submit" className="w-full bg-[#1e3c35] text-white font-bold py-3 rounded-md hover:bg-opacity-90 transition-colors">
+                Request Information
+            </button>
+        </form>
+    </div>
+);
+
 // --- Fullscreen Image Modal Component ---
 const ImageModal = ({ images, currentIndex, onClose, onNext, onPrev }: { images: string[], currentIndex: number, onClose: () => void, onNext: () => void, onPrev: () => void }) => {
     return (
@@ -310,7 +250,7 @@ export const PropertyDetailsComponent = ({ property }: { property: Property }) =
                         {/* --- Right Column (Sticky Form) --- */}
                         <aside className="lg:col-span-1">
                             <div className="sticky top-8">
-                            <EnquiryForm propertyTitle={property.name} />
+                            <EnquiryForm />
                             </div>
                         </aside>
                     </div>

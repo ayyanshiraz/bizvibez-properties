@@ -375,235 +375,460 @@ const properties: Property[] = [
         amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
         paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
     },
-     {
-        id: 25,
-        name: 'BAYZ 102 by Danube Properties at Business Bay, Dubai',
-        location: 'Business Bay',
-        price: ' 1,270,000',
-        size: ' ',
-        bedrooms: 'Studio, 1, 2 , 3 & 4',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id: 26,
-        name: 'Sobha Elwood at Dubailand by SOBHA REALTY',
-        location: 'Dubailand',
-        price: '  7,930,000',
-        size: ' 4958',
-        bedrooms: 'Studio, 4, 5, & 6',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id: 27,
-        name: 'Damac Lagoon Views 3 by Damac',
-        location: 'Damac lagoons',
-        price: '  1,140,000',
-        size: '  698',
-        bedrooms: 'Studio, 1 & 2',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id: 28,
-        name: 'Violet at Damac Hills 2 by Damac Properties',
-        location: 'Damac Hills 2',
-        price: '  1,869,000',
-        size: ' 2,352',
-        bedrooms: 'Studio, 4',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id: 29,
-        name: 'Aurora By Binghatti At Jumeirah Village Circle (JVC)',
-        location: 'Jumeirah Village Circle',
-        price: '  666,666',
-        size: ' 382.44',
-        bedrooms: 'Studio, 1 & 2',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-    {
-        id:30,
-        name: 'Sobha Skyscape Altius at Sobha Hartland 2',
-        location: 'Sobha Hartland 2',
-        price: ' 1,560,000',
-        size: ' 634.96',
-        bedrooms: 'Studio, 1 , 1.5 , 2 , 2.5 & 3',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-    {
-        id:31,
-        name: 'Sobha Orbis at Motor City, Dubai',
-        location: 'Motor City',
-        price: ' 985,000',
-        size: '536.15',
-        bedrooms: 'Studio, 1 , 1.5 , & 2',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id:32,
-        name: 'Elitz 2 by Danube at Jumeirah Village Circle (JVC)',
-        location: 'Jumeirah Village Circle',
-        price: '  650,000',
-        size: '385.99',
-        bedrooms: 'Studio, 1 , 2 , & 3',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id:33,
-        name: 'DAMAC Riverside Dubai',
-        location: '',
-        price: ' 1,990,000',
-        size: '2,297.34 to 3,407.42',
-        bedrooms: 'Studio, 4-5',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
+       {
 
-     {
-        id:34,
-        name: 'Binghatti Hills at Dubai Science Park',
-        location: 'Dubai Science Park',
-        price: ' 777,777',
-        size: '446 to 4,200.17 ',
-        bedrooms: 'Studio, 1 & 2',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-    {
-        id:35,
-        name: 'DAMAC Lagoon Views 2',
-        location: 'Damac lagoons',
-        price: ' 1,100,000',
-        size: '672 to 1,797 ',
-        bedrooms: 'Studio, 1 - 2',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
+        id: 25,
 
-    {
-        id:36,
-        name: 'Autograph Collection Damac Hills',
-        location: 'Damac Hills',
-        price: '5,100,000',
-        size: '',
-        bedrooms: 'Studio, 4, 5, 6, & 7',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id:37,
-        name: 'The Sapphire by DAMAC',
-        location: 'Sheikh Zayed Road',
-        price: '1,200,000',
-        size: 'Various Sizes Available ',
-        bedrooms: 'Studio, 1 - 3',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id:38,
-        name: 'Binghatti Azure ',
-        location: 'Jumeirah Village Circle',
-        price: ' 593,000',
-        size: ' 338.63',
-        bedrooms: 'Studio, 1 & 2',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
-     {
-        id:39,
-        name: 'Binghatti Mercedes Benz places',
-        location: 'Downtown Dubai',
-        price: '10,499,999',
-        size: '1,846 ',
-        bedrooms: 'Studio, 2 - 4',
-        image: [
-            '/d21.webp', '/d22.webp', '/d23.webp', '/d24.webp', '/d25.webp', '/d26.webp',
-        ],
-        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
-        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
-        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
-        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
-    },
+        name: 'BAYZ 102 by Danube Properties at Business Bay, Dubai',
 
-];
+        location: 'Business Bay',
+
+        price: ' 1,270,000',
+
+        size: ' ',
+
+        bedrooms: 'Studio, 1, 2 , 3 & 4',
+
+        image: [
+
+            '/danube31.webp', '/danube32.webp', '/danube33.webp', '/danube34.webp', '/danube35.webp', '/danube36.webp','/danube37.webp','/danube38.webp','/danube39.webp','/danube310.webp','/danube311.webp','/danube312.webp','/danube313.webp','/danube314.webp','/danube315.webp','/danube316.webp','/danube317.webp','/danube318.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id: 26,
+
+        name: 'Sobha Elwood at Dubailand by SOBHA REALTY',
+
+        location: 'Dubailand',
+
+        price: '  7,930,000',
+
+        size: ' 4958',
+
+        bedrooms: '4, 5, & 6',
+
+        image: [
+
+            '/s71.webp', '/s72.webp', '/s73.webp', '/s74.webp', '/s75.webp', '/s76.webp','/s77.webp','/s78.webp','/s79.webp','/s710.webp','/s711.webp','/s712.webp','/s713.webp','/s714.webp','/s715.webp','/s716.webp','/s717.webp','/s718.webp','/s719.webp','/s720.webp','/s721.webp','/s722.webp','/s723.webp','/s724.webp','/s725.webp','/s726.webp','/s727.webp','/s728.webp','/s729.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id: 27,
+
+        name: 'Damac Lagoon Views 3 by Damac',
+
+        location: 'Damac lagoons',
+
+        price: '  1,140,000',
+
+        size: '  698',
+
+        bedrooms: '1 & 2',
+
+        image: [
+
+            '/damac1.webp', '/damac2.webp', '/damac3.webp', '/damac4.webp', '/damac5.webp', '/damac6.webp','/damac7.webp','/damac8.webp','/damac9.webp','/damac10.webp','/damac11.webp','/damac12.webp','/damac13.webp','/damac14.webp','/damac15.webp','/damac16.webp','/damac17.webp','/damac18.webp','/damac19.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id: 28,
+
+        name: 'Violet at Damac Hills 2 by Damac Properties',
+
+        location: 'Damac Hills 2',
+
+        price: '  1,869,000',
+
+        size: ' 2,352',
+
+        bedrooms: '4',
+
+        image: [
+
+            '/dv1.webp', '/dv2.webp', '/dv3.webp', '/dv4.webp', '/dv5.webp', '/dv6.jpg','/dv7.webp','/dv8.webp','/dv9.webp','/dv10.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id: 29,
+
+        name: 'Aurora By Binghatti At Jumeirah Village Circle (JVC)',
+
+        location: 'Jumeirah Village Circle',
+
+        price: '  666,666',
+
+        size: ' 382.44',
+
+        bedrooms: 'Studio, 1 & 2',
+
+        image: [
+
+            '/ba1.webp', '/ba2.webp', '/ba3.webp', '/ba4.webp', '/ba5.webp', '/ba6.webp','/ba7.webp','/ba8.webp','/ba9.webp','/ba10.webp','/ba11.webp','/ba12.webp','/ba13.webp','/ba14.webp','/ba15.webp','/ba16.webp','/ba17.webp','/ba18.webp','/ba19.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+    {
+
+        id:30,
+
+        name: 'Sobha Skyscape Altius at Sobha Hartland 2',
+
+        location: 'Sobha Hartland 2',
+
+        price: ' 1,560,000',
+
+        size: ' 634.96',
+
+        bedrooms: '1 , 1.5 , 2 , 2.5 & 3',
+
+        image: [
+
+            '/ss1.webp', '/ss2.webp', '/ss3.webp', '/ss4.webp', '/ss5.webp', '/ss6.webp', '/ss7.webp', '/ss8.webp', '/ss9.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+    {
+
+        id:31,
+
+        name: 'Sobha Orbis at Motor City, Dubai',
+
+        location: 'Motor City',
+
+        price: ' 985,000',
+
+        size: '536.15',
+
+        bedrooms: '1 , 1.5 , & 2',
+
+        image: [
+
+            '/so1.webp', '/so2.webp', '/so3.webp', '/so4.webp', '/so5.webp', '/so6.webp','/so7.webp','/so8.webp','/so9.webp','/so10.webp','/so11.webp','/so12.webp','/so13.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id:32, //add image
+
+        name: 'Elitz 2 by Danube at Jumeirah Village Circle (JVC)',
+
+        location: 'Jumeirah Village Circle',
+
+        price: '  650,000',
+
+        size: '385.99',
+
+        bedrooms: 'Studio, 1 , 2 , & 3',
+
+        image: [
+
+            '/de1.webp', '/de2.webp', '/de3.webp', '/de4.webp', '/de5.webp', '/de6.webp','/de7.webp','/de8.webp','/de9.webp','/de10.webp','/de11.webp','/de12.webp','/de13.webp','/de14.jpg','/de15.webp','/de16.jpg','/de17.webp','/de18.webp','/de19.webp','/de20.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id:33,
+
+        name: 'DAMAC Riverside Dubai',
+
+        location: '',
+
+        price: ' 1,990,000',
+
+        size: '2,297.34 to 3,407.42',
+
+        bedrooms: 'Studio, 4-5',
+
+        image: [
+
+            '/dr1.webp', '/dr2.webp', '/dr3.webp', '/dr4.webp', '/dr5.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+
+
+     {
+
+        id:34, //add image
+
+        name: 'Binghatti Hills at Dubai Science Park',
+
+        location: 'Dubai Science Park',
+
+        price: ' 777,777',
+
+        size: '446 to 4,200.17 ',
+
+        bedrooms: 'Studio, 1 & 2',
+
+        image: [
+
+            '/bh1.png', '/bh2.webp', '/bh3.webp', '/bh3.png',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+    {
+
+        id:35,
+
+        name: 'DAMAC Lagoon Views 2',
+
+        location: 'Damac lagoons',
+
+        price: ' 1,100,000',
+
+        size: '672 to 1,797 ',
+
+        bedrooms: '1 - 2',
+
+        image: [
+
+            '/dl1.webp', '/dl2.webp', '/dl3.webp', '/dl4.webp', '/dl5.webp', '/dl6.webp','/dl7.webp','/dl8.webp','/dl9.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+
+
+    {
+
+        id:36,
+
+        name: 'Autograph Collection Damac Hills',
+
+        location: 'Damac Hills',
+
+        price: '5,100,000',
+
+        size: '',
+
+        bedrooms: '4, 5, 6, & 7',
+
+        image: [
+
+            '/da1.webp', '/da2.webp', '/da3.webp', '/da4.webp', '/da5.webp', '/da6.webp','/da7.webp','/da8.webp','/da9.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id:37,
+
+        name: 'The Sapphire by DAMAC',
+
+        location: 'Sheikh Zayed Road',
+
+        price: '1,200,000',
+
+        size: 'Various Sizes Available ',
+
+        bedrooms: '1 - 3',
+
+        image: [
+
+            '/ds1.webp', '/ds2.webp', '/ds3.webp', '/ds4.webp', '/ds5.webp', '/ds6.webp','/ds7.webp','/ds8.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id:38,
+
+        name: 'Binghatti Azure ',
+
+        location: 'Jumeirah Village Circle',
+
+        price: ' 593,000',
+
+        size: ' 338.63',
+
+        bedrooms: 'Studio, 1 & 2',
+
+        image: [
+
+            '/bz1.webp', '/bz2.webp', '/bz3.webp', '/bz4.webp', '/bz5.webp', '/bz6.webp','/bz7.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+
+     {
+
+        id:39,
+
+        name: 'Binghatti Mercedes Benz places',
+
+        location: 'Downtown Dubai',
+
+        price: '10,499,999',
+
+        size: '1,846 ',
+
+        bedrooms: '2 - 4',
+
+        image: [
+
+            '/bm1.png', '/bm2.png', '/bm3.webp', '/bm4.png', '/bm5.webp', '/bm6.webp','/bm7.png','/bm8.webp',
+
+        ],
+
+        tags: [{ text: 'FEATURED', type: 'featured' }, { text: 'OFF PLAN', type: 'default' }],
+
+        description: 'Binghatti Circle offers a unique blend of modern architecture with traditional ideas. The project is located in the heart of JVC and provides a range of apartments with spacious interiors and premium finishes.',
+
+        amenities: ['Retail Outlets', 'Landscaped Gardens', 'Cafe and Restaurants', 'Fitness Center', 'Ample Parking'],
+
+        paymentPlan: { downPayment: '20%', duringConstruction: '30%', onHandover: '50%' }
+
+    },
+]
 
 // --- Reusable Property Card Component ---
 const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {    const [currentImageIndex, setCurrentImageIndex] = useState(0);

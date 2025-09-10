@@ -1484,4 +1484,837 @@ export const properties: Property[] = [
             area: 'Motor City'
         }
     },
+    {
+        id: 25, 
+       name: 'BAYZ 102 by Danube Properties at Business Bay, Dubai',
+        location: 'Business Bay',
+        price: ' 1,270,000',
+        size: ' ',
+        bedrooms: 'Studio, 1, 2 , 3 & 4',
+        developer: 'DAMAC',
+        image: [
+              '/danube31.webp', '/danube32.webp', '/danube33.webp', '/danube34.webp', '/danube35.webp', '/danube36.webp','/danube37.webp','/danube38.webp','/danube39.webp','/danube310.webp','/danube311.webp','/danube312.webp','/danube313.webp','/danube314.webp','/danube315.webp','/danube316.webp','/danube317.webp','/danube318.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Following the success of Bayz 101, Danube Properties proudly presents Bayz 102, a new luxurious residential development situated in Business Bay. This contemporary tower boasts a wide range of premium living options, including studios, one to five-bedroom apartments, presidential suites, and penthouses. Crafted with sophistication and comfort in mind, Bayz 102 features top-tier finishes, expansive layouts, and breathtaking views of Dubai’s skyline and the canal. Its strategic location and elegant design make it a benchmark for urban luxury living.",
+            sections: [
+                {
+                    
+                    title: 'World-Class Amenities for a Complete Lifestyle',
+                    content: "Bayz 102 offers an extensive array of world-class amenities, ensuring that residents can fully embrace a complete and convenient lifestyle. Facilities include a swimming pool, state-of-the-art gym, outdoor BBQ area, and a cozy lounge perfect for social gatherings and relaxation. Positioned along Sheikh Zayed Road, and in close proximity to key landmarks such as Dubai Mall and Burj Khalifa, Bayz 102 is ideal for professionals and families seeking both convenience and luxury within Dubai’s vibrant city center.Bayz 102 is strategically located in the heart of Business Bay, providing easy access to major business districts and commercial centers in Dubai. Its central location makes it an attractive choice for both professionals and investors.Residents can select from a variety of premium options, including studios, one to five-bedroom apartments, as well as exclusive presidential suites and penthouses. Each unit is designed with modern elegance, featuring high-quality finishes and spacious layouts to suit diverse lifestyles."
+                },
+                {
+                   
+                    title: 'Unmatched Amenities for Comfort',
+                    content: "A wide range of luxury amenities awaits residents at Bayz 102. From the refreshing swimming pool and fully equipped fitness center to an outdoor BBQ area and lounge, the development ensures an enhanced living experience.With proximity to some of Dubai’s most iconic attractions—such as Burj Khalifa, Dubai Mall, and Dubai Canal—Bayz 102 offers residents the opportunity to enjoy a vibrant city lifestyle with all conveniences at their doorstep.Investing in Bayz 102 by Danube is not only about luxury living but also a sound financial decision. The high demand for premium apartments in Business Bay, coupled with the promising potential for property value appreciation, makes this development an attractive choice for investors.."
+                    
+                },
+                {
+                    
+                    title: 'Your Gateway to Modern Elegance and Vibrant City Life',
+                    content: "Located in the bustling Business Bay area, Bayz 102 provides a perfect balance between work and leisure. Its strategic positioning near Sheikh Zayed Road ensures convenient access to all parts of Dubai, making it an ideal residential address.Business Bay is renowned for its mix of luxury high-rises, world-class dining, and vibrant nightlife, all set against the backdrop of the stunning Dubai skyline.."
+                },
+                 {
+                    
+                    title: 'Key Nearby Landmarks:',
+                    content: "Dubai Mall – 5 minutes,  Burj Khalifa – 7 minutes  ,Dubai Canal – 3 minutes  ,Dubai International Airport – 15 minutes"
+                },
+                 
+                
+                
+                 
+                
+            ]
+        },
+        features: ['Balcony',
+'Burj Khalifa View',
+'Childrens Play Area',
+'Fitness Centre',
+'Gym',
+'Jogging and Cycling Track',
+'Metro',
+'Parks & Open spaces',
+'Restaurants & Cafes',
+'Security',
+'Swimming Pool',
+'View of Landmark'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'BAYZ 102 by Danube Properties at Business Bay, Dubai', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Business Bay'
+        }
+    },
+    {
+        id: 26, //add image
+       name: 'Sobha Elwood at Dubailand by SOBHA REALTY',
+        location: 'Dubailand',
+        price: '  7,930,000',
+        size: ' 4958',
+        bedrooms: '4, 5, & 6',
+        developer: 'DAMAC',
+        image: [
+              '/s71.webp', '/s72.webp', '/s73.webp', '/s74.webp', '/s75.webp', '/s76.webp','/s77.webp','/s78.webp','/s79.webp','/s710.webp','/s711.webp','/s712.webp','/s713.webp','/s714.webp','/s715.webp','/s716.webp','/s717.webp','/s718.webp','/s719.webp','/s720.webp','/s721.webp','/s722.webp','/s723.webp','/s724.webp','/s725.webp','/s726.webp','/s727.webp','/s728.webp','/s729.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Immerse yourself in a unique blend of luxury and nature at Sobha Elwood, Dubai’s latest off-plan development. This exquisite collection of 4, 5, and 6-bedroom villas is nestled within a serene sanctuary, offering an unparalleled living experience. Spanning 416,000 square meters, the lush community will be home to over 10,000 trees, drawing inspiration from some of the world’s largest forests.",
+            sections: [
+                {
+                   
+                    title: 'Crafting a Lifestyle of Comfort and Elegance',
+                    content: "Each villa at Sobha Elwood is meticulously designed to offer a harmonious balance of comfort and luxury. With modern layouts, premium materials, and high-end finishes throughout, these homes provide the perfect setting for families to create lasting memories. Choose the villa that best suits your lifestyle and prepare to embrace a new way of living."
+                },
+                {
+                    
+                    title: 'Your Personal Oasis of Nature',
+                    content: "Sobha Elwood offers a range of exclusive amenities that elevate the living experience. Residents can enjoy a swimming lagoon, Padel courts, a Wadi clubhouse, and expansive green spaces. Additional features include community gardens, an Elwood trail, open fitness areas, and dedicated wellness zones, all providing a peaceful retreat with convenient access to Dubai’s main attractions."
+                    
+                },
+                {
+                    
+                    title: 'Amenities',
+                    content: "Lap pool,Yoga lawn,Multi-purpose room,Fitness centre & outdoor gym,Barbecue area & multipurpose lawn"
+                },
+                 {
+                    
+                    title: 'Prime Location with Unmatched Convenience',
+                    content: "Located in Dubailand, Sobha Elwood offers easy access to some of Dubai’s key destinations:5 minutes to Dubai Rugby Sevens,8 minutes to Dubai Outlet Mall,20 minutes to Downtown Dubai,25 minutes to Dubai International Airport,30 minutes to Al Maktoum International Airport"
+                },
+                 {
+                   
+                    title: 'Key Highlights',
+                    content: "Choose from elegantly designed 4, 5, and 6-bedroom villas, each offering a seamless blend of modern sophistication and natural beauty.Spacious interiors, large windows, and earthy tones create a harmonious connection with the surrounding nature.The community features over 10,000 trees and expansive landscaped parks, providing a serene environment ideal for relaxation and outdoor activities.Residents enjoy exclusive access to a premium clubhouse with a fitness center, spa, and social spaces.Family-oriented facilities include dedicated play areas, an on-site school, clinic, and daycare.Dive into a range of water sports options, including a lap pool and a splash pad for children.Don’t miss the opportunity to secure your dream home. Contact us today to reserve your preferred unit."
+                },
+                 
+                
+                
+                 
+                
+            ]
+        },
+        features: ['Balcony',
+'Burj Khalifa View',
+'Childrens Play Area',
+'Fitness Centre',
+'Gym',
+'Jogging and Cycling Track',
+'Metro',
+'Parks & Open spaces',
+'Restaurants & Cafes',
+'Security',
+'Swimming Pool',
+'View of Landmark'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Sobha Elwood at Dubailand', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Dubailand'
+        }
+    },
+    {
+        id: 27, //add image
+       name: 'Damac Lagoon Views 3 by Damac',
+        location: 'Damac lagoons',
+        price: '  1,140,000',
+        size: '  698',
+        bedrooms: '1 & 2',
+        developer: 'DAMAC',
+        image: [
+              '/damac1.webp', '/damac2.webp', '/damac3.webp', '/damac4.webp', '/damac5.webp', '/damac6.webp','/damac7.webp','/damac8.webp','/damac9.webp','/damac10.webp','/damac11.webp','/damac12.webp','/damac13.webp','/damac14.webp','/damac15.webp','/damac16.webp','/damac17.webp','/damac18.webp','/damac19.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Lagoon Views offers an unparalleled residential experience that seamlessly blends contemporary elegance with the tranquility of nature. These meticulously crafted 1 and 2-bedroom apartments are the epitome of refined living. Bathed in natural light and adorned with neutral palettes, each space exudes understated luxury. Expansive balconies serve as extensions of the living area, inviting residents to enjoy breathtaking views and the gentle caress of the outdoors.",
+            sections: [
+                {
+                   
+                    title: 'A world of leisure and recreation awaits at Damac',
+                    content: "Lagoons. Inspired by the Mediterranean, the community boasts a captivating array of amenities designed to enhance every aspect of life. From the serene flamenco gardens and invigorating aqua gym to the vibrant beach club and floating pods, residents can indulge in a diverse range of activities. The community’s strategic location within Damac Hills provides easy access to Dubai’s major business districts, while also offering a peaceful retreat from the city’s hustle and bustle."
+                },
+                {
+                    
+                    title: 'Your Personal Oasis of Nature',
+                    content: "Sobha Elwood offers a range of exclusive amenities that elevate the living experience. Residents can enjoy a swimming lagoon, Padel courts, a Wadi clubhouse, and expansive green spaces. Additional features include community gardens, an Elwood trail, open fitness areas, and dedicated wellness zones, all providing a peaceful retreat with convenient access to Dubai’s main attractions.Families will appreciate the convenience of nearby educational institutions and healthcare facilities. With renowned schools and medical centers within a short distance, Lagoon Views offers a nurturing environment for families to thrive."
+                    
+                },
+                {
+                    
+                    title: 'Experience the epitome of luxury living at Lagoon Views. ',
+                    content: "Don’t miss this exclusive opportunity to own a home that harmonizes modern comfort with natural beauty. Contact our property specialists today to embark on your journey to a new level of sophistication."
+                },
+                    
+                
+            ]
+        },
+        features: ['Balcony',
+'Burj Khalifa View',
+'Childrens Play Area',
+'Fitness Centre',
+'Gym',
+'Jogging and Cycling Track',
+'Metro',
+'Parks & Open spaces',
+'Restaurants & Cafes',
+'Security',
+'Swimming Pool',
+'View of Water',
+'View of Landmark'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Damac Lagoon Views 3 by Damac', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Damac lagoons'
+        }
+    },
+    {
+        id: 28, //add live location
+       name: 'Violet at Damac Hills 2 by Damac Properties',
+        location: 'Damac Hills 2',
+        price: '  1,869,000',
+        size: ' 2,352',
+        bedrooms: '4',
+        developer: 'DAMAC',
+        image: [
+              '/dv1.webp', '/dv2.webp', '/dv3.webp', '/dv4.webp', '/dv5.webp', '/dv6.jpg','/dv7.webp','/dv8.webp','/dv9.webp','/dv10.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Damac Properties is proud to present Damac Violet, a collection of expansive four-bedroom townhouses available for freehold ownership in Dubai. Each residence boasts a generous 2,352 sq. ft. of living space, meticulously designed with modern families in mind. Nestled amidst lush greenery, Damac Violet promises an unparalleled lifestyle experience.Step inside Damac Violet and discover impeccably crafted living areas featuring high-quality finishes and exceptional attention to detail. These havens prioritize privacy and comfort, creating a premium living environment for families.The vibrant community of Damac Hills 2 awaits you upon leaving your residence. Developed by a leading Dubai real estate company, Damac Hills 2 offers a seamless blend of elegance and functionality. The signature G+1+R building configuration provides spacious living areas designed with meticulous attention to detail.",
+            sections: [
+                {
+                    
+                    title: 'Unparalleled Amenities',
+                    content: "Damac Violet caters to those who prioritize a well-rounded lifestyle. Residents can enjoy a gym, spa, clubhouse, sports hub, and jogging track, all set amidst serene natural surroundings. These facilities promote fitness and relaxation, offering a refreshing escape from the hustle and bustle of city life."
+                },
+               
+                    
+                
+            ]
+        },
+        features: ['Barbecue Area',
+'Clubhouse',
+'Jogging and Cycling Track',
+'Kids Play Area',
+'Parks & Open spaces',
+'Retail Outlets',
+'Security',
+'Swimming Pool',],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Violet at Damac Hills 2 by Damac Properties', 
+        propertyType: 'Townhouse',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Damac Hills 2'
+        }
+    },
+     {
+        id: 29,  //add image
+       name: 'Aurora By Binghatti At Jumeirah Village Circle (JVC)',
+        location: 'Jumeirah Village Circle',
+        price: '  666,666',
+        size: ' 382.44',
+        bedrooms: 'Studio, 1 & 2',
+        developer: 'DAMAC',
+        image: [
+              '/ba1.webp', '/ba2.webp', '/ba3.webp', '/ba4.webp', '/ba5.webp', '/ba6.webp','/ba7.webp','/ba8.webp','/ba9.webp','/ba10.webp','/ba11.webp','/ba12.webp','/ba13.webp','/ba14.webp','/ba15.webp','/ba16.webp','/ba17.webp','/ba18.webp','/ba19.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Binghatti Aurora, Bathed in the warm glow of sunrise, Binghatti Aurora emerges as a beacon of modern design within the serene Jumeirah Village Circle (JVC) community. This development signifies a fresh start, offering a home that redefines the concept of luxury living.Binghatti Aurora embodies the pioneering spirit of Binghatti Developers. Its innovative design reflects the brand’s commitment to cutting-edge architecture, perfectly suited for the dynamic and cosmopolitan setting of JVC.",
+            sections: [
+                {
+                   
+                    title: 'Jumeirah Village Circle (JVC): A Vibrant Community Awaits',
+                    content: "JVC is a meticulously planned neighborhood offering a diverse range of residences. From grand villas to spacious apartments, JVC caters to various lifestyles. Residents enjoy convenient access to an abundance of shops, cafes, and restaurants, ensuring a comfortable and fulfilling life.Renowned for their dedication to excellence and innovation, Binghatti Developers present Binghatti Aurora as their latest masterpiece. This development represents a unique opportunity to experience unparalleled living in the heart of Dubai."
+                },
+                {
+                  
+                    title: 'Nearby Amenities:',
+                    content: "Circle Mall,Spinneys supermarket,Restaurants (Grandiose, Choithrams),Educational institutions (JSS International School, Dubai International Academy),Parks and recreation facilities (Halfa Park, Roots Camp, Community Parks),Healthcare centers (Aster Medical Clinic, Life Medical Center, Magnum Family Medical Center, Dr. Joy Dental Clinic)."
+                },
+               
+                    
+                
+            ]
+        },
+        features: ['Balcony',
+'Barbecue Area',
+'Fitness Centre',
+'Gym',
+'Jogging and Cycling Track',
+'Kids Play Area',
+'Parks & Open spaces',
+'Restaurants & Cafes',
+'Shopping Mall',
+'Swimming Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Aurora By Binghatti At Jumeirah Village Circle (JVC)', 
+        propertyType: 'Apartment, Studio',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Jumeirah Village Circle'
+        }
+    },
+    {
+        id: 30,  
+        name: 'Sobha Skyscape Altius at Sobha Hartland 2',
+        location: 'Sobha Hartland 2',
+        price: ' 1,560,000',
+        size: ' 634.96',
+        bedrooms: '1 , 1.5 , 2 , 2.5 & 3',
+        developer: 'DAMAC',
+        image: [
+              '/ss1.webp', '/ss2.webp', '/ss3.webp', '/ss4.webp', '/ss5.webp', '/ss6.webp', '/ss7.webp', '/ss8.webp', '/ss9.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Unveiling a new dimension of luxury living in Dubai’s Sobha Hartland 2, Skyscape Altius by Sobha Realty redefines opulence. This magnificent 85-story development pushes the boundaries of design, offering meticulously crafted residences with breathtaking views.Skyscape Altius caters to those with discerning taste. The expansive 1 to 3 bedroom residences boast panoramic vistas that stretch as far as the eye can see. While specific amenities are still being unveiled, Sobha’s legacy of excellence ensures an exceptional living experience.Residents can expect the same unwavering commitment to quality that has become synonymous with the Sobha brand. Following the success of Skyscape Avenue and Skyscape Aura, Skyscape Altius presents a coveted opportunity to be part of this exclusive community.",
+            sections: [
+                {
+                    
+                    title: 'Key Features:',
+                    content: "One, 1.5, two, 2.5, and three-bedroom residences designed with meticulous attention to detail and adorned with premium finishes.A prime location within Sobha Hartland 2, Dubai, offering a perfect harmony of urban convenience and natural beauty.An architectural marvel, the 85-story structure grants residents unparalleled views of the Dubai Water Canal and the city skyline.Experience the serenity of waterfront living overlooking the picturesque Dubai Water Canal.A haven of wellness awaits with a state-of-the-art fitness center, gymnasium, swimming pool, landscaped gardens, walking trails, and parks. Dedicated children’s play areas further enrich the community experience.Foster social interaction and an active lifestyle with sports facilities, a clubhouse, and convenient retail spaces offering a variety of food and beverage options."
+                },
+            
+            ]
+        },
+        features: ['Gym',
+'Jogging and Cycling Track',
+'Kids Play Area',
+'Landscaped Greens',
+'Parks & Open spaces',
+'Restaurants & Cafes',
+'Retail Outlets',
+'Security',
+'Swimming Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Sobha Skyscape Altius at Sobha Hartland 2', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Sobha Hartland 2'
+        }
+    },
+    {
+        id: 31,  
+       name: 'Sobha Orbis at Motor City, Dubai',
+        location: 'Motor City',
+        price: ' 985,000',
+        size: '536.15',
+        bedrooms: '1 , 1.5 , & 2',
+        developer: 'DAMAC',
+        image: [
+             '/so1.webp', '/so2.webp', '/so3.webp', '/so4.webp', '/so5.webp', '/so6.webp','/so7.webp','/so8.webp','/so9.webp','/so10.webp','/so11.webp','/so12.webp','/so13.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Experience a Life Above the Ordinary:Sobha presents a captivating opportunity to own a meticulously crafted 1, 1.5, and 2 bedroom apartments within Dubai’s thriving Motor City. This exciting off-plan development boasts three elegant towers, offering a haven of refined living that surpasses the boundaries of everyday life",
+            sections: [
+                {
+                    
+                    title: 'Immerse Yourself in Unparalleled Luxury',
+                    content: "From the moment you step onto the grounds of Sobha Orbis, elegance surrounds you. Sleek architecture and sumptuous interiors create a timeless atmosphere of luxury. Indulge in the refreshing waters of the resort-style pool, unwind in the tranquility of landscaped gardens, or energize yourself in the state-of-the-art fitness center. The development’s convenient location in Motor City grants easy access to key destinations via Mohammed bin Zayed Road and Al Qudra Road."
+                },
+                 {
+                    
+                    title: 'Unveiling a World of Exquisite Amenities',
+                    content: "Sobha Orbis offers a curated selection of world-class amenities designed to elevate your experience. From a sophisticated clubhouse and business center to a variety of retail and dining options, recreational activities, and stunning green views, every detail is crafted to provide the ultimate in convenience and luxury."
+                },
+                {
+                    
+                    title: 'Unwind by the Pool, Play in the Park, or Find Your Zen',
+                    content: "Tranquil pool deck with luxurious daybeds,Outdoor jungle gym for the adventurous spirit,Designated BBQ areas for memorable gatherings,Dedicated kids’ pool for a splash of fun,Yoga zone for inner peace and rejuvenationExpansive children’s play area"
+                },
+                 {
+                    
+                    title: 'Flexible Payment Plan to Suit Your Needs',
+                    content: "80% Booking Amount During Construction 20% Final Installment Upon CompletionEmbrace a life of unparalleled sophistication at Sobha Orbis. Contact us today to learn more about this exclusive off-plan opportunity in Dubai’s vibrant Motor City."
+                },
+            
+            ]
+        },
+        features: ['Barbecue Area',
+'Gym',
+'Jogging and Cycling Track',
+'Kids Play Area',
+'Landscaped Greens',
+'Parks & Open spaces',
+'Swimming Pool',
+'Yoga Studio'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Sobha Orbis at Motor City, Dubai', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Motor City'
+        }
+    },
+    {
+        id: 32,   // add image
+      name: 'Elitz 2 by Danube at Jumeirah Village Circle (JVC)',
+        location: 'Jumeirah Village Circle',
+        price: '  650,000',
+        size: '385.99',
+        bedrooms: 'Studio, 1 , 2 , & 3',
+        developer: 'DAMAC',
+        image: [
+             '/de1.webp', '/de2.webp', '/de3.webp', '/de4.webp', '/de5.webp', '/de6.webp','/de7.webp','/de8.webp','/de9.webp','/de10.webp','/de11.webp','/de12.webp','/de13.webp','/de14.jpg','/de15.webp','/de16.jpg','/de17.webp','/de18.webp','/de19.webp','/de20.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Elitz 2 by Danube is a contemporary architectural masterpiece nestled within the vibrant Jumeirah Village Circle (JVC). This iconic twin-tower development offers a diverse range of studios, 1, 2, and 3 Bedroom apartments, complemented by retail and commercial spaces.Prime Location: Strategically positioned with easy access to major thoroughfares such as Al Khail Road, Sheikh Mohammed Bin Zayed Road, and Sheikh Zayed Road.Unparalleled Amenities: Indulge in a luxurious lifestyle with over 40 amenities catering to fitness, wellness, recreation, and community engagement.Flexible Payment Plan: Own your dream home with a convenient 1% monthly payment plan.Anticipated Completion: October 2026.",
+            sections: [
+                {
+                    
+                    title: 'Lifestyle and Amenities',
+                    content: "Elitz 2 redefines contemporary living with its exquisite design, lavish interiors, and unparalleled amenities. Residents can enjoy a plethora of facilities including:Fitness and Wellness: State-of-the-art gyms, swimming pools, spa, yoga areas, and health club.Recreation: Tennis courts, cricket pitch, mini-golf, and various indoor and outdoor games.Community: Children’s play areas, daycare, business center, and social spaces."
+                },
+                 {
+                    
+                    title: 'JVC: A Thriving Community',
+                    content: "Jumeirah Village Circle is a sought-after residential area offering a balanced lifestyle. Its strategic location, diverse community, and modern amenities make it an ideal place to call home."
+                },
+                {
+                    
+                    title: 'Key Benefits of JVC:',
+                    content: "Excellent connectivity to major roads,Vibrant and family-friendly environment,Proximity to essential amenities"
+                },
+                 {
+                    
+                    title: 'Location Highlights:',
+                    content: "20 minutes from Dubai International Airport,19 minutes from Palm Jumeirah,15 minutes from Burj Al Arab,19 minutes from Jumeirah Beach,Elitz 2 offers an exceptional opportunity to experience refined living in the heart of JVC."
+                },
+            
+            ]
+        },
+        features: ['Barbecue Area',
+'CCTV Cameras',
+'Fitness Centre',
+'Gym',
+'Kids Play Area',
+'Outdoor Cinema',
+'Restaurants & Cafes',
+'Retail Outlets',
+'Security',
+'Swimming Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Elitz 2 by Danube', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Jumeirah Village Circle'
+        }
+    },
+    {
+        id: 33,   //add live location
+     name: 'DAMAC Riverside Dubai',
+        location: '',
+        price: ' 1,990,000',
+        size: '2,297.34 to 3,407.42',
+        bedrooms: 'Studio, 4-5',
+        developer: 'DAMAC',
+        image: [
+             '/dr1.webp', '/dr2.webp', '/dr3.webp', '/dr4.webp', '/dr5.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            { text: 'NEW LAUNCH', type: 'new_launch' }
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Damac Properties unveils Damac Riverside, a premier collection of 4 & 5-bedroom townhouses poised to become the new benchmark for luxury living in Dubai. This meticulously crafted community offers an unparalleled blend of sophistication, convenience, and tranquility.Nestled alongside a serene riverside, Damac Riverside features 1,900 residences nestled within intimate clusters of three to four homes, fostering a close-knit and uncrowded atmosphere. With a focus on spaciousness and exclusivity, the development offers only villas and townhouses, catering to discerning residents seeking opulent living spaces.Damac Riverside is renowned for its exceptional amenities, seamlessly integrated to elevate residents’ lifestyles and cultivate a strong sense of community. Divided into two distinct experiences, the Green Vein and the Water Vein, these areas provide a wealth of recreational, wellness, and cultural experiences.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Air Conditioning',
+'Balcony',
+'Barbecue Area',
+'Childrens Play Area',
+'Childrens Pool',
+'F & B Outlets',
+'Gym',
+'Security',
+'Swimming Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'DAMAC Riverside', 
+        propertyType: 'Townhouse',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: ''
+        }
+    },
+    {
+        id: 34,   //add live location
+      name: 'Binghatti Hills at Dubai Science Park',
+        location: 'Dubai Science Park',
+        price: ' 777,777',
+        size: '446 to 4,200.17 ',
+        bedrooms: 'Studio, 1 & 2',
+        developer: 'DAMAC',
+        image: [
+             '/bh1.png', '/bh2.webp', '/bh3.webp', '/bh3.png', 
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            
+             
+            
+          
+           
+        ],
+        description: {
+            intro: "Binghatti Hills, a new residential development by Binghatti Developers, introduces the pinnacle of modern living in Dubai Science Park. Offering studios, and 1 & 2-bedroom apartments, this project seamlessly blends stunning architecture, inspired by rolling hillsides, with state-of-the-art smart home features and breathtaking views of Dubai’s iconic skyline.The development boasts a prime location in Al Barsha South 2, providing residents with easy access to major transportation routes, including Al Khail Road and Um Suqeim Road. Additionally, its proximity to renowned landmarks like the Miracle Garden and the Mall of the Emirates makes it an ideal choice for those seeking a vibrant and connected lifestyle.Residents can experience unparalleled luxury within meticulously designed apartment interiors featuring high-end finishes, fixtures, and branded appliances. Each element is carefully curated to deliver ultimate comfort and convenience.Beyond its striking façade lies a haven of tranquility. Exquisite furnishings and bespoke touches create a timeless ambiance, offering a sanctuary from the bustle of city life. A meticulously planned amenity deck featuring a private beach, zen gardens, and various athletic fields promises an array of bespoke experiences to elevate the senses.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Air Conditioning',
+'Balcony',
+'Barbecue Area',
+'Childrens Play Area',
+'Childrens Pool',
+'F & B Outlets',
+'Gym',
+'Security',
+'CCTV Cameras',
+'Swimming Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Binghatti Hills at Dubai Science Park', 
+        propertyType: 'Apartment, Studio',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Dubai Science Park'
+        }
+    },
+    {
+        id: 35,   //add live location
+       name: 'DAMAC Lagoon Views 2',
+        location: 'Damac lagoons',
+        price: ' 1,100,000',
+        size: '672 to 1,797 ',
+        bedrooms: '1 - 2',
+        developer: 'DAMAC',
+        image: [
+             '/dl1.webp', '/dl2.webp', '/dl3.webp', '/dl4.webp', '/dl5.webp', '/dl6.webp','/dl7.webp','/dl8.webp','/dl9.webp', 
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+         
+        ],
+        description: {
+            intro: "Luxurious Living in Dubai’s Mediterranean lifestyle 1 and 2 bedroom apartments, building upon the success of its predecessor. DAMAC Lagoon Views 2 embodies a sophisticated blend of contemporary elegance and the charm of the Mediterranean lifestyle. Nestled within the heart of Dubai’s vibrant community, the development boasts breathtaking views and promises residents a truly unique living experience.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Air Conditioning',
+'Balcony',
+'Barbecue Area',
+'Basketball Court',
+'CCTV Cameras',
+'Childrens Play Area',
+'Covered Parking',
+'Crystal lagoons',
+'Gym',
+'Kids Play Area',
+'Private Gym',
+'Security',
+'Shared Gym',
+'View of Water'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Damac lagoons view 2', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Damac lagoons'
+        }
+    },
+    {
+        id: 36,   //live location
+      name: 'Autograph Collection Damac Hills',
+        location: 'Damac Hills',
+        price: '5,100,000',
+        size: '',
+        bedrooms: '4, 5, 6, & 7',
+        developer: 'DAMAC',
+        image: [
+              '/da1.webp', '/da2.webp', '/da3.webp', '/da4.webp', '/da5.webp', '/da6.webp','/da7.webp','/da8.webp','/da9.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+         
+        ],
+        description: {
+            intro: "Autograph Collection at Damac Hills, a premier residential offering by DAMAC Properties featuring 4-7 bedrooms villas . This exclusive series comprises just 50 villas, each meticulously crafted to epitomize elegance and community camaraderie. Characterized by modern architecture and lavish finishes, these residences offer spacious and inviting living spaces within a meticulously planned enclave.Nestled within a vast 42 million square feet community, residents enjoy access to an impressive array of amenities and leisure facilities. From the acclaimed golf club to the exhilarating Malibu Bay wave pool, there’s an activity to suit every taste. Whether one craves gourmet dining, upscale shopping, or thrilling adventures, Damac Hills caters to every desire.Beyond the tranquility of their private retreats, residents benefit from the convenience of proximity to Dubai’s vibrant pulse. With easy reach to the city’s key attractions, business hubs, and transportation links, every convenience is within easy reach. Whether it’s a day of relaxation or an evening out, this development offers the perfect blend of serenity and urban excitement.This development caters to homeowners with refined tastes who seek not just a place to live, but a lifestyle. With customizable spaces and lush green surroundings, each villa offers residents the opportunity to showcase their individuality and craft their ideal home. Whether hosting family gatherings or seeking solace in nature, these villas provide a haven where every moment is treasured. With its limited number of immaculate villas and meticulous attention to detail, it presents an exclusive opportunity for everyone to elevate their lifestyle.Featuring a premium array of leisure facilities, residents can luxuriate in the trendy Malibu Bay wave pool, offering a refreshing retreat within the community. Culinary desires are met with a variety of dining options, while lively F&B outlets create the perfect ambiance for socializing and relaxation. For fitness enthusiasts, multi-sport amenities cater to a range of interests and skill levels. Whether enjoying a leisurely swim, a round of golf, or simply immersing oneself in the tranquility of nature, residents are offered an unparalleled array of amenities to enrich their quality of life.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Air Conditioning',
+'Balcony',
+'Barbecue Area',
+'Basketball Court',
+'CCTV Cameras',
+'Childrens Play Area',
+'Covered Parking',
+'Crystal lagoons',
+'Gym',
+'Kids Play Area',
+'Private Gym',
+'Security',
+'Shared Gym',
+'Built in Kitchen Appliances',
+'Childrens Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Autograph Collection DAMAC', 
+        propertyType: 'Villa',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Damac Hills'
+        }
+    },
+    {
+        id: 37, 
+       name: 'The Sapphire by DAMAC',
+        location: 'Sheikh Zayed Road',
+        price: '1,200,000',
+        size: 'Various Sizes Available ',
+        bedrooms: '1 - 3',
+        developer: 'DAMAC',
+        image: [
+              '/ds1.webp', '/ds2.webp', '/ds3.webp', '/ds4.webp', '/ds5.webp', '/ds6.webp','/ds7.webp','/ds8.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+             { text: 'NEW LAUNCH', type: 'new_launch' }
+         
+        ],
+        description: {
+            intro: "The Sapphire at Sheikh Zayed Road by Damac Properties sounds like an extraordinary addition to Dubai’s luxury real estate landscape. Here’s a summary of the key highlights:Luxurious Living Spaces: The development offers meticulously crafted living spaces designed to provide residents with transformative experiences, emphasizing opulence and sophistication.Iconic Architecture: The high-rise tower is described as an architectural marvel with captivating gardens, grand entrances adorned with jewels and gemstones, and high-rise facades that epitomize grandeur.World-Class Amenities: Residents can indulge in a lifestyle of unparalleled opulence with an array of amenities. The infinity pool, fog forest, gymnasium, sauna, rooftop ecosystem with gravity-defying landscapes, and unique beach pools with golden sands area contribute to the luxurious living experience.Strategic Location: The Sapphire’s central location on Sheikh Zayed Road ensures residents have hassle-free access to major highways, offering seamless connectivity to the rest of Dubai. Proximity to Safa Park, City Walk, Box Park, and Jumeirah Beach adds to the convenience and leisure options.Connectivity: The development’s strategic positioning near major highways ensures residents have easy access to other parts of Dubai, making it an ideal choice for those who value convenience and connectivity.Retail and Dining Options: State-of-the-art amenities include retail outlets and dining options, providing residents with everything they need within the vicinity.The Sapphire seems to be a blend of opulent living, strategic location, and a wealth of amenities, promising residents a truly luxurious lifestyle in the vibrant city of Dubai.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Air Conditioning',
+'Balcony',
+'Barbecue Area',
+'Basketball Court',
+'CCTV Cameras',
+'Childrens Play Area',
+'Covered Parking',
+'Crystal lagoons',
+'Gym',
+'Kids Play Area',
+'Private Gym',
+'Security',
+'Shared Gym',
+'Jogging and Cycling Track',
+'Childrens Pool'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'SL-The-Sapphire-by-DAMAC', 
+        propertyType: 'Apartment',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Damac Hills',
+        }
+    },
+    {
+        id: 38, //add live location
+        name: 'Binghatti Azure ',
+        location: 'Jumeirah Village Circle',
+        price: ' 593,000',
+        size: ' 338.63',
+        bedrooms: 'Studio, 1 & 2',
+        developer: 'DAMAC',
+        image: [
+              '/bz1.webp', '/bz2.webp', '/bz3.webp', '/bz4.webp', '/bz5.webp', '/bz6.webp','/bz7.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+            
+         
+        ],
+        description: {
+            intro: "Binghatti Developers presents Binghatti Azure, an exceptional residential venture in Jumeirah Village Circle (JVC), featuring studios, 1-bedroom, and 2-bedroom apartments that redefine contemporary living. Soaring gracefully to 18 stories, this development not only provides remarkable living spaces but also dedicates the ground floor to a variety of amenities, along with four levels of spacious parking and two exclusive office floors.Situated in the heart of JVC, Binghatti Azure enjoys a prime location that distinguishes it from the ordinary. Serving as a testament to the seamless blend of tranquil living and urban accessibility, this outstanding residential project offers residents an unparalleled lifestyle with access to a range of amenities that truly embody modern living.Residents are embraced by a realm of convenience and opulence, commencing with a fully-equipped gym. Whether you prefer an early morning workout or prefer to exercise after a hectic day, the gym caters to your fitness requirements, offering a designated space for you to stay active and uphold a healthy lifestyle.For those in pursuit of relaxation and escapism, there is an adult swimming pool. Picture yourself immersed in the crystal-clear waters, soaking up the warm Dubai sun, and unwinding in your exclusive oasis. It serves as a perfect sanctuary from the hustle and bustle of everyday life. Families with children benefit from a dedicated kids’ pool, ensuring a child-friendly area where your little ones can safely enjoy the water and have endless hours of fun while under your watchful eye.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Air Conditioning',
+'Balcony',
+'Barbecue Area',
+'CCTV Cameras',
+'Childrens Play Area',
+'Gym'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Binghatti Azure ', 
+        propertyType: 'Apartment, Studio',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Jumeirah Village Circle',
+        }
+    },
+    {
+        id: 39, //add live location
+        name: 'Binghatti Mercedes Benz places',
+        location: 'Downtown Dubai',
+        price: '10,499,999',
+        size: '1,846 ',
+        bedrooms: '2 - 4',
+        developer: 'DAMAC',
+        image: [
+              '/bm1.png', '/bm2.png', '/bm3.webp', '/bm4.png', '/bm5.webp', '/bm6.webp','/bm7.png','/bm8.webp',
+        ],
+        tags: [
+          
+            { text: 'OFF PLAN', type: 'default' },
+             { text: 'NEW LAUNCH', type: 'new_launch' }
+            
+         
+        ],
+        description: {
+            intro: "Architectural symbol, the hyper-tower design.Mercedes-Benz Places, a magnificent 65-story residential building by Binghatti Developers, is a symbol of luxury. The collaboration with Mercedes-Benz is committed to excellence, resulting in distinctive homes that embody the “Sensual Purity” concept and showcase the harmonious combination of elegant architecture and smart cars.Binghatti Mercedes Benz Places in Downtown Dubai. The remarkable 65-story residential complex Mercedes-Benz Places is part of the Downtown Dubai development led by Binghatti Developers. This iconic property highlights luxury living in a prime location in Downtown Dubai.Mercedes-Benz Places’ architectural style, which harmoniously combines elegance and simplicity, is influenced by the brand’s “Sensual Purity” concept. A collaboration between premium car manufacturer Mercedes-Benz and developer Binghatti Developers is a unique endeavor as it combines automotive refinement and elegant architecture to produce an outstanding concept.",
+            sections: [
+                
+            
+            ]
+        },
+        features: ['Built in Kitchen Appliances',
+'Built in Wardrobes',
+'Burj Khalifa View',
+'CCTV Cameras',
+'Childrens Play Area',
+'Concierge Service',
+'Covered Parking',
+'Gym',
+'Maids Room',
+'Metro',
+'School',
+'Security',
+'Shopping Mall',
+'Spa',
+'View of Landmark'],
+        paymentPlan: { downPayment: '20%', duringConstruction: '60%', onHandover: '20%' },
+        propertyId: 'Binghatti Mercedes Benz places', 
+        propertyType: 'Apartment, Penthouse',
+        propertyStatus: 'Off Plan',
+        lastUpdated: 'August 15, 2025 at 10:30 am',
+        address: {
+            city: 'Dubai',
+            area: 'Downtown Dubai',
+        }
+    },
 ];
