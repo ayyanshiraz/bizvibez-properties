@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FormEvent, ChangeEvent } from 'react';
 
 // --- ANIMATION COMPONENT (for scroll animations) ---
 interface AnimatedSectionProps {
@@ -70,45 +70,37 @@ const SellPage = () => {
         message: '',
     });
     const [loading, setLoading] = useState(false);
-    // ADDED: State for submission status message
     const [statusMessage, setStatusMessage] = useState('');
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }));
     };
     
-    // ADDED: Helper function to encode data for Netlify
-    const encode = (data: { [key: string]: any }) => {
-        return Object.keys(data)
-            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-            .join("&");
-    };
-
-    // MODIFIED: Replaced placeholder logic with Netlify submission logic
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // MODIFIED: This now uses the Netlify Function approach
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        setStatusMessage(''); // Reset status on new submission
+        setStatusMessage(''); 
 
         try {
-            const response = await fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: encode({
-                    "form-name": "sell-contact-form", // This name must match the form's name attribute
-                    ...formData,
-                }),
+            // Send data to our Netlify Function
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
             });
 
+            const result = await response.json();
+            setStatusMessage(result.message);
+
             if (response.ok) {
-                setStatusMessage("Thank you! Your message has been sent successfully.");
-                setFormData({ name: '', email: '', phone: '', message: '' }); // Clear form on success
-            } else {
-                throw new Error('Network response was not ok.');
+                // Clear the form on success
+                setFormData({ name: '', email: '', phone: '', message: '' }); 
             }
         } catch (error) {
-            setStatusMessage("Error: Could not send your message. Please try again.");
+            console.error("Form Submission Error:", error);
+            setStatusMessage('Sorry, an error occurred while sending the message. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -237,43 +229,37 @@ const SellPage = () => {
                 
                 {/* --- FINAL CTA SECTION (Unchanged) --- */}
                 <section className="relative h-[70vh] text-white overflow-hidden cta-container">
-                     <div
-                        className="absolute inset-0 bg-cover bg-center cta-bg-zoom"
-                        style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/sell.jpeg')" }}
-                     ></div>
-                     <div className="relative z-10 h-full flex flex-col items-center justify-center text-center p-6 cta-content-zoom">
-                        <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white">Sell Smarter, Not Harder</h2>
-                        <p className="mt-6 max-w-3xl text-lg md:text-xl font-light text-white">
-                            Unlock the full potential of your property by choosing us as your trusted partner in the selling process. Our dedicated team of real estate experts is committed to maximizing the value of your asset
-                        </p>
-                        <a
-                            href="https://bizvibezproperties.com/contact"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-8 inline-block px-10 py-3 bg-[#891e6d] text-white font-semibold rounded-lg border-2 border-white transition-all"
-                        >
-                            Get Started
-                        </a>
-                    </div>
+                       <div
+                            className="absolute inset-0 bg-cover bg-center cta-bg-zoom"
+                            style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/sell.jpeg')" }}
+                       ></div>
+                       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center p-6 cta-content-zoom">
+                            <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white">Sell Smarter, Not Harder</h2>
+                            <p className="mt-6 max-w-3xl text-lg md:text-xl font-light text-white">
+                                Unlock the full potential of your property by choosing us as your trusted partner in the selling process. Our dedicated team of real estate experts is committed to maximizing the value of your asset
+                            </p>
+                            <a
+                                href="https://bizvibezproperties.com/contact"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-8 inline-block px-10 py-3 bg-[#891e6d] text-white font-semibold rounded-lg border-2 border-white transition-all"
+                            >
+                                Get Started
+                            </a>
+                       </div>
                 </section>
 
-                 {/* --- CONTACT US SECTION --- */}
+                 {/* --- CONTACT US SECTION (Updated for Netlify Function) --- */}
                 <section className="py-20 bg-white">
                     <div className="container mx-auto px-6">
                         <AnimatedSection>
                             <div className="max-w-2xl mx-auto text-center">
                                 <h2 className="text-3xl md:text-4xl font-bold text-[#891e6d] mb-12">Contact Us</h2>
-                                {/* MODIFIED: Form tag updated for Netlify */}
+                                {/* MODIFIED: This form no longer needs Netlify attributes, it uses JS */}
                                 <form 
-                                    name="sell-contact-form" 
-                                    method="POST" 
-                                    data-netlify="true" 
                                     onSubmit={handleSubmit} 
                                     className="space-y-6"
                                 >
-                                    {/* ADDED: Hidden input for Netlify */}
-                                    <input type="hidden" name="form-name" value="sell-contact-form" />
-
                                     <input
                                         type="text"
                                         name="name"
@@ -311,9 +297,9 @@ const SellPage = () => {
                                         required
                                     />
 
-                                    {/* ADDED: Status Message Display */}
+                                    {/* Status Message Display */}
                                     {statusMessage && (
-                                        <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().startsWith('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                        <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().startsWith('error') || statusMessage.toLowerCase().includes('sorry') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
                                             {statusMessage}
                                         </div>
                                     )}
@@ -321,7 +307,7 @@ const SellPage = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="w-full bg-[#891e6d] text-[#F5B041] py-4 rounded-full font-semibold text-lg hover:bg-[#F5B041] hover:text-[#891e6d] transition-colors duration-300 disabled:bg-opacity-70 uppercase tracking-wider"
+                                        className="w-full bg-[#891e6d] text-[#F5B041] py-4 rounded-full font-semibold text-lg hover:bg-[#F5B041] hover:text-[#891e6d] transition-colors duration-300 disabled:bg-opacity-70 disabled:cursor-not-allowed uppercase tracking-wider"
                                     >
                                         {loading ? "SENDING..." : "SUBMIT"}
                                     </button>
@@ -336,3 +322,4 @@ const SellPage = () => {
 };
 
 export default SellPage;
+
