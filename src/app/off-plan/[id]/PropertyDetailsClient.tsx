@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import { Property } from '../data'; // Import the Property type from the central data file
-import Image from 'next/image'; // Import Next.js Image component for optimization
+import React, { useState, useEffect, useRef, FormEvent } from 'react';
+import { Property } from '../data';
 
 // --- Data for Country Codes (remains the same) ---
 const countries = [
@@ -174,12 +173,21 @@ const countries = [
     { name: 'Zimbabwe', code: 'ZW', dial: '263' },
 ];
 
-// --- Helper component for the sticky contact form (remains mostly the same) ---
-const ContactForm = () => {
+// --- Helper component for the sticky contact form ---
+const ContactForm: React.FC<{ propertyName: string }> = ({ propertyName }) => {
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: `I'm interested in ${propertyName}...`,
+    });
+    const [loading, setLoading] = useState(false);
+    const [statusMessage, setStatusMessage] = useState('');
 
     const filteredCountries = countries.filter(country =>
         country.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -194,6 +202,49 @@ const ContactForm = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatusMessage('');
+
+        const fullPhoneNumber = `+${selectedCountry.dial} ${formData.phone}`;
+
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    phone: fullPhoneNumber,
+                    propertyName: propertyName, 
+                    formType: 'Property Inquiry',
+                }),
+            });
+
+            const result = await response.json();
+            setStatusMessage(result.message);
+
+            if (response.ok) {
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    message: `I'm interested in ${propertyName}...`,
+                });
+            }
+        } catch (error) {
+            console.error("Submission Error:", error);
+            setStatusMessage('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
@@ -211,13 +262,28 @@ const ContactForm = () => {
                     <a href="#" className="text-sm text-[#891e6d] hover:underline">View Listings</a>
                 </div>
             </div>
-            <form className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" />
-                <input type="email" placeholder="Email" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" />
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full Name"
+                    required
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900"
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900"
+                />
                 <div className="flex">
                     <div className="relative" ref={dropdownRef}>
                         <button type="button" onClick={() => setDropdownOpen(!dropdownOpen)} className="inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-sm rounded-l-md h-full">
-                            {/* Using standard img for flags as they are external */}
                             <img src={`https://flagcdn.com/w20/${selectedCountry.code.toLowerCase()}.png`} alt={selectedCountry.name} className="w-5 h-auto mr-2" />
                             +{selectedCountry.dial}
                             <svg className={`w-4 h-4 ml-1 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -243,16 +309,45 @@ const ContactForm = () => {
                             </div>
                         )}
                     </div>
-                    <input type="tel" placeholder="050 123 4567" className="w-full px-4 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900" />
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="050 123 4567"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900"
+                    />
                 </div>
-                <textarea placeholder="Your Message" rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900"></textarea>
-                <button type="submit" className="w-full bg-[#891e6d] text-white font-bold py-3 px-4 rounded-md hover:bg-[#890e6d] transition duration-300">Request Information</button>
+                <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-900"
+                ></textarea>
+
+                {statusMessage && (
+                    <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                        {statusMessage}
+                    </div>
+                )}
+
+                <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-[#891e6d] text-white font-bold py-3 px-4 rounded-md hover:bg-[#721a5a] transition duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                    {loading ? 'Sending...' : 'Request Information'}
+                </button>
             </form>
         </div>
     );
 };
 
-// Replace your existing Lightbox component with this
+
 const Lightbox: React.FC<{ images: string[]; currentIndex: number; onClose: () => void; onNext: () => void; onPrev: () => void; }> = ({ images, currentIndex, onClose, onNext, onPrev }) => {
 
     useEffect(() => {
@@ -267,39 +362,33 @@ const Lightbox: React.FC<{ images: string[]; currentIndex: number; onClose: () =
         };
     }, [onNext, onPrev, onClose]);
 
-    return (
-        <div className="fixed inset-0 bg-black/90 z-50" onClick={onClose}>
-            <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300 z-30">&times;</button>
-            
-            <button 
+    return (
+        <div className="fixed inset-0 bg-black/90 z-50" onClick={onClose}>
+            <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-4 right-6 text-white text-4xl font-bold hover:text-gray-300 z-30">&times;</button>
+            
+            <button 
                 onClick={(e) => { e.stopPropagation(); onPrev(); }} 
-                // CHANGE 1: Added top-1/2 and -translate-y-1/2 for vertical centering
                 className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 rounded-full hover:bg-black/60 transition-colors duration-300 z-20"
             >
-                {/* CHANGE 2: Increased SVG icon size for better visibility */}
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
 
-            <Image 
-                src={images[currentIndex]} 
-                alt="Property full view"
-                width={1920}
-                height={1080}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90vw] max-h-[85vh] object-contain w-auto h-auto"
-                priority
-                onClick={(e) => e.stopPropagation()} 
-            />
+            {/* ERROR FIX: Replaced next/image with standard img tag */}
+            <img 
+                src={images[currentIndex]} 
+                alt="Property full view"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90vw] max-h-[85vh] object-contain w-auto h-auto"
+                onClick={(e) => e.stopPropagation()} 
+            />
             
-            <button 
+            <button 
                 onClick={(e) => { e.stopPropagation(); onNext(); }} 
-                // CHANGE 1: Added top-1/2 and -translate-y-1/2 for vertical centering
                 className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 rounded-full hover:bg-black/60 transition-colors duration-300 z-20"
             >
-                {/* CHANGE 2: Increased SVG icon size for better visibility */}
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-        </div>
-    );
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+    );
 };
 
 
@@ -344,13 +433,11 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                 className="relative w-full h-[60vh] bg-gray-900 group cursor-pointer"
                 onClick={() => openLightbox(currentImageIndex)}
             >
-                {/* MODIFICATION: Using Next/Image for the hero image */}
-                <Image
+                {/* ERROR FIX: Replaced next/image with standard img tag */}
+                <img
                     src={property.image[currentImageIndex]}
                     alt={`${property.name} ${currentImageIndex + 1}`}
-                    fill // Fills the parent div
-                    style={{ objectFit: 'cover' }} // Ensures the image covers the area
-                    priority // Prioritize loading for the main image
+                    className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black opacity-20"></div>
 
@@ -381,11 +468,10 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                     <div className="lg:col-span-2 space-y-8">
                         
                         {/* Title Section */}
-                        <div className="flex justify-between items-start flex-wrap"> {/* Added flex-wrap for responsiveness */}
+                        <div className="flex justify-between items-start flex-wrap">
                              <div>
                                 <h1 className="text-3xl font-bold text-gray-900 font-playfair">{property.name}</h1>
-                                {/* Ensure tags are visible and styled */}
-                                <div className="mt-2 flex flex-wrap gap-2"> {/* Added flex-wrap and gap */}
+                                <div className="mt-2 flex flex-wrap gap-2">
                                     {property.tags.map(tag => (
                                         <span key={tag.text} className="inline-block bg-green-200 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">{tag.text}</span>
                                     ))}
@@ -395,10 +481,9 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                                      <span>{property.location}</span>
                                 </div>
                              </div>
-                             <div className="text-right flex-shrink-0 mt-4 lg:mt-0"> {/* Adjusted margin for smaller screens */}
-                                 <p className="text-gray-500 text-sm">Start From</p>
-                                 {/* Adjusted styling for price to be more prominent */}
-                                 <p className="text-3xl font-extrabold text-[#891e6d]">AED {property.price}</p> 
+                             <div className="text-right flex-shrink-0 mt-4 lg:mt-0">
+                                  <p className="text-gray-500 text-sm">Start From</p>
+                                  <p className="text-3xl font-extrabold text-[#891e6d]">AED {property.price}</p> 
                              </div>
                         </div>
 
@@ -438,7 +523,6 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 {property.features.map(feature => (
                                     <div key={feature} className="flex items-center">
-                                        {/* Using a more common checkmark icon */}
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
@@ -463,12 +547,10 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 {property.image.slice(0, 6).map((img, index) => (
                                     <div key={index} className="w-full h-48 rounded-lg overflow-hidden relative cursor-pointer group/gallery" onClick={() => openLightbox(index)}>
-                                        {/* MODIFICATION: Using Next/Image for gallery items */}
-                                        <Image src={img} 
+                                        {/* ERROR FIX: Replaced next/image with standard img tag */}
+                                        <img src={img} 
                                                alt={`${property.name} gallery ${index + 1}`} 
-                                               fill 
-                                               style={{ objectFit: 'cover' }} 
-                                               className="transition-transform duration-300 group-hover/gallery:scale-110"
+                                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/gallery:scale-110"
                                         />
                                         {index === 5 && property.image.length > 6 && (
                                             <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
@@ -485,7 +567,7 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                     {/* --- Sticky Contact Form (Right Column) --- */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-8">
-                            <ContactForm />
+                            <ContactForm propertyName={property.name} />
                         </div>
                     </div>
                 </div>
@@ -505,3 +587,4 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
 };
 
 export default PropertyDetailsClient;
+
