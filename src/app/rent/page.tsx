@@ -1,61 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-
-// --- DATA (moved from rent-data.ts) ---
-export interface ForRentProperty {
-  id: string;
-  propertyId: string;
-  title: string;
-  location: string;
-  price: string; // Price per annum
-  image: string;
-  images?: string[];
-  bedrooms: number;
-  bathrooms: number;
-  size: string;
-  type: string;
-  description: string;
-  features: string[];
-  address: {
-    street: string;
-    city: string;
-    area: string;
-  };
-  mapCoordinates: {
-    lat: number;
-    lng: number;
-  };
-  status: string;
-  updatedOn: string;
-}
-
-export const forRentProperties: ForRentProperty[] = [
-  {
-    id: 'rent-1',
-    propertyId: 'sevenlux-13905972',
-    title: 'Stunning View | Prime Location High Floor',
-    location: 'Dubai Marina',
-    price: '180,000',
-    image: '/b45.webp',
-    images: [
-        '/b41.webp',
-        '/b42.webp',
-        '/b43.webp',
-    ],
-    bedrooms: 3,
-    bathrooms: 3,
-    size: '1502',
-    type: 'Apartment, Residential',
-    description: "Seven Luxury Real Estate is proud to offer your ideal three-bedroom apartment for rent in Marina Heights, Dubai Marina, UAE, available at AED 180,000 per year.Property Highlights:• Size: 1582.29 SqFt• 3 Bedroom• 3 Bathroom•Parking• Balcony• Kitchen.Features:Breathtaking Full Marina View,Situated on a High Floor,Ready for Immediate Transfer,Multiple Spacious Balconies,Expansive and Well-Designed Layout,Bright and Airy Interiors,Convenient Access to Roads & Public Transport,Just Steps Away from Dubai Marina Walk,Premium Amenities and Facilities.Enjoy easy access to Dubai’s key destinations, including:Dubai Mall, Burj Khalifa, and Dubai Fountain within 20 minutes.Palm Jumeirah in just 10 minutes.Mall of the Emirates and Ibn Battuta Mall in 10 to 15 minutes.Dubai International Airport (DXB) and Al Maktoum International Airport within 30 minutes.For more details, please contact Seven Luxury Real Estate",
-    features: ["Balcony", "Shared Gym", "Shared Pool", "Covered Parking", "24/7 Security", "Walk-in Closet"],
-    address: { street: "Dubai, Dubai Marina, Marina Heights", city: "Dubai", area: "Dubai Marina" },
-    mapCoordinates: { lat: 25.089, lng: 55.148 },
-    status: 'For Rent',
-    updatedOn: 'September 10, 2025 at 3:15 pm',
-  },
-];
-
+// CORRECT: Import the data from your existing file
+import { forRentProperties, ForRentProperty } from './rent-data';
 
 // --- SVG ICONS ---
 const BedIcon = ({ className = "h-4 w-4 mr-1 text-gray-600" }) => <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>;
@@ -71,28 +18,24 @@ const PropertyCard: React.FC<{ property: ForRentProperty }> = ({ property }) => 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Combine main image and gallery images for the carousel
     const images = property.images && property.images.length > 0 ? property.images : [property.image];
 
-    // Function to start the image carousel
     const startCarousel = () => {
         if (images.length > 1) {
             intervalRef.current = setInterval(() => {
                 setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
-            }, 1200); // Change image every 1.2 seconds
+            }, 1200);
         }
     };
 
-    // Function to stop the carousel and reset
     const stopCarousel = () => {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         }
-        setCurrentImageIndex(0); // Reset to the first image
+        setCurrentImageIndex(0);
     };
 
-    // Event handlers for mouse enter and leave
     const handleMouseEnter = () => {
         setIsHovered(true);
         startCarousel();
@@ -102,7 +45,6 @@ const PropertyCard: React.FC<{ property: ForRentProperty }> = ({ property }) => 
         stopCarousel();
     };
     
-    // Cleanup interval on component unmount
     useEffect(() => {
         return () => {
             if (intervalRef.current) {
@@ -124,14 +66,14 @@ const PropertyCard: React.FC<{ property: ForRentProperty }> = ({ property }) => 
                 <span className="absolute top-3 right-3 bg-black bg-opacity-80 text-white text-xs font-semibold px-3 py-1 rounded-sm z-10">FOR RENT</span>
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
                     <p className="text-white font-bold text-lg">Start From AED {property.price}</p>
-                 </div>
+                </div>
             </div>
 
             <div className={`p-4 transition-colors duration-300 ${isHovered ? 'bg-[#891e6d]' : 'bg-white'}`}>
                 <h3 className={`text-lg font-semibold truncate ${isHovered ? 'text-white' : 'text-black'}`}>{property.title}</h3>
                 <p className={`text-sm mb-3 ${isHovered ? 'text-white/70' : 'text-gray-500'}`}>{property.location}</p>
                 
-                 <div className={`border-t pt-3 mt-3 ${isHovered ? 'border-white/30' : 'border-gray-200'}`}>
+                <div className={`border-t pt-3 mt-3 ${isHovered ? 'border-white/30' : 'border-gray-200'}`}>
                     <div className="flex items-center justify-between text-sm">
                         <div className={`flex items-center ${isHovered ? 'text-white' : 'text-gray-800'}`}>
                             <BedIcon className={`h-5 w-5 mr-2 ${isHovered ? 'text-white/80' : 'text-gray-600'}`} />
@@ -231,7 +173,6 @@ const RentPage = () => {
   );
 };
 
-const App = RentPage;
-
-export default App;
-
+// I removed the const App = RentPage; line for simplicity.
+// This is a more direct way to export.
+export default RentPage;
