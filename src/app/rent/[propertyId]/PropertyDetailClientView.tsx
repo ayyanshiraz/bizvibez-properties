@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, FormEvent, ChangeEvent } from 'react';
 import { ForRentProperty } from '@/app/rent/rent-data';
 import { Country, countries } from '@/app/rent/countries';
 
@@ -9,7 +9,7 @@ interface PropertyDetailClientViewProps {
   propertyData: ForRentProperty;
 }
 
-// --- COUNTRY SELECTOR COMPONENT ---
+// --- COUNTRY SELECTOR COMPONENT (Unchanged) ---
 const CountrySelector: React.FC<{ onSelect: (country: Country) => void }> = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.code === 'AE') || countries[0]);
@@ -88,7 +88,7 @@ const CountrySelector: React.FC<{ onSelect: (country: Country) => void }> = ({ o
 };
 
 
-// --- SVG ICONS ---
+// --- SVG ICONS (Unchanged) ---
 const ChevronLeftIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>;
 const ChevronRightIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>;
 const ShareIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>;
@@ -96,17 +96,26 @@ const MapPinIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 
 const CheckmarkIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>;
 const CloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>;
 
-// --- Use the props interface here ---
+// --- Main Client Component ---
 const PropertyDetailClientView: React.FC<PropertyDetailClientViewProps> = ({ propertyData }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [selectedDialCode, setSelectedDialCode] = useState('+971');
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
-    // This is the logic from your original code that displayed images correctly
+    // --- ADDED: State for the form ---
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: `I'm interested in renting the property: ${propertyData.title}`,
+    });
+    const [selectedDialCode, setSelectedDialCode] = useState('+971'); // Default dial code
+    const [loading, setLoading] = useState(false);
+    const [statusMessage, setStatusMessage] = useState('');
+
     const images = propertyData.images ? [propertyData.image, ...propertyData.images] : [propertyData.image];
 
-    // --- Carousel Functions ---
+    // --- Carousel & Lightbox Functions (Unchanged) ---
     const nextImage = (e?: React.MouseEvent) => {
         e?.stopPropagation(); 
         setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -115,8 +124,6 @@ const PropertyDetailClientView: React.FC<PropertyDetailClientViewProps> = ({ pro
         e?.stopPropagation();
         setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     }
-
-    // --- Lightbox Functions ---
     const openLightbox = (index: number) => {
         setLightboxIndex(index);
         setIsLightboxOpen(true);
@@ -143,16 +150,61 @@ const PropertyDetailClientView: React.FC<PropertyDetailClientViewProps> = ({ pro
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isLightboxOpen, images.length]);
 
-
-    const mapSrc = `https://maps.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}&hl=en&z=14&output=embed`;
-
+    // --- ADDED: Form handling logic ---
     const handleCountrySelect = (country: Country) => {
         setSelectedDialCode(country.dial_code);
     };
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatusMessage('');
+
+        const fullPhoneNumber = `${selectedDialCode} ${formData.phone}`;
+
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    phone: fullPhoneNumber,
+                    propertyName: propertyData.title, // Send property name
+                    formType: 'Rental Inquiry', // Specific form identifier
+                }),
+            });
+
+            const result = await response.json();
+            setStatusMessage(result.message);
+
+            if (response.ok) {
+                // Clear the form on success
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    message: `I'm interested in renting the property: ${propertyData.title}`,
+                });
+            }
+        } catch (error) {
+            console.error("Form submission error:", error);
+            setStatusMessage('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+    const mapSrc = `https://maps.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}&hl=en&z=14&output=embed`;
+
     return (
         <div className="bg-white font-sans">
-            {/* --- HERO IMAGE CAROUSEL (Original Working Structure) --- */}
+            {/* --- HERO IMAGE CAROUSEL --- */}
             {images.length > 0 && (
                 <div className="relative w-full h-[60vh] bg-gray-900 group">
                     <div onClick={() => openLightbox(currentImageIndex)} className="w-full h-full cursor-pointer">
@@ -188,84 +240,53 @@ const PropertyDetailClientView: React.FC<PropertyDetailClientViewProps> = ({ pro
                             <p className="text-gray-500 mt-2 flex items-center"><MapPinIcon /> {propertyData.location}</p>
                         </div>
                         
-                        {/* --- Details Box --- */}
+                        {/* --- Details, Description, etc. (Unchanged) --- */}
                         <div className="border-b-2 pb-6 mb-6">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-xl font-semibold text-black">Details</h2>
-                                <p className="text-sm text-gray-500">Updated on {propertyData.updatedOn}</p>
-                            </div>
+                            <div className="flex justify-between items-center mb-4"><h2 className="text-xl font-semibold text-black">Details</h2><p className="text-sm text-gray-500">Updated on {propertyData.updatedOn}</p></div>
                             <div className="border border-green-200 bg-green-50 p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-black">
-                                <div><strong className="block">Property ID:</strong> {propertyData.propertyId}</div>
-                                <div><strong className="block">Bathrooms:</strong> {propertyData.bathrooms}</div>
-                                <div><strong className="block">Price:</strong> Start From AED {propertyData.price} Per Annum</div>
-                                <div><strong className="block">Property Type:</strong> {propertyData.type}</div>
-                                <div><strong className="block">Property Size:</strong> {propertyData.size} Sq.Ft</div>
-                                <div><strong className="block">Property Status:</strong> {propertyData.status}</div>
+                                <div><strong className="block">Property ID:</strong> {propertyData.propertyId}</div><div><strong className="block">Bathrooms:</strong> {propertyData.bathrooms}</div>
+                                <div><strong className="block">Price:</strong> Start From AED {propertyData.price} Per Annum</div><div><strong className="block">Property Type:</strong> {propertyData.type}</div>
+                                <div><strong className="block">Property Size:</strong> {propertyData.size} Sq.Ft</div><div><strong className="block">Property Status:</strong> {propertyData.status}</div>
                                 <div><strong className="block">Bedrooms:</strong> {propertyData.bedrooms}</div>
                             </div>
                         </div>
-
-                        {/* --- Description --- */}
+                        <div className="border-b-2 pb-6 mb-6"><h2 className="text-xl font-semibold text-black mb-4">Description</h2><p className="text-black leading-relaxed">{propertyData.description}</p></div>
                         <div className="border-b-2 pb-6 mb-6">
-                            <h2 className="text-xl font-semibold text-black mb-4">Description</h2>
-                            <p className="text-black leading-relaxed">{propertyData.description}</p>
-                        </div>
-
-                        {/* --- Address & Map --- */}
-                        <div className="border-b-2 pb-6 mb-6">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-xl font-semibold text-black">Address</h2>
-                                <a href={`https://www.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}`} target="_blank" rel="noopener noreferrer" className="text-sm bg-black text-white px-3 py-1 rounded hover:bg-gray-800">Open on Google Maps</a>
-                            </div>
-                            <div className="border p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-black">
-                                <div><strong className="block">Address:</strong> {propertyData.address.street}</div>
-                                <div><strong className="block">City:</strong> {propertyData.address.city}</div>
-                                <div><strong className="block">Area:</strong> {propertyData.address.area}</div>
-                            </div>
+                            <div className="flex justify-between items-center mb-4"><h2 className="text-xl font-semibold text-black">Address</h2><a href={`https://www.google.com/maps?q=${propertyData.mapCoordinates.lat},${propertyData.mapCoordinates.lng}`} target="_blank" rel="noopener noreferrer" className="text-sm bg-black text-white px-3 py-1 rounded hover:bg-gray-800">Open on Google Maps</a></div>
+                            <div className="border p-4 grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-black"><div><strong className="block">Address:</strong> {propertyData.address.street}</div><div><strong className="block">City:</strong> {propertyData.address.city}</div><div><strong className="block">Area:</strong> {propertyData.address.area}</div></div>
                             <div className="w-full h-80 rounded overflow-hidden"><iframe width="100%" height="100%" title="property-map" frameBorder="0" scrolling="no" src={mapSrc}></iframe></div>
                         </div>
-                        
-                        {/* --- Features Section --- */}
-                        <div className="border-b-2 pb-6 mb-6">
-                            <h2 className="text-xl font-semibold text-black mb-4">Features</h2>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-black">{propertyData.features.map((f, i) => <div key={i} className="flex items-center"><CheckmarkIcon /> {f}</div>)}</div>
-                        </div>
-
-                        {/* --- Additional Images Gallery --- */}
-                        <div>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                {images.map((img, i) => (
-                                    <div key={i} className="h-48 rounded-md overflow-hidden cursor-pointer group relative" onClick={() => openLightbox(i)}>
-                                        <img src={img} alt={`Gallery image ${i + 1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                                        <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-40 transition-colors"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        <div className="border-b-2 pb-6 mb-6"><h2 className="text-xl font-semibold text-black mb-4">Features</h2><div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-black">{propertyData.features.map((f, i) => <div key={i} className="flex items-center"><CheckmarkIcon /> {f}</div>)}</div></div>
+                        <div><div className="grid grid-cols-2 sm:grid-cols-3 gap-4">{images.map((img, i) => (<div key={i} className="h-48 rounded-md overflow-hidden cursor-pointer group relative" onClick={() => openLightbox(i)}><img src={img} alt={`Gallery image ${i + 1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" /><div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-40 transition-colors"></div></div>))}</div></div>
                     </div>
                     
-                    {/* --- RIGHT (AGENT FORM) COLUMN --- */}
+                    {/* --- RIGHT (AGENT FORM) COLUMN (NOW FUNCTIONAL) --- */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-10 border border-gray-300 rounded-sm p-6 shadow-lg">
                             <div className="flex items-center mb-6">
-                                <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg>
-                                </div>
-                                <div>
-                                    <p className="font-bold text-black">BizVibez Property</p>
-                                    <a href="#" className="text-sm hover:underline" style={{ color: '#891e6d' }}>View Listings</a>
-                                </div>
+                                <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg></div>
+                                <div><p className="font-bold text-black">BizVibez Property</p><a href="#" className="text-sm hover:underline" style={{ color: '#891e6d' }}>View Listings</a></div>
                             </div>
-                            <form className="space-y-4">
-                                <input type="text" placeholder="Full Name" className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:border-[#891e6d] text-black placeholder-gray-500 transition-colors duration-200" />
-                                <input type="email" placeholder="Email" className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:border-[#891e6d] text-black placeholder-gray-500 transition-colors duration-200" />
+                            
+                            {/* UPDATED FORM TAG AND INPUTS */}
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                <input type="text" name="fullName" placeholder="Full Name" required value={formData.fullName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:border-[#891e6d] text-black placeholder-gray-500 transition-colors duration-200" />
+                                <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:border-[#891e6d] text-black placeholder-gray-500 transition-colors duration-200" />
                                 <div className="flex items-stretch w-full border border-gray-300 rounded-sm focus-within:border-[#891e6d] transition-colors duration-200">
                                     <CountrySelector onSelect={handleCountrySelect} />
-                                    <input type="tel" placeholder="050 123 4567" className="w-full px-4 py-2 bg-transparent focus:outline-none text-black placeholder-gray-500" />
+                                    <input type="tel" name="phone" placeholder="050 123 4567" required value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 bg-transparent focus:outline-none text-black placeholder-gray-500" />
                                 </div>
-                                <textarea rows={5} placeholder="I'm interested in this property..." className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:border-[#891e6d] text-black placeholder-gray-500 transition-colors duration-200"></textarea>
-                                <button type="submit" style={{ backgroundColor: '#891e6d' }} className="w-full text-white font-bold py-3 px-4 rounded-sm hover:opacity-90 transition-opacity">
-                                    Request Information
+                                <textarea name="message" rows={5} required value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:border-[#891e6d] text-black placeholder-gray-500 transition-colors duration-200"></textarea>
+                                
+                                {/* Status Message Display */}
+                                {statusMessage && (
+                                    <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                        {statusMessage}
+                                    </div>
+                                )}
+
+                                <button type="submit" disabled={loading} style={{ backgroundColor: '#891e6d' }} className="w-full text-white font-bold py-3 px-4 rounded-sm hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed">
+                                    {loading ? 'Sending...' : 'Request Information'}
                                 </button>
                             </form>
                         </div>
@@ -273,27 +294,15 @@ const PropertyDetailClientView: React.FC<PropertyDetailClientViewProps> = ({ pro
                 </div>
             </div>
 
-            {/* --- LIGHTBOX MODAL --- */}
+            {/* --- LIGHTBOX MODAL (Unchanged) --- */}
             {isLightboxOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 animate-fade-in" onClick={closeLightbox}>
-                    <button onClick={closeLightbox} className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10">
-                       <CloseIcon/>
-                    </button>
+                    <button onClick={closeLightbox} className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"><CloseIcon/></button>
                     <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                        <button onClick={prevLightboxImage} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-60 text-white z-10">
-                            <ChevronLeftIcon />
-                        </button>
-                        <img 
-                            src={images[lightboxIndex]} 
-                            alt="Fullscreen property view" 
-                            className="max-w-[95vw] max-h-[85vh] object-contain select-none"
-                        />
-                        <button onClick={nextLightboxImage} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-60 text-white z-10">
-                           <ChevronRightIcon/>
-                        </button>
-                        <div className="absolute bottom-4 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
-                            {lightboxIndex + 1} / {images.length}
-                        </div>
+                        <button onClick={prevLightboxImage} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-60 text-white z-10"><ChevronLeftIcon /></button>
+                        <img src={images[lightboxIndex]} alt="Fullscreen property view" className="max-w-[95vw] max-h-[85vh] object-contain select-none" />
+                        <button onClick={nextLightboxImage} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-60 text-white z-10"><ChevronRightIcon/></button>
+                        <div className="absolute bottom-4 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">{lightboxIndex + 1} / {images.length}</div>
                     </div>
                 </div>
             )}
@@ -301,6 +310,5 @@ const PropertyDetailClientView: React.FC<PropertyDetailClientViewProps> = ({ pro
     );
 };
 
-// This is the critical change: export the component directly
 export default PropertyDetailClientView;
 
