@@ -1,16 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-
-// Define the types for the component's props
-interface AnimatedSectionProps {
-  children: React.ReactNode;
-}
+import React, { useState, useEffect, useRef, FormEvent, ChangeEvent } from 'react';
 
 // This component handles the fade-in and slide-up animation.
-const AnimatedSection = ({ children }: AnimatedSectionProps) => {
+const AnimatedSection = ({ children }: { children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLDivElement>(null); // Add type for the ref
+    const sectionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -38,7 +33,6 @@ const AnimatedSection = ({ children }: AnimatedSectionProps) => {
     }, []);
 
     const baseClasses = 'transition-all duration-700 ease-out';
-    
     const finalClasses = isVisible
         ? 'opacity-100 transform translate-y-0'
         : 'opacity-0 transform translate-y-8';
@@ -52,7 +46,7 @@ const AnimatedSection = ({ children }: AnimatedSectionProps) => {
 
 
 const App = () => {
-    // State and handlers for the new contact form
+    // --- UPDATED: State and handlers for the Netlify contact form ---
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -62,8 +56,9 @@ const App = () => {
         message: '',
     });
     const [loading, setLoading] = useState(false);
+    const [statusMessage, setStatusMessage] = useState(''); // Added for user feedback
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
@@ -71,32 +66,53 @@ const App = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // --- UPDATED: handleSubmit function to call Netlify function ---
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        console.log("Form Data Submitted:", formData);
-        // Simulate an API call
-        setTimeout(() => {
-            setLoading(false);
-            alert('Thank you for your message!');
-            // Reset form
-            setFormData({
-                firstName: '',
-                lastName: '',
-                email: '',
-                phone: '',
-                service: '',
-                message: '',
+        setStatusMessage('');
+
+        // Combine first and last name to match backend expectation
+        const { firstName, lastName, ...rest } = formData;
+        const fullName = `${firstName} ${lastName}`;
+
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName,
+                    ...rest,
+                    formType: 'Service Inquiry', // Add a unique identifier for this form
+                }),
             });
-        }, 1500);
+
+            const result = await response.json();
+            setStatusMessage(result.message);
+
+            if (response.ok) {
+                // Reset form on success
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: '',
+                    service: '',
+                    message: '',
+                });
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setStatusMessage('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
 
     return (
         <div className="font-sans antialiased text-gray-800 bg-white">
-            {/* Navigation Bar would go here */}
-
-            {/* --- HERO HEADER SECTION --- */}
+            {/* --- HERO HEADER SECTION (Unchanged) --- */}
             <div
                 className="relative h-[85vh] bg-cover bg-center"
                 style={{
@@ -121,9 +137,8 @@ const App = () => {
                 </div>
             </div>
 
-            {/* --- MAIN CONTENT AREA --- */}
+            {/* --- MAIN CONTENT AREA (Unchanged) --- */}
             <main className="container mx-auto px-4 py-16">
-                {/* Each section is now wrapped in the updated AnimatedSection component */}
                 <AnimatedSection>
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-start z-10">
@@ -144,7 +159,6 @@ const App = () => {
                         </div>
                     </section>
                 </AnimatedSection>
-
                  <AnimatedSection>
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row-reverse items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-end z-10">
@@ -168,7 +182,6 @@ const App = () => {
                         </div>
                     </section>
                 </AnimatedSection>
-
                 <AnimatedSection>
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-start z-10">
@@ -192,7 +205,6 @@ const App = () => {
                         </div>
                     </section>
                 </AnimatedSection>
-
                 <AnimatedSection>
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row-reverse items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-end z-10">
@@ -205,7 +217,7 @@ const App = () => {
                                 Leasing Property
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
-                                "Let with Seven Luxury Real Estate: Your choice for seamless rentals. Our dedicated area specialist, daily tenant registrations, professional videography/photography creation, VIP concierge. Real Estate portal exposure, SEO/PPC/SMM, automated messaging/emails, and our tenant database all ensure your property stands out to interested tenants."
+                                "Let with BizVibez: Your choice for seamless rentals. Our dedicated area specialist, daily tenant registrations, professional videography/photography creation, VIP concierge. Real Estate portal exposure, SEO/PPC/SMM, automated messaging/emails, and our tenant database all ensure your property stands out to interested tenants."
                             </p>
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 "Unlock the True Value of Your Property: Schedule a valuation with us. Join our exclusive client list, and benefit from our marketing exposure."
@@ -216,7 +228,6 @@ const App = () => {
                         </div>
                     </section>
                 </AnimatedSection>
-
                 <AnimatedSection>
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-start z-10">
@@ -240,7 +251,6 @@ const App = () => {
                         </div>
                     </section>
                 </AnimatedSection>
-
                 <AnimatedSection>
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row-reverse items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-end z-10">
@@ -250,10 +260,10 @@ const App = () => {
                         </div>
                         <div className="lg:w-1/2 z-10">
                             <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
-                                Concierge Services:
+                                Concierge Services
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
-                                At Seven Luxury Real Estate, our concierge services are designed to meet your expectations in every aspect of your real estate experience with us.
+                                At BizVibez, our concierge services are designed to meet your expectations in every aspect of your real estate experience with us.
                             </p>
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 We prioritize your comfort by arranging for one of our luxurious vehicles to pick you up from your residence or workplace, ensuring a comfortable trip to your property. Following your coordinated viewing, your assigned chauffeur will efficiently transport you to your next destination, reflecting our dedication to providing the utmost convenience and sophistication in your real estate journey.
@@ -266,58 +276,20 @@ const App = () => {
                 </AnimatedSection>
             </main>
 
-            {/* --- NEW CONTACT FORM SECTION --- */}
+            {/* --- UPDATED CONTACT FORM SECTION --- */}
             <section id="contact" className="bg-gray-100 py-16 px-6">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold text-center text-[#891e6d]">Contact Us</h2>
                     <form onSubmit={handleSubmit} className="mt-10 space-y-6 max-w-2xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-6">
-                            <input
-                                type="text"
-                                name="firstName"
-                                placeholder="First Name"
-                                className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"
-                                value={formData.firstName}
-                                onChange={handleChange}
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="lastName"
-                                placeholder="Last Name"
-                                className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                required
-                            />
+                            <input type="text" name="firstName" placeholder="First Name" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.firstName} onChange={handleChange} required />
+                            <input type="text" name="lastName" placeholder="Last Name" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.lastName} onChange={handleChange} required />
                         </div>
                         <div className="grid md:grid-cols-2 gap-6">
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                            <input
-                                type="tel"
-                                name="phone"
-                                placeholder="Phone"
-                                className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                required
-                            />
+                            <input type="email" name="email" placeholder="Email" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.email} onChange={handleChange} required />
+                            <input type="tel" name="phone" placeholder="Phone" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.phone} onChange={handleChange} required />
                         </div>
-                        <select
-                            name="service"
-                            className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm bg-white focus:ring-[#891e6d] focus:border-[#891e6d]"
-                            value={formData.service}
-                            onChange={handleChange}
-                            required
-                        >
+                        <select name="service" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm bg-white focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.service} onChange={handleChange} required >
                             <option value="">Select a service</option>
                             <option value="Buy Property">Buy Property</option>
                             <option value="Sell Property">Sell Property</option>
@@ -326,27 +298,23 @@ const App = () => {
                             <option value="Concierge Services">Concierge Services</option>
                             <option value="General Inquiry">General Inquiry</option>
                         </select>
-                        <textarea
-                            name="message"
-                            placeholder="Your Message"
-                            rows={4}
-                            className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                        />
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full bg-[#891e6d] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 disabled:bg-opacity-70 transition"
-                        >
+                        <textarea name="message" placeholder="Your Message" rows={4} className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.message} onChange={handleChange} required />
+                        
+                        {/* Status Message Display */}
+                        {statusMessage && (
+                            <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                {statusMessage}
+                            </div>
+                        )}
+
+                        <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 disabled:bg-opacity-70 transition" >
                             {loading ? "Sending..." : "Submit"}
                         </button>
                     </form>
                 </div>
             </section>
 
-            {/* --- FINAL CTA --- */}
+            {/* --- FINAL CTA (Unchanged) --- */}
             <section className="bg-gray-50 py-16 text-center">
                  <div className="container mx-auto">
                     <h2 className="text-3xl font-bold text-[#891e6d]">Ready to Find Your Perfect Property?</h2>
@@ -365,4 +333,3 @@ const App = () => {
 };
 
 export default App;
-
