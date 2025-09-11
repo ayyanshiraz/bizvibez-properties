@@ -56,14 +56,14 @@ export default function Footer() {
           {/* Column 3: Buy & Sell */}
           <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-white uppercase">Buy & Sell</h3>
+              <h3 className="text-lg font-bold text-white uppercase">Services</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Apartments</a></li>
-                <li><a href="#" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Penthouse</a></li>
-                <li><a href="#" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Townhouse</a></li>
-                <li><a href="#" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Villas</a></li>
-                <li><a href="#" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Off Plan</a></li>
-                <li><a href="/area-guides" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Area Guides</a></li>
+                <li><a href="https://bizvibezproperties.com/buy" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Buy</a></li>
+                <li><a href="https://bizvibezproperties.com/rent" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Rent</a></li>
+                <li><a href="https://bizvibezproperties.com/off-plan" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Off Plan</a></li>
+                <li><a href="https://bizvibezproperties.com/sell" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Sell</a></li>
+                <li><a href="https://bizvibezproperties.com/land-for-sale" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Land For Sale</a></li>
+                <li><a href="https://bizvibezproperties.com/area-guides" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Area Guides</a></li>
               </ul>
             </div>
           </div>
@@ -76,7 +76,6 @@ export default function Footer() {
                 <li><a href="/about" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />About Us</a></li>
                 <li><a href="/about/team" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Our Team</a></li>
                 <li><a href="/careers" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Careers</a></li>
-                <li><a href="#" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />News and Articles</a></li>
                 <li><a href="/mortgage-calculator" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Mortgage Calculator</a></li>
                 <li><a href="/privacy-policy" className="hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Privacy Policy</a></li>
               </ul>
