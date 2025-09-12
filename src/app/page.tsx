@@ -50,9 +50,10 @@ const PlotCard = ({ plot }: { plot: Plot }) => {
     );
 };
 
-// --- OFF-PLAN PROPERTY CARD ---
+// --- OFF-PLAN PROPERTY CARD (with price fix) ---
 const OffPlanPropertyCard = ({ property }: { property: Property }) => {
     const imageUrl = Array.isArray(property.image) && property.image.length > 0 ? property.image[0] : '/placeholder.jpg';
+    
     const getTagClass = (type: string) => {
         switch (type) {
             case 'featured': return 'bg-yellow-500 text-white';
@@ -60,6 +61,11 @@ const OffPlanPropertyCard = ({ property }: { property: Property }) => {
             default: return 'bg-gray-700 text-white';
         }
     }
+
+    // Amendment: Sanitize price string before parsing
+    const cleanPrice = property.price.replace(/[^0-9]/g, '');
+    const formattedPrice = parseInt(cleanPrice, 10).toLocaleString();
+
     return (
         <Link href={`/off-plan/${property.id}`} className="block group">
             <div className="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:scale-105">
@@ -76,7 +82,7 @@ const OffPlanPropertyCard = ({ property }: { property: Property }) => {
                         {property.bedrooms && <span className="flex items-center"><BedIcon className="mr-2 text-gray-400"/> {property.bedrooms}</span>}
                         {property.size && <span className="flex items-center"><AreaIcon className="mr-2 text-gray-400"/> From {property.size} Sq.Ft</span>}
                     </div>
-                     <p className="text-sm text-gray-800">Start From <span className="text-lg font-bold text-[#8c1e6e]">AED {parseInt(property.price).toLocaleString()}</span></p>
+                     <p className="text-sm text-gray-800">Start From <span className="text-lg font-bold text-[#8c1e6e]">AED {formattedPrice}</span></p>
                 </div>
                 <div className="px-6 py-4 bg-gray-50 transition-colors duration-300 group-hover:bg-[#8c1e6e]">
                     <h3 className="font-bold text-lg text-gray-900 truncate transition-colors group-hover:text-white">{property.name}</h3>
