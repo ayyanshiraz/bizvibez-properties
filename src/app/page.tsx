@@ -13,55 +13,21 @@ const AreaIcon = ({ className = "w-5 h-5" }) => (
         <path d="M21 3H3v18h18V3zM9 3v18M15 3v18M3 9h18M3 15h18"/>
     </svg>
 );
-
 const BedIcon = ({ className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M2 4v16h20V4H2z" />
-        <path d="M2 9h20" />
-        <path d="M12 14v5" />
-        <path d="M8 12v7" />
-        <path d="M16 12v7" />
+        <path d="M2 4v16h20V4H2z" /><path d="M2 9h20" /><path d="M12 14v5" /><path d="M8 12v7" /><path d="M16 12v7" />
     </svg>
 );
 
-
 // --- PLOT CARD COMPONENT ---
-interface Plot {
-    title: string;
-    location: string;
-    size: string;
-    price: string;
-    images: string[];
-}
-
+interface Plot { title: string; location: string; size: string; price: string; images: string[]; }
 const PlotCard = ({ plot }: { plot: Plot }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-    const startCarousel = () => {
-        setIsHovered(true);
-        intervalRef.current = setInterval(() => {
-            setCurrentImageIndex(prevIndex => (prevIndex + 1) % plot.images.length);
-        }, 1500);
-    };
-
-    const stopCarousel = () => {
-        setIsHovered(false);
-        if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-        }
-        setCurrentImageIndex(0);
-    };
-
-    useEffect(() => {
-        return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-        };
-    }, []);
-
+    const startCarousel = () => { setIsHovered(true); intervalRef.current = setInterval(() => { setCurrentImageIndex(prevIndex => (prevIndex + 1) % plot.images.length); }, 1500); };
+    const stopCarousel = () => { setIsHovered(false); if (intervalRef.current) { clearInterval(intervalRef.current); } setCurrentImageIndex(0); };
+    useEffect(() => { return () => { if (intervalRef.current) { clearInterval(intervalRef.current); } }; }, []);
     return (
         <div className="overflow-hidden group rounded-lg shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105" onMouseEnter={startCarousel} onMouseLeave={stopCarousel}>
             <div className="relative overflow-hidden">
@@ -84,11 +50,9 @@ const PlotCard = ({ plot }: { plot: Plot }) => {
     );
 };
 
-
 // --- OFF-PLAN PROPERTY CARD ---
 const OffPlanPropertyCard = ({ property }: { property: Property }) => {
     const imageUrl = Array.isArray(property.image) && property.image.length > 0 ? property.image[0] : '/placeholder.jpg';
-    
     const getTagClass = (type: string) => {
         switch (type) {
             case 'featured': return 'bg-yellow-500 text-white';
@@ -96,7 +60,6 @@ const OffPlanPropertyCard = ({ property }: { property: Property }) => {
             default: return 'bg-gray-700 text-white';
         }
     }
-
     return (
         <Link href={`/off-plan/${property.id}`} className="block group">
             <div className="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:scale-105">
@@ -104,9 +67,7 @@ const OffPlanPropertyCard = ({ property }: { property: Property }) => {
                     <img className="h-56 w-full object-cover" src={imageUrl} alt={property.name} />
                     <div className="absolute top-3 left-3 flex flex-col gap-2">
                         {property.tags?.map((tag: {text: string, type: string}) => (
-                            <span key={tag.text} className={`text-xs font-semibold uppercase px-3 py-1 rounded-full ${getTagClass(tag.type)}`}>
-                                {tag.text}
-                            </span>
+                            <span key={tag.text} className={`text-xs font-semibold uppercase px-3 py-1 rounded-full ${getTagClass(tag.type)}`}>{tag.text}</span>
                         ))}
                     </div>
                 </div>
@@ -131,89 +92,36 @@ const FeaturedPropertiesSlider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const featuredIds = [3, 4, 5, 6, 7, 8, 9, 10, 11];
     const featuredOffPlan = allProperties.filter(p => p.propertyStatus === 'Off Plan' && featuredIds.includes(Number(p.id)));
-    
-    const chunkArray = (arr: Property[], size: number): Property[][] => {
-        const chunkedArr = [];
-        for (let i = 0; i < arr.length; i += size) {
-            chunkedArr.push(arr.slice(i, i + size));
-        }
-        return chunkedArr;
-    };
-
+    const chunkArray = (arr: Property[], size: number): Property[][] => { const chunkedArr = []; for (let i = 0; i < arr.length; i += size) { chunkedArr.push(arr.slice(i, i + size)); } return chunkedArr; };
     const slides = chunkArray(featuredOffPlan, 3);
     const totalSlides = slides.length;
-
     const nextSlide = () => setCurrentSlide(prev => (prev + 1) % totalSlides);
     const prevSlide = () => setCurrentSlide(prev => (prev - 1 + totalSlides) % totalSlides);
-
     const sectionRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
-
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const entry = entries[0];
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                } else {
-                    setIsVisible(false);
-                }
-            },
-            { threshold: 0.15 } 
-        );
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
+        const observer = new IntersectionObserver((entries) => { const entry = entries[0]; if (entry.isIntersecting) { setIsVisible(true); } else { setIsVisible(false); } }, { threshold: 0.15 });
+        if (sectionRef.current) { observer.observe(sectionRef.current); }
+        return () => { if (sectionRef.current) { observer.unobserve(sectionRef.current); } };
     }, []);
-
     return (
         <section ref={sectionRef} className={`py-20 bg-gray-50 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-1/4'}`}>
             <div className="container mx-auto px-6">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-[#8c1e6e]">Featured Properties in Dubai</h2>
-                    <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Explore a curated selection of premier off-plan projects from the city's top developers.</p>
-                </div>
-
+                <div className="text-center mb-12"><h2 className="text-4xl font-bold text-[#8c1e6e]">Featured Properties in Dubai</h2><p className="text-gray-600 mt-4 max-w-2xl mx-auto">Explore a curated selection of premier off-plan projects from the city's top developers.</p></div>
                 <div className="relative">
                     <div className="overflow-hidden">
                         <div className="flex transition-transform duration-500 ease-in-out py-4" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                            {slides.map((slide, index) => (
-                                <div key={index} className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-1">
-                                    {slide.map(property => ( <OffPlanPropertyCard key={property.id} property={property} /> ))}
-                                </div>
-                            ))}
+                            {slides.map((slide, index) => (<div key={index} className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-1">{slide.map(property => ( <OffPlanPropertyCard key={property.id} property={property} /> ))}</div>))}
                         </div>
                     </div>
-
-                    {totalSlides > 1 && (
-                        <>
-                            <button onClick={prevSlide} className="absolute top-1/2 -left-4 md:-left-6 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition z-10"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg></button>
-                            <button onClick={nextSlide} className="absolute top-1/2 -right-4 md:-right-6 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition z-10"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg></button>
-                        </>
-                    )}
+                    {totalSlides > 1 && (<><button onClick={prevSlide} className="absolute top-1/2 -left-4 md:-left-6 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition z-10"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg></button><button onClick={nextSlide} className="absolute top-1/2 -right-4 md:-right-6 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition z-10"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg></button></>)}
                 </div>
-
-                {totalSlides > 1 && (
-                    <div className="flex justify-center space-x-2 mt-8">
-                        {slides.map((_, index) => (<button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-[#8c1e6e] scale-125' : 'bg-gray-300'}`}></button>))}
-                    </div>
-                )}
-                
-                <div className="text-center mt-12">
-                    <Link href="/off-plan" className="inline-block bg-[#8c1e6e] text-white font-bold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                        View All Properties
-                    </Link>
-                </div>
+                {totalSlides > 1 && (<div className="flex justify-center space-x-2 mt-8">{slides.map((_, index) => (<button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-[#8c1e6e] scale-125' : 'bg-gray-300'}`}></button>))}</div>)}
+                <div className="text-center mt-12"><Link href="/off-plan" className="inline-block bg-[#8c1e6e] text-white font-bold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-xl">View All Properties</Link></div>
             </div>
         </section>
     );
 };
-
 
 // --- OTHER COMPONENTS ---
 const InteractivePieChart = ({ offplanPercent, secondaryPercent, color1, color2 }: { offplanPercent: number, secondaryPercent: number, color1: string, color2: string }) => {
@@ -243,12 +151,66 @@ const HomePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState<Property[]>([]);
     const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
     
     useEffect(() => { const timer = setTimeout(() => setIsLoading(false), 3000); return () => clearTimeout(timer); }, []);
     useEffect(() => { if (isLoading) return; const currentLocation = locations[locationIndex]; let timeoutId: NodeJS.Timeout; if (isDeleting) { if (displayedText.length > 0) { timeoutId = setTimeout(() => setDisplayedText(currentLocation.substring(0, displayedText.length - 1)), 100); } else { setIsDeleting(false); setLocationIndex((prevIndex) => (prevIndex + 1) % locations.length); } } else { if (displayedText.length < currentLocation.length) { timeoutId = setTimeout(() => setDisplayedText(currentLocation.substring(0, displayedText.length + 1)), 150); } else { timeoutId = setTimeout(() => setIsDeleting(true), 2000); } } return () => clearTimeout(timeoutId); }, [displayedText, isDeleting, locationIndex, isLoading]);
-    useEffect(() => { if (searchQuery.length > 1) { const lowercasedQuery = searchQuery.toLowerCase(); const filteredData = allProperties.filter(property => { const isCorrectStatus = (activeTab === 'For Sale' && property.status === 'For Sale') || (activeTab === 'For Rent' && property.status === 'For Rent') || (activeTab === 'Off Plan' && property.propertyStatus === 'Off Plan'); if (!isCorrectStatus) return false; const title = (property.title || property.name || '').toLowerCase(); const location = (property.location || '').toLowerCase(); const propId = (property.propertyId || '').toLowerCase(); return title.includes(lowercasedQuery) || location.includes(lowercasedQuery) || propId.includes(lowercasedQuery); }); setSearchResults(filteredData); } else { setSearchResults([]); } }, [searchQuery, activeTab]);
+    
+    useEffect(() => { 
+        if (searchQuery.length > 1) { 
+            const lowercasedQuery = searchQuery.toLowerCase(); 
+            const filteredData = allProperties.filter(property => { 
+                const isCorrectStatus = (activeTab === 'For Sale' && property.status === 'For Sale') || (activeTab === 'For Rent' && property.status === 'For Rent') || (activeTab === 'Off Plan' && property.propertyStatus === 'Off Plan'); 
+                if (!isCorrectStatus) return false; 
+                const title = (property.title || property.name || '').toLowerCase(); 
+                const location = (property.location || '').toLowerCase(); 
+                const propId = (property.propertyId || '').toLowerCase(); 
+                return title.includes(lowercasedQuery) || location.includes(lowercasedQuery) || propId.includes(lowercasedQuery); 
+            }); 
+            setSearchResults(filteredData);
+            setActiveIndex(-1);
+        } else { 
+            setSearchResults([]); 
+        } 
+    }, [searchQuery, activeTab]);
+
     const getLinkPrefix = (tab: 'For Sale' | 'For Rent' | 'Off Plan') => { switch (tab) { case 'For Sale': return '/buy'; case 'For Rent': return '/rent'; case 'Off Plan': return '/off-plan'; default: return '/'; } };
-    const handleSearchSubmit = (e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); if (searchQuery.length > 0 && searchResults.length === 0) { const path = getLinkPrefix(activeTab); router.push(path); } };
+
+    const handleSearchAction = () => {
+        if (searchQuery.length > 0 && searchResults.length === 0) {
+            const path = getLinkPrefix(activeTab);
+            router.push(path);
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter') {
+             e.preventDefault();
+            if (activeIndex >= 0) {
+                const property = searchResults[activeIndex];
+                const path = `${getLinkPrefix(activeTab)}/${property.id}`;
+                router.push(path);
+            } else {
+                handleSearchAction();
+            }
+        }
+        
+        if (searchResults.length === 0) return;
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                setActiveIndex(prev => (prev < searchResults.length - 1 ? prev + 1 : prev));
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                setActiveIndex(prev => (prev > 0 ? prev - 1 : 0));
+                break;
+            case 'Escape':
+                setIsSearchFocused(false);
+                break;
+        }
+    };
 
     return (
         <>
@@ -264,17 +226,19 @@ const HomePage = () => {
                     </div>
                     <div className="w-full max-w-4xl">
                         <div className="flex mb-2"><button onClick={() => setActiveTab('For Rent')} className={`py-2 px-6 bg-transparent font-semibold transition-colors duration-300 ${activeTab === 'For Rent' ? 'text-white border-b-4 border-purple-600' : 'text-gray-300 hover:text-white'}`}>For Rent</button><button onClick={() => setActiveTab('For Sale')} className={`py-2 px-6 bg-transparent font-semibold transition-colors duration-300 ${activeTab === 'For Sale' ? 'text-white border-b-4 border-purple-600' : 'text-gray-300 hover:text-white'}`}>For Sale</button><button onClick={() => setActiveTab('Off Plan')} className={`py-2 px-6 bg-transparent font-semibold transition-colors duration-300 ${activeTab === 'Off Plan' ? 'text-white border-b-4 border-purple-600' : 'text-gray-300 hover:text-white'}`}>Off Plan</button></div>
-                        <div className="relative">
-                            <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-4"><select className="w-full md:w-auto p-3 bg-gray-100 rounded-md text-gray-600 focus:outline-none border-r-8 border-transparent"><option>Property Type</option><option>Apartment</option><option>Villa</option><option>Townhouse</option></select><input type="text" placeholder="Search by Location, Title, or Property ID..." className="w-full p-3 text-gray-700 focus:outline-none border-t border-b md:border-none" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onFocus={() => setIsSearchFocused(true)} onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)} /><button style={{ backgroundColor: '#8c1e6e' }} className="w-full md:w-auto text-white font-bold py-3 px-8 rounded-md hover:opacity-90 transition duration-300" onClick={handleSearchSubmit}>Search</button></div>
-                            {isSearchFocused && searchQuery.length > 1 && (<div className="absolute top-full mt-2 w-full bg-white rounded-lg shadow-2xl z-30 overflow-hidden border border-gray-200 max-h-80 overflow-y-auto"> {searchResults.length > 0 ? (<ul> {searchResults.map((property) => { const linkHref = `${getLinkPrefix(activeTab)}/${property.id}`; const displayTitle = property.title || property.name; const imageSrc = Array.isArray(property.image) ? property.image[0] : property.image; return (<li key={property.propertyId}><Link href={linkHref} className="flex items-center p-4 hover:bg-gray-100 transition-colors"><img src={imageSrc} alt={displayTitle} className="w-20 h-16 object-cover rounded-md mr-4 flex-shrink-0 bg-gray-200" /><div className="flex-grow overflow-hidden"><p className="font-semibold text-gray-800 truncate">{displayTitle}</p><div className="flex justify-between text-sm text-gray-500 mt-1"><span className="truncate pr-2">{property.location}</span><span className="font-mono text-xs flex-shrink-0">{property.propertyId}</span></div></div></Link></li>); })}</ul>) : (<div className="p-4 text-center text-gray-500">No properties found for "{searchQuery}".</div>)}</div>)}
+                        <div className="relative" onKeyDown={handleKeyDown}>
+                            <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-4"><select className="w-full md:w-auto p-3 bg-gray-100 rounded-md text-gray-600 focus:outline-none border-r-8 border-transparent"><option>Property Type</option><option>Apartment</option><option>Villa</option><option>Townhouse</option></select><input type="text" placeholder="Search by Location, Title, or Property ID..." className="w-full p-3 text-gray-700 focus:outline-none border-t border-b md:border-none" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onFocus={() => setIsSearchFocused(true)} onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)} /><button style={{ backgroundColor: '#8c1e6e' }} className="w-full md:w-auto text-white font-bold py-3 px-8 rounded-md hover:opacity-90 transition duration-300" onClick={() => handleSearchAction()}>Search</button></div>
+                            
+                            {isSearchFocused && searchQuery.length > 1 && (<div className="absolute top-full mt-2 w-full bg-white rounded-lg shadow-2xl z-30 overflow-hidden border border-gray-200 max-h-80 overflow-y-auto"> {searchResults.length > 0 ? (<ul> {searchResults.map((property, index) => { const linkHref = `${getLinkPrefix(activeTab)}/${property.id}`; const displayTitle = property.title || property.name; const imageSrc = Array.isArray(property.image) ? property.image[0] : property.image; 
+                            const isActive = index === activeIndex;
+                            return (<li key={property.propertyId} onMouseEnter={() => setActiveIndex(index)}><Link href={linkHref} className={`flex items-center p-4 transition-colors ${isActive ? 'bg-[#8c1e6e] text-white' : 'hover:bg-gray-100'}`}><img src={imageSrc} alt={displayTitle} className="w-20 h-16 object-cover rounded-md mr-4 flex-shrink-0 bg-gray-200" /><div className="flex-grow overflow-hidden"><p className={`font-semibold truncate ${isActive ? 'text-white' : 'text-gray-800'}`}>{displayTitle}</p><div className={`flex justify-between text-sm mt-1 ${isActive ? 'text-gray-200' : 'text-gray-500'}`}><span className="truncate pr-2">{property.location}</span><span className="font-mono text-xs flex-shrink-0">{property.propertyId}</span></div></div></Link></li>); })}</ul>) : (<div className="p-4 text-center text-gray-500">No properties found for "{searchQuery}".</div>)}</div>)}
                         </div>
                     </div>
                 </div>
             </section>
             
             <FeaturedPropertiesSlider />
-            
-            <section className="py-20 bg-cover bg-center text-white" style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.92)), url('/guides/hero/downtown.jpeg')" }}>
+            <section className="py-20 bg-cover bg-center text-white" style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('/guides/hero/downtown.jpeg')" }}>
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16"><h2 className="text-4xl md:text-5xl font-bold">Dubai Real Estate Market Report</h2><p className="text-xl text-gray-300 mt-2">JULY 2025</p></div>
                     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -283,7 +247,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-            
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16"><h2 className="text-4xl font-bold text-[#8c1e6e]">Featured Land For Sale</h2><p className="text-gray-600 mt-4 max-w-2xl mx-auto">Discover exclusive investment opportunities with our curated selection of premium land plots in Dubai's most desirable locations.</p></div>
@@ -291,7 +254,6 @@ const HomePage = () => {
                     <div className="text-center mt-16"><a href="/land-for-sale" className="inline-block bg-[#8c1e6e] text-white font-bold py-3 px-8 rounded-md transition-transform duration-300 hover:scale-105">View All Land Plots</a></div>
                 </div>
             </section>
-            
             <section className="py-24 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
