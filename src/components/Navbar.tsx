@@ -30,6 +30,8 @@ export default function Navbar() {
             {/* This container now has padding-top that acts as an invisible bridge */}
             <div className="absolute top-full left-0 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
               <div style={{ backgroundColor: '#fefefe' }} className="w-48 rounded-md shadow-lg py-1">
+                {/* --- ADDED THIS LINE FOR DESKTOP --- */}
+                <a href="/about" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#891e6d] hover:text-white">About Us</a>
                 <a href="/about/team" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#891e6d] hover:text-white">Our Team</a>
                 <a href="/about/services" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#891e6d] hover:text-white">Our Services</a>
               </div>
@@ -58,6 +60,8 @@ export default function Navbar() {
         <div className="md:hidden bg-white py-4">
           <a href="/" className="block text-gray-700 text-center py-2 text-lg">Home</a>
           <a href="/about" className="block text-gray-700 text-center py-2 text-lg">About</a>
+          {/* --- ADDED THIS LINE FOR MOBILE --- */}
+          <a href="/about" className="block text-gray-500 text-center py-2 text-md ml-4">- About Us</a>
           <a href="/about/team" className="block text-gray-500 text-center py-2 text-md ml-4">- Our Team</a>
           <a href="/about/services" className="block text-gray-500 text-center py-2 text-md ml-4">- Our Services</a>
           <a href="/buy" className="block text-gray-700 text-center py-2 text-lg">Buy</a>
@@ -72,4 +76,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

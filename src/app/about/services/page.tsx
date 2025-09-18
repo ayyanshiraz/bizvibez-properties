@@ -255,7 +255,7 @@ const App = () => {
                     <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 flex flex-col lg:flex-row-reverse items-center space-y-8 lg:space-y-0 lg:space-x-12 relative overflow-hidden mb-12">
                         <div className="lg:w-1/2 flex justify-center lg:justify-end z-10">
                             <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-xl overflow-hidden shadow-2xl">
-                                <img src="/image5.jpg" alt="Concierge services" className="w-full h-auto object-cover rounded-xl" />
+                                <img src="/concerge.png" alt="Concierge services" className="w-full h-auto object-cover rounded-xl" />
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">

@@ -53,7 +53,7 @@ const PlotCard = ({ plot }: { plot: Plot }) => {
 // --- OFF-PLAN PROPERTY CARD (with price fix) ---
 const OffPlanPropertyCard = ({ property }: { property: Property }) => {
     const imageUrl = Array.isArray(property.image) && property.image.length > 0 ? property.image[0] : '/placeholder.jpg';
-    
+   
     const getTagClass = (type: string) => {
         switch (type) {
             case 'featured': return 'bg-yellow-500 text-white';
@@ -227,7 +227,7 @@ const HomePage = () => {
                 <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
                 <div className="relative z-20 flex flex-col items-center px-4 w-full mb-20">
                     <div className="min-h-[150px] flex flex-col justify-center w-full max-w-4xl text-center">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">Search Luxury Homes<br />In <span style={{ color: '#8c1e6e' }}>{displayedText}</span><span className="animate-ping">|</span></h1>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">Search Luxury Homes<br />In <span style={{ color: 'white' }}>{displayedText}</span><span className="animate-ping">|</span></h1>
                         <div className="flex justify-center mb-8"><img src="/Slogan.png" alt="Invest In Your Future, Explore Luxury Real Estate Opportunities." width={400} height={40} /></div>
                     </div>
                     <div className="w-full max-w-4xl">
@@ -248,8 +248,8 @@ const HomePage = () => {
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16"><h2 className="text-4xl md:text-5xl font-bold">Dubai Real Estate Market Report</h2><p className="text-xl text-gray-300 mt-2">JULY 2025</p></div>
                     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        <div className="space-y-12 text-center md:text-left"><div><h3 className="text-6xl font-bold">65B</h3><p className="text-gray-300">TOTAL SALES VALUE IN AED</p><p className="text-green-400 mt-1 text-lg">▲ 29.5% <span className="text-gray-400">increase when compared to July 2024</span></p></div><div><h3 className="text-6xl font-bold">20,304</h3><p className="text-gray-300">TOTAL SALES TRANSACTIONS</p><p className="text-green-400 mt-1 text-lg">▲ 24.9% <span className="text-gray-400">increase when compared to July 2024</span></p></div></div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8"><div className="flex flex-col items-center"><InteractivePieChart offplanPercent={66} secondaryPercent={34} color1="#f3b562" color2="#8c1e6e" /><h4 className="font-bold text-xl mt-4">VALUE</h4><ul className="text-sm mt-2 space-y-1 text-left"><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#f3b562] mr-2"></span>OFFPLAN: 42.2B</li><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#8c1e6e] mr-2"></span>SECONDARY: 22.8B</li></ul></div><div className="flex flex-col items-center"><InteractivePieChart offplanPercent={72} secondaryPercent={28} color1="#f3b562" color2="#8c1e6e" /><h4 className="font-bold text-xl mt-4">VOLUME</h4><ul className="text-sm mt-2 space-y-1 text-left"><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#f3b562] mr-2"></span>OFFPLAN: 14,531</li><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#8c1e6e] mr-2"></span>SECONDARY: 5,773</li></ul></div></div>
+                        <div className="space-y-12 text-center md:text-left"><div><h3 className="text-6xl font-bold">51.1B</h3><p className="text-gray-300">TOTAL SALES VALUE IN AED</p><p className="text-green-400 mt-1 text-lg">▲ 7.9% <span className="text-gray-400">increase when compared to August 2024</span></p></div><div><h3 className="text-6xl font-bold">18,678</h3><p className="text-gray-300">TOTAL SALES TRANSACTIONS</p><p className="text-green-400 mt-1 text-lg">▲ 15.4% <span className="text-gray-400">increase when compared to August 2024</span></p></div></div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8"><div className="flex flex-col items-center"><InteractivePieChart offplanPercent={66} secondaryPercent={34} color1="#D3D3D3" color2="#8c1e6e" /><h4 className="font-bold text-xl mt-4">VALUE</h4><ul className="text-sm mt-2 space-y-1 text-left"><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#D3D3D3] mr-2"></span>OFFPLAN: 42.2B</li><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#8c1e6e] mr-2"></span>SECONDARY: 22.8B</li></ul></div><div className="flex flex-col items-center"><InteractivePieChart offplanPercent={72} secondaryPercent={28} color1="#D3D3D3" color2="#8c1e6e" /><h4 className="font-bold text-xl mt-4">VOLUME</h4><ul className="text-sm mt-2 space-y-1 text-left"><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#D3D3D3] mr-2"></span>OFFPLAN: 14,531</li><li className="flex items-center"><span className="w-3 h-3 rounded-full bg-[#8c1e6e] mr-2"></span>SECONDARY: 5,773</li></ul></div></div>
                     </div>
                 </div>
             </section>
@@ -263,8 +263,24 @@ const HomePage = () => {
             <section className="py-24 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
-                        <div className="md:w-1/2"><div className="relative rounded-lg shadow-lg w-full"><img src="/guides/hero/city-walk.webp" alt="Modern interior design" className="rounded-lg w-full" /><div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-lg"></div><div className="absolute top-0 left-0 p-8 text-white"><p className="text-sm font-semibold uppercase tracking-widest">WHY CHOOSE BIZVIBEZ?</p><h2 className="text-4xl font-bold leading-tight mt-2">Why Choose <span style={{color: '#8c1e6e'}}>BizVibez?</span></h2><p className="mt-4 text-gray-200 max-w-md">Introducing to you an exceptional luxury residence – among the finest and most contemporary real estate offerings to date.</p></div><div className="absolute bottom-0 left-0 right-0 p-4 grid grid-cols-2 gap-4 text-white text-center"><div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={25} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Real Estate Agents</p></div><div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={170} duration={1500} suffix="M+" /><p className="text-sm text-gray-200">Worth of Sales</p></div><div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={7} duration={1500} /><p className="text-sm text-gray-200">Cities Covered</p></div><div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={2100} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Transactions</p></div></div></div></div>
-                       <ReviewsSection />
+<div className="md:w-1/2">
+    <div className="relative rounded-lg shadow-lg w-full">
+        <img src="/guides/hero/Office.png" alt="Modern interior design" className="rounded-lg w-full" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-lg backdrop-filter backdrop-blur-[1px]"></div>
+        <div className="absolute top-0 left-0 p-8">
+            <div className="p-6 rounded-lg" style={{ backgroundColor: 'rgba(231, 231, 231, 0.4)', backdropFilter: 'blur(4px)' }}>                <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: '#000000ff' }}>WHY CHOOSE BIZVIBEZ?</p>
+                <h2 className="text-4xl font-bold leading-tight mt-2" style={{ color: '#000000ff' }}>Why Choose <span style={{ color: '#8c1e6e' }}>BizVibez?</span></h2>
+                <p className="mt-4 font-bold max-w-md" style={{ color: '#000000ff' }}>Introducing to you an exceptional luxury residence – among the finest and most contemporary real estate offerings to date.</p>
+            </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 grid grid-cols-2 gap-4 text-white text-center">
+            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={25} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Real Estate Agents</p></div>
+            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={170} duration={1500} suffix="M+" /><p className="text-sm text-gray-200">Worth of Sales</p></div>
+            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={7} duration={1500} /><p className="text-sm text-gray-200">Cities Covered</p></div>
+            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={2100} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Transactions</p></div>
+        </div>
+    </div>
+</div>                       <ReviewsSection />
                     </div>
                 </div>
             </section>
@@ -273,4 +289,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

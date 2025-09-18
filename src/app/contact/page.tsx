@@ -80,9 +80,9 @@ try {
       <section
         className="relative h-[60vh] flex items-center justify-center text-white"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/contact.jpg')",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/contact.png')",
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center 20%',
         }}
       >
         <div className="text-center z-10 px-4 max-w-4xl">
