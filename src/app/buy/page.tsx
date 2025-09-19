@@ -46,7 +46,7 @@ const PropertyCard: React.FC<{ property: ForSaleProperty }> = ({ property }) => 
         <img src={displayedImage} alt={property.title} className="w-full h-56 object-cover transition-opacity duration-500 ease-in-out" />
         <span className="absolute top-3 right-3 bg-gray-900 bg-opacity-70 text-white text-xs font-semibold px-3 py-1 rounded">FOR SALE</span>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-          <p className="font-bold text-lg">Start From AED {property.price}</p>
+          <p className="text-white font-bold text-lg">Start From AED {property.price}</p>
         </div>
       </div>
       <div className="p-4">
