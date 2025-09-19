@@ -23,11 +23,22 @@ Getting around the Dubai Marina area is fairly simple via either of the two metr
 In terms of residential facilities, most tower communities provide quality amenities for their residents. Swimming pools, BBQ stations and fully equipped community gyms are a fairly common sight in the Dubai Marina residences.
 The Dubai Marina plays host to a number of adventurous water sports like wakeboarding, jet skiing and even fishing. Residents and visitors can charter a yacht from the numerous tourism companies that operate from the Dubai Marina area.`,
     galleryImages: [
-      '/guides/marina/1.jpg', '/guides/marina/2.jpg', '/guides/marina/3.jpg', '/guides/marina/4.jpg',
-      '/guides/marina/5.jpg', '/guides/marina/6.jpg', '/guides/marina/7.jpg', '/guides/marina/8.jpg',
-      '/guides/marina/9.jpg', '/guides/marina/10.jpg', '/guides/marina/11.jpg', '/guides/marina/12.jpg',
-      '/guides/marina/13.jpg', '/guides/marina/14.jpg', '/guides/marina/15.jpg', '/guides/marina/16.jpg',
-    ],
+    '/guides/dubai-marina-community-area-guide-1.webp',
+    '/guides/dubai-marina-community-area-guide-2.webp',
+    '/guides/dubai-marina-community-area-guide-3-scaled.webp',
+    '/guides/dubai-marina-community-area-guide-4.webp',
+    '/guides/dubai-marina-community-area-guide-4-scaled.webp',
+    '/guides/dubai-marina-community-area-guide-5.webp',
+    '/guides/dubai-marina-community-area-guide-7.webp',
+    '/guides/dubai-marina-community-area-guide-9-scaled.webp',
+    '/guides/dubai-marina-community-area-guide-10.webp',
+    '/guides/dubai-marina-community-area-guide-11-scaled.webp',
+    '/guides/dubai-marina-community-area-guide-12.webp',
+    '/guides/dubai-marina-community-area-guide-13.jpg',
+    '/guides/dubai-marina-community-area-guide-14.webp',
+    '/guides/dubai-marina-community-area-guide-15.webp',
+    '/guides/dubai-marina-community-area-guide-16.webp'
+],
     locationFeatures: [
       'Urban waterfront living', 'Dubai Marina Walk', 'Dubai Marina Mall', 'Luxury apartments',
       'Stylish restaurants', 'Community spirit', 'Public transport', 'Stunning views',
@@ -52,7 +63,20 @@ The community attracts professionals dedicated to investing in themselves and th
 The area is renowned for its vibrant and upscale nightlife, specifically designed to cater to the young professionals employed in the vicinity. Evenings, both on weekdays and weekends, buzz with activity and excitement as young individuals, having completed their work, gather with friends in this lively locale.
 Business Bay has become a preferred residence for many expatriates with business interests, resulting in a harmonious fusion of multiculturalism and metropolitan living. Residents of Business Bay enjoy access to a diverse range of activities round the clock, as most amenities are conveniently situated near their homes.
 The bustling streets, breathtaking views, and the shimmering blue waters of the Dubai Canal collectively contribute to making Business Bay an attractive and desirable place to reside.`,
-    galleryImages: ['/guides/business-bay/1.jpg', '/guides/business-bay/2.jpg', '/guides/business-bay/3.jpg', '/guides/business-bay/4.jpg', '/guides/business-bay/5.jpg', '/guides/business-bay/6.jpg', '/guides/business-bay/7.jpg', '/guides/business-bay/8.jpg', '/guides/business-bay/9.jpg', '/guides/business-bay/10.jpg', '/guides/business-bay/11.jpg', '/guides/business-bay/12.jpg', '/guides/business-bay/13.jpg', '/guides/business-bay/14.jpg', '/guides/business-bay/15.jpg', '/guides/business-bay/16.jpg'],
+    galleryImages: [
+  '/guides/business-bay-community-area-guide-2-scaled.webp',
+  '/guides/business-bay-community-area-guide-3-scaled.webp',
+  '/guides/business-bay-community-area-guide-4.webp',
+  '/guides/business-bay-community-area-guide-5.webp',
+  '/guides/business-bay-community-area-guide-6-scaled.webp',
+  '/guides/business-bay-community-area-guide-7.jpg',
+  '/guides/business-bay-community-area-guide-8.webp',
+  '/guides/business-bay-community-area-guide-9.webp',
+  '/guides/business-bay-community-area-guide-10-scaled.webp',
+  '/guides/business-bay-community-area-guide-11.webp',
+  '/guides/business-bay-community-area-guide-12.webp',
+  '/guides/business-bay-community-area-guide-scaled.webp'
+],
     locationFeatures: [
         'Proximity to Downtown Dubai', 'Popular dining venues', 'Premium amenities',
         'Dubai Water Canal', 'Bay Avenue park', 'Commercial hub', 'Bustling nightlife',
@@ -99,7 +123,16 @@ JLT’s dynamic atmosphere comes with a potential downside. Traffic congestion, 
 Envision a sanctuary spread across 45 million square feet, where elegantly designed villas and townhouses reside amidst azure lagoons, pristine white-sand beaches, and the captivating energy of a tropical island. DAMAC Lagoons promises an enchanting experience unlike any other.
 DAMAC Lagoons caters to both investors and aspiring homeowners, offering a diverse selection of properties. Residents can choose from spacious villas and townhouses, featuring 3 to 6 bedrooms across two or three stories.
 Each residence is meticulously crafted with high-quality finishes and designed to seamlessly integrate with the surrounding beauty of the lagoons and cascading waterfalls.`,
-    galleryImages: ['/guides/damac-lagoons/1.jpg', '/guides/damac-lagoons/2.jpg', '/guides/damac-lagoons/3.jpg', '/guides/damac-lagoons/4.jpg', '/guides/damac-lagoons/5.jpg', '/guides/damac-lagoons/6.jpg', '/guides/damac-lagoons/7.jpg', '/guides/damac-lagoons/8.jpg', '/guides/damac-lagoons/9.jpg', '/guides/damac-lagoons/10.jpg', '/guides/damac-lagoons/11.jpg', '/guides/damac-lagoons/12.jpg', '/guides/damac-lagoons/13.jpg', '/guides/damac-lagoons/14.jpg', '/guides/damac-lagoons/15.jpg', '/guides/damac-lagoons/16.jpg'],
+    galleryImages: [
+  '/guides/damac-lagoons-community-area-guide-2-scaled.webp',
+  '/guides/damac-lagoons-community-area-guide-3.webp',
+  '/guides/damac-lagoons-community-area-guide-4.webp',
+  '/guides/damac-lagoons-community-area-guide-5.webp',
+  '/guides/damac-lagoons-community-area-guide-6.webp',
+  '/guides/damac-lagoons-community-area-guide-7.webp',
+  '/guides/damac-lagoons-community-area-guide-8.webp',
+  '/guides/damac-lagoons-community-area-guide-9.webp'
+],
     locationFeatures: [
         'Exclusive clubhouse', 'Retail outlets', 'Waterside restaurants and cafes',
         'Pristine crystal lagoons', 'Inland white-sand beaches', 'Exciting wave pool',
@@ -125,7 +158,24 @@ DAMAC Lagoons enjoys a well-connected location within Dubailand. Situated near H
     imageUrl: '/guides/DH2_1x.jpg',
     longDescription1: `Situated within Dubailand, DAMAC Hills 2 (formerly Akoya Oxygen) is a sprawling master community developed by DAMAC Properties. Encompassing over 42 million square feet, this tranquil enclave offers a distinctive living experience.
 Inspired by the success of DAMAC Hills, the group’s pioneering residential project, DAMAC Hills 2 presents a curated selection of luxurious villas and townhouses. Lush gardens, parks, fountains, and boulevards create a serene environment, catering to residents seeking a balance between tranquility and upscale living.`,
-    galleryImages: ['/guides/damac-hills-2/1.jpg', '/guides/damac-hills-2/2.jpg', '/guides/damac-hills-2/3.jpg', '/guides/damac-hills-2/4.jpg', '/guides/damac-hills-2/5.jpg', '/guides/damac-hills-2/6.jpg', '/guides/damac-hills-2/7.jpg', '/guides/damac-hills-2/8.jpg', '/guides/damac-hills-2/9.jpg', '/guides/damac-hills-2/10.jpg', '/guides/damac-hills-2/11.jpg', '/guides/damac-hills-2/12.jpg', '/guides/damac-hills-2/13.jpg', '/guides/damac-hills-2/14.jpg', '/guides/damac-hills-2/15.jpg', '/guides/damac-hills-2/16.jpg'],
+    galleryImages: [
+  '/guides/damac-hills-2-area-guide-1.webp',
+  '/guides/damac-hills-2-area-guide-3.webp',
+  '/guides/damac-hills-2-area-guide-5.webp',
+  '/guides/damac-hills-2-area-guide-6.webp',
+  '/guides/damac-hills-2-area-guide-7.webp',
+  '/guides/damac-hills-2-area-guide-9-scaled.webp',
+  '/guides/damac-hills-2-area-guide-10.webp',
+  '/guides/damac-hills-2-area-guide-12.webp',
+  '/guides/damac-hills-2-area-guide-13.webp',
+  '/guides/damac-hills-2-area-guide-22.webp',
+  '/guides/damac-hills-2-area-guide-23.webp',
+  '/guides/damac-hills-2-area-guide-24.webp',
+  '/guides/damac-hills-2-area-guide-25.webp',
+  '/guides/damac-hills-2-community-area-guide-2-scaled.webp',
+  '/guides/damac-hills-2-community-area-guide-3-scaled.webp',
+  '/guides/damac-hills-2-community-area-guide-4-scaled.webp'
+],
     locationFeatures: [
         'State-of-the-art gymnasiums', 'Temperature-controlled swimming pools', 'Dedicated jogging parks and cycling tracks',
         'Tranquil zen garden', 'Tennis, basketball, cricket, and football facilities', 'Designated barbecue areas'
@@ -150,7 +200,23 @@ Key landmarks are within easy reach, including:
     longDescription1: `Inspired by the Arabic word for “meeting place,” Meydan City is a vibrant Dubai district offering a blend of lifestyles. This mixed-use community features villas, apartments, and offices alongside shops, promenades, and green spaces. Buildings range from low-rise to high-rise, with a nod to oriental design throughout.
 Spanning 40 million square feet, Meydan City seamlessly integrates living and working spaces. Imagine strolling from your apartment to a waterfront cafe or stepping out of the office for a lunchtime walk along a scenic canal.
 Once a small community, Meydan has blossomed into a major metropolis. It now attracts international attention by hosting prestigious events like the Dubai World Cup. With ongoing development and a mix of completed and upcoming projects, Meydan City is poised to rival Dubai’s most sought-after districts.`,
-    galleryImages: ['/guides/meydan-city/1.jpg', '/guides/meydan-city/2.jpg', '/guides/meydan-city/3.jpg', '/guides/meydan-city/4.jpg', '/guides/meydan-city/5.jpg', '/guides/meydan-city/6.jpg', '/guides/meydan-city/7.jpg', '/guides/meydan-city/8.jpg', '/guides/meydan-city/9.jpg', '/guides/meydan-city/10.jpg', '/guides/meydan-city/11.jpg', '/guides/meydan-city/12.jpg', '/guides/meydan-city/13.jpg', '/guides/meydan-city/14.jpg', '/guides/meydan-city/15.jpg', '/guides/meydan-city/16.jpg'],
+    galleryImages: [
+    '/guides/dubai-meydan-city-guide-1.webp',
+    '/guides/dubai-meydan-city-guide-2-scaled.webp',
+    '/guides/dubai-meydan-city-guide-3-scaled.webp',
+    '/guides/dubai-meydan-city-guide-4-scaled.webp',
+    '/guides/dubai-meydan-city-guide-5-scaled.webp',
+    '/guides/dubai-meydan-city-guide-6.webp',
+    '/guides/dubai-meydan-city-guide-7.webp',
+    '/guides/dubai-meydan-city-guide-8.webp',
+    '/guides/dubai-meydan-city-guide-9.webp',
+    '/guides/dubai-meydan-city-guid-10.webp',
+    '/guides/dubai-meydan-city-guide-11.webp',
+    '/guides/dubai-meydan-city-guide-12.jpg',
+    '/guides/dubai-meydan-city-guide-13.webp',
+    '/guides/dubai-meydan-city-guide-17.webp',
+    '/guides/dubai-meydan-city-guide-18.webp'
+],
     locationFeatures: [
         'Horse Racing: Meydan Racecourse - world-class facilities, thrilling events.', 'Retail & Entertainment: Meydan One Mall (largest in Dubai!), ski slope, dining & more.',
         'Luxury Living: Apartments, villas & townhouses - upscale, amenities galore.', 'High-End Hotels: Meydan Hotel & Bab Al Shams Resort - luxury stays, fine dining, top spas.',
@@ -256,7 +322,24 @@ A large central park is in development at MBR City and on completion will become
     longDescription1: `Live in Dubai Creek Harbour and experience a community to live, work, play, and more of what really matters. Find yourself in a branded ready to move in & ready-by-year-end waterfront residences in Dubai Creek Harbour by Emaar, and benefit from exclusive limited time offers and an array of world-class amenities where every view is a view to live for.
 Dubai Creek Harbour is at the heart of Emaar’s bold new vision for Dubai. A fusion of creativity and innovation that will define the future of living and further enrich the city and the wider region.
 With spectacular cultural offerings, world-class residences, shopping, amenities, offices and more, Dubai Creek Harbour represents the next frontier in contemporary life, work and play.`,
-    galleryImages: ['/guides/dubai-creek-harbour/1.jpg', '/guides/dubai-creek-harbour/2.jpg', '/guides/dubai-creek-harbour/3.jpg', '/guides/dubai-creek-harbour/4.jpg', '/guides/dubai-creek-harbour/5.jpg', '/guides/dubai-creek-harbour/6.jpg', '/guides/dubai-creek-harbour/7.jpg', '/guides/dubai-creek-harbour/8.jpg', '/guides/dubai-creek-harbour/9.jpg', '/guides/dubai-creek-harbour/10.jpg', '/guides/dubai-creek-harbour/11.jpg', '/guides/dubai-creek-harbour/12.jpg', '/guides/dubai-creek-harbour/13.jpg', '/guides/dubai-creek-harbour/14.jpg', '/guides/dubai-creek-harbour/15.jpg', '/guides/dubai-creek-harbour/16.jpg'],
+    galleryImages: [
+    '/guides/dubai-creek-harbour-area-guide-2-scaled.webp',
+    '/guides/dubai-creek-harbour-area-guide-3-scaled.webp',
+    '/guides/dubai-creek-harbour-area-guide-4-scaled.webp',
+    '/guides/dubai-creek-harbour-area-guide-5.webp',
+    '/guides/dubai-creek-harbour-area-guide-6-scaled.webp',
+    '/guides/dubai-creek-harbour-area-guide-7.webp',
+    '/guides/dubai-creek-harbour-area-guide-8.jpeg',
+    '/guides/dubai-creek-harbour-area-guide-9.webp',
+    '/guides/dubai-creek-harbour-area-guide-10.webp',
+    '/guides/dubai-creek-harbour-area-guide-11.webp',
+    '/guides/dubai-creek-harbour-area-guide-13.webp',
+    '/guides/dubai-creek-harbour-area-guide-14.webp',
+    '/guides/dubai-creek-harbour-area-guide-16.webp',
+    '/guides/dubai-creek-harbour-area-guide-17.webp',
+    '/guides/dubai-creek-harbour-area-guide-18.webp',
+    '/guides/dubai-creek-harbour-area-guide-scaled.webp'
+],
     locationFeatures: [
         'Ras Al Khor Wildlife Sanctuary', 'Ready and off plan apartments', 'Dubai Creek Harbour Tower',
         'Plan for 4 Metro links', 'Waterfront living', 'Luxury amenities', 'Stunning views'
@@ -279,7 +362,24 @@ Al Satwa is located towards the north of the metropolitan retail destination whi
 Numerous registered Dubai taxis can be seen cruising through the area, scouting potential passengers. Furthermore, The Dubai Trolley travels along the Mohammed Bin Rashid Boulevard. The Dubai Trolley is the world’s first hydrogen-powered trolley and transports people around the area.
 The majority of the City Walk Dubai apartments feature spacious hallways and large bay windows that provide spectacular views to its residents. The residential area of City Walk features over 600 parking spaces while the commercial areas showcase VIP valet services.
 The community is a social hub, highlighting events and campaigns organised all year round. Events like parties, concerts, movie nights and food festivals are regularly conducted at the City Walk residences.`,
-    galleryImages: ['/guides/city-walk/1.jpg', '/guides/city-walk/2.jpg', '/guides/city-walk/3.jpg', '/guides/city-walk/4.jpg', '/guides/city-walk/5.jpg', '/guides/city-walk/6.jpg', '/guides/city-walk/7.jpg', '/guides/city-walk/8.jpg', '/guides/city-walk/9.jpg', '/guides/city-walk/10.jpg', '/guides/city-walk/11.jpg', '/guides/city-walk/12.jpg', '/guides/city-walk/13.jpg', '/guides/city-walk/14.jpg', '/guides/city-walk/15.jpg', '/guides/city-walk/16.jpg'],
+    galleryImages: [
+  '/guides/city-walk-dubai-area-guide-1-scaled.webp',
+  '/guides/city-walk-dubai-area-guide-2.webp',
+  '/guides/city-walk-dubai-area-guide-3-scaled.webp',
+  '/guides/city-walk-dubai-area-guide-4.webp',
+  '/guides/city-walk-dubai-area-guide-5-scaled.webp',
+  '/guides/city-walk-dubai-area-guide-6.webp',
+  '/guides/city-walk-dubai-area-guide-9.webp',
+  '/guides/city-walk-dubai-area-guide-12.webp',
+  '/guides/city-walk-dubai-area-guide-13.webp',
+  '/guides/city-walk-dubai-area-guide-14.webp',
+  '/guides/city-walk-dubai-area-guide-15.webp',
+  '/guides/city-walk-dubai-area-guide-16.webp',
+  '/guides/city-walk-dubai-area-guide-18-scaled.webp',
+  '/guides/city-walk-dubai-area-guide-19.webp',
+  '/guides/city-walk-dubai-area-guide-21.webp',
+  '/guides/city-walk-dubai-area-guide-22.webp'
+    ],
     locationFeatures: [
         'Mega retail and dining destination', 'Residential lifestyle amenities', 'Parking and valet services',
         'European architecture', 'Downtown Dubai'
@@ -299,7 +399,28 @@ City Walk Dubai has also become a popular tourist attraction due to a perfectly 
 Surrounded by warm desert sands, Arabian Ranches is one of Dubai’s most beloved communities and is home to the Arabian Ranches as well as the Dubai Equestrian and Polo Club.
 Providing opulence as the standard, Arabian Ranches, Emaar is the benchmark for community living in the UAE. Arabian designs architecturally inspire the elegant Arabian Ranches 3 villas for sale with Mediterranean detailing and bedrooms ranging from 2 to 7.
 Arabian Ranches villas provides the best and most luxe facilities while providing panoramic views and a sense of belonging.`,
-    galleryImages: ['/guides/arabian-ranches/1.jpg', '/guides/arabian-ranches/2.jpg', '/guides/arabian-ranches/3.jpg', '/guides/arabian-ranches/4.jpg', '/guides/arabian-ranches/5.jpg', '/guides/arabian-ranches/6.jpg', '/guides/arabian-ranches/7.jpg', '/guides/arabian-ranches/8.jpg', '/guides/arabian-ranches/9.jpg', '/guides/arabian-ranches/10.jpg', '/guides/arabian-ranches/11.jpg', '/guides/arabian-ranches/12.jpg', '/guides/arabian-ranches/13.jpg', '/guides/arabian-ranches/14.jpg', '/guides/arabian-ranches/15.jpg', '/guides/arabian-ranches/16.jpg'],
+    galleryImages: [
+  '/guides/arabian-ranches-area-guide-1.webp',
+  '/guides/arabian-ranches-area-guide-2.webp',
+  '/guides/arabian-ranches-area-guide-3.jpeg',
+  '/guides/arabian-ranches-area-guide-4.webp',
+  '/guides/arabian-ranches-area-guide-5.webp',
+  '/guides/arabian-ranches-area-guide-6.webp',
+  '/guides/arabian-ranches-area-guide-7.webp',
+  '/guides/arabian-ranches-area-guide-8.webp',
+  '/guides/arabian-ranches-area-guide-9.webp',
+  '/guides/arabian-ranches-area-guide-10.webp',
+  '/guides/arabian-ranches-area-guide-11.webp',
+  '/guides/arabian-ranches-area-guide-12.webp',
+  '/guides/arabian-ranches-area-guide-13-scaled.webp',
+  '/guides/arabian-ranches-area-guide-14.webp',
+  '/guides/arabian-ranches-area-guide-15.webp',
+  '/guides/arabian-ranches-area-guide-16.webp',
+  '/guides/arabian-ranches-area-guide-17.webp',
+  '/guides/arabian-ranches-area-guide-18.webp',
+  '/guides/arabian-ranches-area-guide-19.webp',
+  '/guides/arabian-ranches-area-guide-20.webp'
+],
     locationFeatures: [
         'Access to a desert-themed golf course and Dubai equestrian and polo club', 'Feeder buses to and from the Mall of the Emirates metro station',
         'Dedicated parking for residents and their visitors', 'Community events and family-oriented activities',
@@ -352,7 +473,13 @@ For residents and visitors who have a car, many parking bays and podium level ca
 The F13 bus route cuts through the centre of Downtown Dubai with many bus stops dotted around the area. The Dubai Mall/Burj Khalifa metro station is a commonly used means of transportation to travel within the emirate and beyond. 
 Numerous registered Dubai taxis can be seen cruising through the area, scouting potential passengers. Furthermore, The Dubai Trolley travels along the Mohammed Bin Rashid Boulevard. 
 The Dubai Trolley is the world’s first hydrogen-powered trolley and transports people around the area.`,
-    galleryImages: ['/guides/downtown-dubai/1.jpg', '/guides/downtown-dubai/2.jpg', '/guides/downtown-dubai/3.jpg', '/guides/downtown-dubai/4.jpg', '/guides/downtown-dubai/5.jpg', '/guides/downtown-dubai/6.jpg', '/guides/downtown-dubai/7.jpg', '/guides/downtown-dubai/8.jpg', '/guides/downtown-dubai/9.jpg', '/guides/downtown-dubai/10.jpg', '/guides/downtown-dubai/11.jpg', '/guides/downtown-dubai/12.jpg', '/guides/downtown-dubai/13.jpg', '/guides/downtown-dubai/14.jpg', '/guides/downtown-dubai/15.jpg', '/guides/downtown-dubai/16.jpg'],
+    galleryImages: [
+  '/guides/downtown-dubai-01.jpg',
+  '/guides/downtown-dubai-02.jpg',
+  '/guides/downtown-dubai-03.jpg',
+  '/guides/downtown-dubai-05.jpg',
+  '/guides/down-town-dubai-area-guide-2.jpg'
+],
     locationFeatures: [
       'Elite residences', 'Iconic landmarks', 'Urban lifestyle',
       'Fitness centres', 'Panoramic views', 'Swimming pools',
