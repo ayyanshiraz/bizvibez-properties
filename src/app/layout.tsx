@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-// Using relative paths to fix build errors
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ClientSlideshow from "../components/ClientSlideshow";
+// Import the new conditional component instead of the original one
+import ConditionalSlideshow from "../components/ConditionalSlideshow";
 
 export const metadata: Metadata = {
   title: "BizVibez Properties",
@@ -17,20 +17,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* Removed custom font to resolve build issues */}
       <body>
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-grow">
             {children}
           </main>
+          
+          {/* --- THIS IS THE AMENDED PART --- */}
+          {/* Replaced ClientSlideshow with ConditionalSlideshow */}
           <div className="my-8">
-            <ClientSlideshow />
+            <ConditionalSlideshow />
           </div>
+
           <Footer />
         </div>
       </body>
     </html>
   );
 }
-

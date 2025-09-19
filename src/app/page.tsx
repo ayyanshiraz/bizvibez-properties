@@ -7,6 +7,10 @@ import { useRouter } from 'next/navigation';
 // --- Import your unified data and type ---
 import { allProperties, Property } from '../data/properties'; // Adjust this path if your folder structure is different
 
+// --- ADDED IMPORT FOR THE SLIDESHOW ---
+import ClientSlideshow from '../components/ClientSlideshow';
+import WhyChooseUs from '../components/WhyChooseUs';
+
 // --- SVG ICONS ---
 const AreaIcon = ({ className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -53,7 +57,7 @@ const PlotCard = ({ plot }: { plot: Plot }) => {
 // --- OFF-PLAN PROPERTY CARD (with price fix) ---
 const OffPlanPropertyCard = ({ property }: { property: Property }) => {
     const imageUrl = Array.isArray(property.image) && property.image.length > 0 ? property.image[0] : '/placeholder.jpg';
-   
+    
     const getTagClass = (type: string) => {
         switch (type) {
             case 'featured': return 'bg-yellow-500 text-white';
@@ -220,7 +224,7 @@ const HomePage = () => {
 
     return (
         <>
-            <div style={{ backgroundColor: '#fefefe' }} className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}><img src="/FNL.gif" alt="Loading..." width={192} height={192} /></div>
+            <div style={{ backgroundColor: '#fefefe' }} className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}><img src="/Bv Property Logo Animation.gif" alt="Loading..." width={500} height={500} /></div>
             
             <section className="relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
                 <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0"><source src="/hero-video.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
@@ -244,6 +248,13 @@ const HomePage = () => {
             </section>
             
             <FeaturedPropertiesSlider />
+            {/* --- 2. PLACE THE NEW COMPONENT HERE --- */}
+            <WhyChooseUs />
+            {/* --- SLIDESHOW PLACED HERE --- */}
+            <div className="my-8">
+                <ClientSlideshow />
+            </div>
+
             <section className="py-20 bg-cover bg-center text-white" style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('/guides/hero/downtown.jpeg')" }}>
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16"><h2 className="text-4xl md:text-5xl font-bold">Dubai Real Estate Market Report</h2><p className="text-xl text-gray-300 mt-2">JULY 2025</p></div>
@@ -268,7 +279,7 @@ const HomePage = () => {
         <img src="/guides/hero/Office.png" alt="Modern interior design" className="rounded-lg w-full" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-lg backdrop-filter backdrop-blur-[1px]"></div>
         <div className="absolute top-0 left-0 p-8">
-            <div className="p-6 rounded-lg" style={{ backgroundColor: 'rgba(231, 231, 231, 0.4)', backdropFilter: 'blur(4px)' }}>                <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: '#000000ff' }}>WHY CHOOSE BIZVIBEZ?</p>
+            <div className="p-6 rounded-lg" style={{ backgroundColor: 'rgba(231, 231, 231, 0.4)', backdropFilter: 'blur(4px)' }}>                       <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: '#000000ff' }}>WHY CHOOSE BIZVIBEZ?</p>
                 <h2 className="text-4xl font-bold leading-tight mt-2" style={{ color: '#000000ff' }}>Why Choose <span style={{ color: '#8c1e6e' }}>BizVibez?</span></h2>
                 <p className="mt-4 font-bold max-w-md" style={{ color: '#000000ff' }}>Introducing to you an exceptional luxury residence – among the finest and most contemporary real estate offerings to date.</p>
             </div>
@@ -280,7 +291,7 @@ const HomePage = () => {
             <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={2100} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Transactions</p></div>
         </div>
     </div>
-</div>                       <ReviewsSection />
+</div>                           <ReviewsSection />
                     </div>
                 </div>
             </section>

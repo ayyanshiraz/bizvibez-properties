@@ -132,7 +132,7 @@
                 <img 
                   src="/teams.png" 
                   alt="Team decorative graphic" 
-                  className="absolute bottom-[-70%] right-0 h-[220%] w-auto object-contain"
+                  className="absolute bottom-[-73%] right-0 h-[220%] w-auto object-contain"
                 />
               </div>
             </div>
