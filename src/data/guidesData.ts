@@ -99,7 +99,32 @@ The tallest hotel in the world, JW Marriott Marquis, is located within Business 
 JLT distinguishes itself as a mixed-use development, integrating residential towers, commercial spaces for offices and retail stores, and a range of hotels. This creates a dynamic atmosphere where residents can live, work, and unwind within the same community.
 Imagine stepping out of your apartment for a morning coffee at a local cafe, then heading to your office building within the cluster, all while enjoying scenic lake views.
 JLT boasts a unique waterfront setting with three man-made lakes and landscaped promenades. These scenic walkways offer a tranquil escape from the city’s buzz, perfect for evening strolls or weekend picnics. JLT’s pedestrian-friendly design further enhances its appeal, allowing residents to navigate the community with ease.`,
-    galleryImages: ['/guides/jlt/1.jpg', '/guides/jlt/2.jpg', '/guides/jlt/3.jpg', '/guides/jlt/4.jpg', '/guides/jlt/5.jpg', '/guides/jlt/6.jpg', '/guides/jlt/7.jpg', '/guides/jlt/8.jpg', '/guides/jlt/9.jpg', '/guides/jlt/10.jpg', '/guides/jlt/11.jpg', '/guides/jlt/12.jpg', '/guides/jlt/13.jpg', '/guides/jlt/14.jpg', '/guides/jlt/15.jpg', '/guides/jlt/16.jpg'],
+    galleryImages: [
+  '/guides/jumeirah-lakes-towers-area-guide-1.jpg',
+  '/guides/jumeirah-lakes-towers-area-guide-2.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-3.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-6.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-7.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-8.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-9.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-10.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-11.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-12.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-13.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-14.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-15.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-16-scaled.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-17.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-18.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-20.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-21.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-22.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-23.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-24.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-25.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-26.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-27.webp'
+],
     locationFeatures: [
         "Mixed-use development with high-rise towers", "One of Dubai's freehold areas (allowing property ownership)",
         "26 clusters, each with three buildings and a waterfront retail area", "Pedestrian-friendly community with easy access to Sheikh Zayed Road",
@@ -233,12 +258,33 @@ Right now, public buses connect to several metro stations in the city, so you ca
     slug: 'jumeirah-village-circle',
     name: 'Jumeirah Village Circle',
     description: 'JVC, also known as Jumeirah Village Circle, is a top-rated community that combines the excitement of city life with the close-knit feel of a neighborhood.',
-    imageUrl: '/guides/jvc.webp',
+    imageUrl: '/guides/Jumeirah-Village-Circle.webp',
     longDescription1: `JVC combines the best of both worlds: city comforts and a close-knit community feel. Nicknamed “JVC” by locals, it offers everything families need to thrive – schools, mosques, playgrounds – all surrounded by lush parks and green spaces.
 The upcoming Circle Mall will add even more excitement with over 200 shops, a supermarket anchor, cinemas, and restaurants. Getting around is a breeze thanks to JVC’s central location near major roads.
 JVC boasts a stunning architectural style with a mix of modern villas, townhouses, and apartments. Think dream homes come true! Each development reflects the latest trends, featuring unique and luxurious exteriors.
 JVC is perfect for families, couples, and anyone seeking a city lifestyle with a village vibe. The community provides everything for a comfortable and healthy life, with essential amenities and 30 beautiful parks for residents to relax, play with their kids, or take a walk. Plus, JVC offers a peaceful atmosphere while still being close to Dubai’s vibrant areas.`,
-    galleryImages: ['/guides/jvc/1.jpg', '/guides/jvc/2.jpg', '/guides/jvc/3.jpg', '/guides/jvc/4.jpg', '/guides/jvc/5.jpg', '/guides/jvc/6.jpg', '/guides/jvc/7.jpg', '/guides/jvc/8.jpg', '/guides/jvc/9.jpg', '/guides/jvc/10.jpg', '/guides/jvc/11.jpg', '/guides/jvc/12.jpg', '/guides/jvc/13.jpg', '/guides/jvc/14.jpg', '/guides/jvc/15.jpg', '/guides/jvc/16.jpg'],
+    galleryImages: [
+  '/guides/Jumeirah-Village-Circle.webp',
+  '/guides/Jumeirah-Village-Circle-1.webp',
+  '/guides/Jumeirah-Village-Circle-2.webp',
+  '/guides/Jumeirah-Village-Circle-3.webp',
+  '/guides/Jumeirah-Village-Circle-4.webp',
+  '/guides/Jumeirah-Village-Circle-7.webp',
+  '/guides/Jumeirah-Village-Circle-8.webp',
+  '/guides/Jumeirah-Village-Circle-9.webp',
+  '/guides/jumeirah-village-circle-area-guide-1.webp',
+  '/guides/jumeirah-village-circle-area-guide-7.webp',
+  '/guides/jumeirah-village-circle-area-guide-8.webp',
+  '/guides/jumeirah-village-circle-area-guide-9.webp',
+  '/guides/jumeirah-village-circle-area-guide-10.webp',
+  '/guides/jumeirah-village-circle-area-guide-11.webp',
+  '/guides/jumeirah-village-circle-area-guide-12.webp',
+  '/guides/jumeirah-village-circle-area-guide-13.webp',
+  '/guides/jumeirah-village-circle-area-guide-14.jpg',
+  '/guides/jumeirah-village-circle-area-guide-15.webp',
+  '/guides/jumeirah-village-circle-area-guide-16.webp',
+  '/guides/jumeirah-village-circle-area-guide-17.webp'
+],
     locationFeatures: [
         'Freehold ownership: Live the dream of owning your own property in Dubai.', 'Variety of housing: Choose from modern apartments, spacious villas, or cozy townhouses.',
         'Family-friendly: JSS International School conveniently located within the community.', 'Green haven: Over 30 landscaped parks for relaxation and recreation.',
@@ -253,11 +299,20 @@ Whether you have your own car or prefer public transportation, this community ha
     slug: 'jumeirah-golf-estates',
     name: 'Jumeirah Golf Estates',
     description: "Jumeirah Golf Estates: Luxury villas in Dubai's premier gated community. Golf course views, exclusive living. Inquire for pricing.",
-    imageUrl: '/guides/golf.jpg',
+    imageUrl: '/guides/jumeirah-golf-estates-area-guide-1.webp',
     longDescription1: `Jumeirah Golf Estates exemplifies meticulous urban planning, offering a vibrant mix of residential and commercial spaces. Nestled amidst verdant surroundings, it boasts a unique design centered around a prestigious 18-hole championship golf course.
 This comprehensive development seamlessly integrates residential areas with a dedicated retail, leisure, and entertainment complex, fostering a dynamic live-work-play environment.
 Jumeirah Golf Estates is a premier residential community in Dubai, offering a prestigious lifestyle within a secure gated setting. Residents enjoy bespoke villas nestled amidst meticulously landscaped fairways and sparkling lakes. The development boasts two championship golf courses – Fire and Earth – designed by renowned golfers Greg Norman and Sergio Garcia.`,
-    galleryImages: ['/guides/jumeirah-golf-estates/1.jpg', '/guides/jumeirah-golf-estates/2.jpg', '/guides/jumeirah-golf-estates/3.jpg', '/guides/jumeirah-golf-estates/4.jpg', '/guides/jumeirah-golf-estates/5.jpg', '/guides/jumeirah-golf-estates/6.jpg', '/guides/jumeirah-golf-estates/7.jpg', '/guides/jumeirah-golf-estates/8.jpg', '/guides/jumeirah-golf-estates/9.jpg', '/guides/jumeirah-golf-estates/10.jpg', '/guides/jumeirah-golf-estates/11.jpg', '/guides/jumeirah-golf-estates/12.jpg', '/guides/jumeirah-golf-estates/13.jpg', '/guides/jumeirah-golf-estates/14.jpg', '/guides/jumeirah-golf-estates/15.jpg', '/guides/jumeirah-golf-estates/16.jpg'],
+    galleryImages: [
+  '/guides/jumeirah-golf-estates-area-guide-1.webp',
+  '/guides/jumeirah-golf-estates-area-guide-2.webp',
+  '/guides/jumeirah-golf-estates-area-guide-3.webp',
+  '/guides/jumeirah-golf-estates-area-guide-4.webp',
+  '/guides/jumeirah-golf-estates-area-guide-5.webp',
+  '/guides/jumeirah-golf-estates-area-guide-6.webp',
+  '/guides/jumeirah-golf-estates-area-guide-7.webp',
+  '/guides/jumeirah-golf-estates-area-guide-8.webp'
+],
     locationFeatures: [
         'Supermarkets: Residents enjoy convenient access to popular grocery stores like Spinneys and Choithrams.',
         'Education: Families benefit from a range of high-quality educational institutions within a short driving distance.',
@@ -279,7 +334,24 @@ Jumeirah Golf Estates is conveniently located near several popular destinations.
 This comprehensive development seamlessly integrates residential areas with a dedicated retail, leisure, and entertainment complex, fostering a dynamic live-work-play environment.
 A Pioneering Vision: Dubai Hills Estate holds the distinction of being the first multi-purpose development within Mohammed Bin Rashid City. Its strategic location between Downtown Dubai and Dubai Marina ensures excellent connectivity to the city’s most sought-after districts and attractions.
 Al Khail Road provides convenient access for residents. Beyond its residences, the community offers a wealth of amenities, including expansive parks and open spaces, a prominent regional mall, a dedicated cycling route, and proposed metro line access. Educational institutions and office hubs further contribute to the well-rounded lifestyle offered by Dubai Hills Estate.`,
-    galleryImages: ['/guides/dubai-hills-estate/1.jpg', '/guides/dubai-hills-estate/2.jpg', '/guides/dubai-hills-estate/3.jpg', '/guides/dubai-hills-estate/4.jpg', '/guides/dubai-hills-estate/5.jpg', '/guides/dubai-hills-estate/6.jpg', '/guides/dubai-hills-estate/7.jpg', '/guides/dubai-hills-estate/8.jpg', '/guides/dubai-hills-estate/9.jpg', '/guides/dubai-hills-estate/10.jpg', '/guides/dubai-hills-estate/11.jpg', '/guides/dubai-hills-estate/12.jpg', '/guides/dubai-hills-estate/13.jpg', '/guides/dubai-hills-estate/14.jpg', '/guides/dubai-hills-estate/15.jpg', '/guides/dubai-hills-estate/16.jpg'],
+    galleryImages: [
+  '/guides/palm-jumeirah-community-area-guide.webp',
+  '/guides/palm-jumeirah-community-area-guide-2.webp',
+  '/guides/palm-jumeirah-community-area-guide-3.webp',
+  '/guides/palm-jumeirah-community-area-guide-4.webp',
+  '/guides/palm-jumeirah-community-area-guide-5-scaled.webp',
+  '/guides/palm-jumeirah-community-area-guide-6.webp',
+  '/guides/palm-jumeirah-community-area-guide-7.webp',
+  '/guides/palm-jumeirah-community-area-guide-9.webp',
+  '/guides/palm-jumeirah-community-area-guide-12.webp',
+  '/guides/palm-jumeirah-community-area-guide-13.webp',
+  '/guides/palm-jumeirah-community-area-guide-14.webp',
+  '/guides/palm-jumeirah-community-area-guide-15.webp',
+  '/guides/palm-jumeirah-community-area-guide-16.webp',
+  '/guides/palm-jumeirah-community-area-guide-17.webp',
+  '/guides/palm-jumeirah-community-area-guide-18-scaled.webp',
+  '/guides/palm-jumeirah-community-area-guide-19-scaled.webp'
+],
     locationFeatures: [
         'Prestigious 18-hole Championship Golf Course', 'Expansive Parks and Open Spaces (1,450,000 Square Meters)',
         '282,000 Square Meter Regional Mall', '54 KM Bicycle Route', 'Proposed Metro Line Access',
@@ -301,7 +373,32 @@ The Mohammed Bin Rashid City development also offers ease of access to Business 
 The Dubai Mall, Mercato Shopping Mall and the Mall of the Emirates are in the vicinity of the development and residents can visit these locations for their retail needs. MBR City is only minutes away from many of Dubai’s world-class attractions and transport links including Dubai World Trade Centre, Dubai International Airport and Dubai International Financial Centre. Exclusive leisure facilities like the Meydan Racecourse and Grandstand are also in the vicinity of the development.
 MBR City is also an ideal location for those in the community who love animals, as an equestrian and falcon centre is in the vicinity of the microcity.
 MBR City is a vast development with popular communities like Sobha Hartland, Mag Eye at Meydan, District One Residences and District 11. The expansion offers an exciting community life with a plethora of amenities and expansive green spaces in a modern setting.`,
-    galleryImages: ['/guides/mbr-city/1.jpg', '/guides/mbr-city/2.jpg', '/guides/mbr-city/3.jpg', '/guides/mbr-city/4.jpg', '/guides/mbr-city/5.jpg', '/guides/mbr-city/6.jpg', '/guides/mbr-city/7.jpg', '/guides/mbr-city/8.jpg', '/guides/mbr-city/9.jpg', '/guides/mbr-city/10.jpg', '/guides/mbr-city/11.jpg', '/guides/mbr-city/12.jpg', '/guides/mbr-city/13.jpg', '/guides/mbr-city/14.jpg', '/guides/mbr-city/15.jpg', '/guides/mbr-city/16.jpg'],
+    galleryImages: [
+  '/guides/mohammed-bin-rashid-city-1.webp',
+  '/guides/mohammed-bin-rashid-city-2.webp',
+  '/guides/mohammed-bin-rashid-city-3.webp',
+  '/guides/mohammed-bin-rashid-city-4.webp',
+  '/guides/mohammed-bin-rashid-city-5.webp',
+  '/guides/mohammed-bin-rashid-city-6.webp',
+  '/guides/mohammed-bin-rashid-city-7.webp',
+  '/guides/mohammed-bin-rashid-city-9.webp',
+  '/guides/mohammed-bin-rashid-city-10.webp',
+  '/guides/mohammed-bin-rashid-city-11.webp',
+  '/guides/mohammed-bin-rashid-city-12.webp',
+  '/guides/mohammed-bin-rashid-city-13.jpg',
+  '/guides/mohammed-bin-rashid-city-14.webp',
+  '/guides/mohammed-bin-rashid-city-15.webp',
+  '/guides/mohammed-bin-rashid-city-16.webp',
+  '/guides/mohammed-bin-rashid-city-17.webp',
+  '/guides/mohammed-bin-rashid-city-18.webp',
+  '/guides/mohammed-bin-rashid-city-19.webp',
+  '/guides/mohammed-bin-rashid-city-20.webp',
+  '/guides/mohammed-bin-rashid-city-21.webp',
+  '/guides/mohammed-bin-rashid-city-23.webp',
+  '/guides/mohammed-bin-rashid-city-24.webp',
+  '/guides/mohammed-bin-rashid-city-25.webp',
+  '/guides/mohammed-bin-rashid-city-26.webp'
+],
     locationFeatures: [
         'Cycling and walking tracks', 'Meydan’s Golf Course', 'Children’s play areas',
         'Meydan One Mall', 'Community parks', 'Retail boardwalk', 'Crystal Lagoon',
@@ -439,12 +536,37 @@ Appreciate a round of golf at The Arabian Ranches Desert Course, the district’
     slug: 'palm-jumeirah',
     name: 'Palm Jumeirah',
     description: 'Embrace the iconic Dubai lifestyle at Palm Jumeirah: enjoy cocktails with Dubai Marina views, beachfront dinners, and dolphin encounters.',
-    imageUrl: '/guides/Palm Jumeirah.jpg',
+    imageUrl: '/guides/jumeirah-lakes-towers-area-guide-1.jpg',
     longDescription1: `The monumental Palm Jumeirah island has extended the shoreline of Dubai by 6.5 kilometres into the Arabian Gulf. Possibly the world’s most extraordinary feat of engineering, the Palm Jumeirah island is located in the centre of Dubai, between Dubai Marina and the grand Burj Al Arab. 
 It is also bordered by beloved residential communities of Dubai – Al Barsha, Jumeirah Lake Towers, the Greens and Al Sufouh 1. The residents of the island are privy to fantastic views of the blue waters of the open sea, Atlantis The Palm and the Burj Al Arab.
 Residents of the Palm Jumeirah can experience all the luxurious facilities and amazing entertainment services located in the nearby neighbourhoods of Downtown Dubai and Dubai Marina via a short 20-minute drive. 
 The Dubai International Airport is also located fairly close to the island at a 23-minute drive. Even though it’s based in the heart of Dubai, entering the island feels as though you’re leaving behind the manic city life.`,
-    galleryImages: ['/guides/palm-jumeirah/1.jpg', '/guides/palm-jumeirah/2.jpg', '/guides/palm-jumeirah/3.jpg', '/guides/palm-jumeirah/4.jpg', '/guides/palm-jumeirah/5.jpg', '/guides/palm-jumeirah/6.jpg', '/guides/palm-jumeirah/7.jpg', '/guides/palm-jumeirah/8.jpg', '/guides/palm-jumeirah/9.jpg', '/guides/palm-jumeirah/10.jpg', '/guides/palm-jumeirah/11.jpg', '/guides/palm-jumeirah/12.jpg', '/guides/palm-jumeirah/13.jpg', '/guides/palm-jumeirah/14.jpg', '/guides/palm-jumeirah/15.jpg', '/guides/palm-jumeirah/16.jpg'],
+    galleryImages: [
+  '/guides/jumeirah-lakes-towers-area-guide-1.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-2.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-3.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-6.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-7.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-8.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-9.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-10.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-11.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-12.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-13.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-14.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-15.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-16-scaled.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-17.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-18.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-20.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-21.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-22.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-23.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-24.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-25.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-26.webp',
+  '/guides/jumeirah-lakes-towers-area-guide-27.webp'
+],
     locationFeatures: [
       'Luxury villas and apartments', 'Aquaventure Waterpark', 'Private beach access',
       'Gourmet restaurants', 'Atlantis The Palm', 'Panoramic views',
@@ -499,7 +621,27 @@ There is never a dull moment in Downtown Dubai, and the urban community is the i
     longDescription1: `Situated within the expansive Bur Dubai district, Za’abeel occupies a strategic position at the heart of Dubai’s historical and modern zones. Encompassing Al Kifaf, Za’abeel 1, and Za’abeel 2, this large community flanks Bur Dubai’s southern border and boasts direct eastern access to Dubai Creek.
 Za’abeel is distinguished by its iconic landmarks, including Zabeel Park and the Za’abeel Palace. The community enjoys close proximity to prominent business hubs like the Dubai International Financial Centre (DIFC) and the World Trade Centre area, as well as the vibrant Downtown Dubai. Sheikh Zayed Road (E11) bisects the northern portion of Za’abeel, while Al Ain – Dubai Road runs parallel along its eastern edge, providing excellent connectivity.
 Za’abeel represents one of Bur Dubai’s more recent and affluent neighborhoods, contrasting with Bur Dubai’s established reputation as the city’s largest and oldest residential area. According to the Bayut & Dubizzle Annual Market Report for Dubai 2020, Bur Dubai secured the second-place ranking for popularity in terms of apartment rentals within the emirate.`,
-    galleryImages: ['/guides/zaabeel/1.jpg', '/guides/zaabeel/2.jpg', '/guides/zaabeel/3.jpg', '/guides/zaabeel/4.jpg', '/guides/zaabeel/5.jpg', '/guides/zaabeel/6.jpg', '/guides/zaabeel/7.jpg', '/guides/zaabeel/8.jpg', '/guides/zaabeel/9.jpg', '/guides/zaabeel/10.jpg', '/guides/zaabeel/11.jpg', '/guides/zaabeel/12.jpg', '/guides/zaabeel/13.jpg', '/guides/zaabeel/14.jpg', '/guides/zaabeel/15.jpg', '/guides/zaabeel/16.jpg'],
+    galleryImages: [
+  '/guides/zaabeel-area-guide-2.webp',
+  '/guides/zaabeel-area-guide-3.webp',
+  '/guides/zaabeel-area-guide-4.webp',
+  '/guides/zaabeel-area-guide-5.webp',
+  '/guides/zaabeel-area-guide-6.webp',
+  '/guides/zaabeel-area-guide-7.webp',
+  '/guides/zaabeel-area-guide-8.webp',
+  '/guides/zaabeel-area-guide-9.webp',
+  '/guides/zaabeel-area-guide-10.webp',
+  '/guides/zaabeel-area-guide-11.webp',
+  '/guides/zaabeel-area-guide-12.webp',
+  '/guides/zaabeel-area-guide-13.webp',
+  '/guides/zaabeel-area-guide-14.webp',
+  '/guides/zaabeel-area-guide-16.webp',
+  '/guides/zaabeel-area-guide-17.webp',
+  '/guides/zaabeel-area-guide-18.webp',
+  '/guides/zaabeel-area-guide-19.webp',
+  '/guides/zaabeel-area-guide-20.webp',
+  '/guides/zaabeel-area-guide-21.webp'
+],
     locationFeatures: [
       'Modern, mixed-use development',
       'High-quality apartments, villas, townhouses',
