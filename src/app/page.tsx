@@ -276,19 +276,9 @@ const HomePage = () => {
                     <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 <div className="md:w-1/2">
     <div className="relative rounded-lg shadow-lg w-full">
-        <img src="/guides/hero/Office.png" alt="Modern interior design" className="rounded-lg w-full" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-lg backdrop-filter backdrop-blur-[1px]"></div>
+        <img src="/test.png" alt="Modern interior design" className="rounded-lg w-full" />
         <div className="absolute top-0 left-0 p-8">
-            <div className="p-6 rounded-lg" style={{ backgroundColor: 'rgba(231, 231, 231, 0.4)', backdropFilter: 'blur(4px)' }}>                       <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: '#000000ff' }}>WHY CHOOSE BIZVIBEZ?</p>
-                <h2 className="text-4xl font-bold leading-tight mt-2" style={{ color: '#000000ff' }}>Why Choose <span style={{ color: '#8c1e6e' }}>BizVibez?</span></h2>
-                <p className="mt-4 font-bold max-w-md" style={{ color: '#000000ff' }}>Introducing to you an exceptional luxury residence – among the finest and most contemporary real estate offerings to date.</p>
-            </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 grid grid-cols-2 gap-4 text-white text-center">
-            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={25} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Real Estate Agents</p></div>
-            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={170} duration={1500} suffix="M+" /><p className="text-sm text-gray-200">Worth of Sales</p></div>
-            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={7} duration={1500} /><p className="text-sm text-gray-200">Cities Covered</p></div>
-            <div className="bg-black/50 p-3 rounded-lg backdrop-blur-sm"><AnimatedCounter end={2100} duration={1500} suffix="+" /><p className="text-sm text-gray-200">Transactions</p></div>
+
         </div>
     </div>
 </div>                           <ReviewsSection />
