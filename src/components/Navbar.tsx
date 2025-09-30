@@ -10,7 +10,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 py-2 flex justify-between items-center">
         <a href="/">
           <img
-            src="/FNL.gif"
+            src="/headergif.gif"
             alt="FNL Logo"
             width={128}
             height={40}

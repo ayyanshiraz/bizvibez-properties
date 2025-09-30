@@ -39,7 +39,7 @@ export default function Footer() {
           {/* Column 1: Logo and Address */}
           <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
             <div className="space-y-4 flex flex-col items-center md:items-start">
-              <img src="/FNL.gif" alt="FNL Logo" width={128} height={40} />
+              <img src="/headergif.gif" alt="FNL Logo" width={128} height={40} />
               <p className="text-sm text-white">
                 <strong className="block text-white">Address:</strong>
                 602 Bays Water Tower, <br/>
