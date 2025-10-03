@@ -47,56 +47,55 @@ export const handler: Handler = async (event) => {
     const contentType = event.headers['content-type'] || '';
 
     // --- SMART PARSING LOGIC ---
-    // Check if the form is multipart (has files) or json (simple text)
+    // This part is perfect, no changes needed here.
     if (contentType.includes('multipart/form-data')) {
         const parsed = await parseMultipartForm(event);
         fields = parsed.fields;
         files = parsed.files;
     } else {
-        // This handles simple forms like Contact, Sell, and Property Inquiry
         fields = JSON.parse(event.body || '{}');
     }
 
+    // --- TRANSPORTER CONFIGURATION ---
+    // CHANGED: Switched to GoDaddy's cPanel SMTP settings
     const transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
+      host: 'smtp.secureserver.net',
+      port: 465,
+      secure: true, // true for 465
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        // CHANGED: Using new environment variables
+        user: process.env.SENDER_EMAIL,
+        pass: process.env.SENDER_PASS,
       },
     });
 
     // --- DYNAMIC EMAIL & MESSAGE CONFIGURATION ---
+    // This part is perfect, no changes needed here.
     let subject = 'New Website Inquiry';
     let successMessage = 'Your message has been sent successfully!';
     
-    // Customize subject and success message based on the form type
     switch (fields.formType) {
         case 'Property Inquiry':
             subject = `New Inquiry for Property: ${fields.propertyName}`;
             successMessage = 'Your inquiry has been submitted successfully! We will get back to you shortly.';
             break;
-        case 'Seller Inquiry': // Assuming you add this formType to the SellPage form
+        case 'Seller Inquiry':
             subject = `New Seller Lead from Website`;
             successMessage = 'Thank you for your submission! A representative will contact you soon.';
             break;
-        case 'Career Application': // Assuming you add this to a careers form
-             subject = `New Job Application: ${fields.jobTitle || 'N/A'}`;
-             successMessage = 'Your application has been received. Thank you for your interest!';
-             break;
+        case 'Career Application':
+            subject = `New Job Application: ${fields.jobTitle || 'N/A'}`;
+            successMessage = 'Your application has been received. Thank you for your interest!';
+            break;
         default:
-            // This will handle the general contact form
             subject = `New Contact Form Message: ${fields.subject || 'No Subject'}`;
             break;
     }
 
-    // Create a flexible email body
+    // This part is perfect, no changes needed here.
     let emailBody = 'You have a new form submission:\n\n';
     for (const key in fields) {
-      // Don't include the formType in the email body
       if (key === 'formType') continue;
-      
       const fieldName = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
       emailBody += `${fieldName}: ${fields[key]}\n`;
     }
@@ -107,10 +106,18 @@ export const handler: Handler = async (event) => {
       contentType: file.contentType,
     }));
     
+    // --- MAIL OPTIONS ---
     const mailOptions = {
-      from: `"${fields.fullName || fields.name || 'Website Form'}" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER, // Use a separate TO address if needed
+      // CHANGED: The 'from' address must match the authenticated user to avoid spam filters.
+      // The sender's name is still dynamic, but the email address is now static.
+      from: `"BizVibez Properties Form" <${process.env.SENDER_EMAIL}>`,
+      
+      // CHANGED: The 'to' address is now set by our new environment variable.
+      to: process.env.RECIPIENT_EMAIL,
+      
+      // NOTE: This is correct. The user's actual email is used for the reply-to address.
       replyTo: fields.email,
+      
       subject: subject,
       text: emailBody,
       attachments: attachments,
