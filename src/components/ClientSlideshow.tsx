@@ -1,33 +1,41 @@
 "use client";
 
-import Image from 'next/image';
-import { usePathname } from 'next/navigation'; // Import the hook
+import { usePathname } from 'next/navigation';
 
 export default function ClientSlideshow() {
-  // --- NEW LOGIC ---
-  // This hook gets the current URL path (e.g., "/", "/about", "/contact")
   const pathname = usePathname();
-  // We check if the current path is the homepage ("/")
   const isHomepage = pathname === '/';
-  // --- END OF NEW LOGIC ---
 
   const logos = Array.from({ length: 19 }, (_, i) => `/clients/${i + 2}.png`);
 
-  // Styles and text are now automatically set based on the page
-  const sectionStyle = {
-    backgroundColor: isHomepage ? '#970060' : '#FFFFFF',
-  };
+  const sectionStyle = isHomepage
+    ? {
+        backgroundColor: '#970060',
+        backgroundImage: `repeating-linear-gradient(
+          45deg,
+          #a11474,
+          #a11474 1px,
+          #970060 1px,
+          #970060 10px
+        )`,
+      }
+    : {
+        backgroundColor: '#FFFFFF',
+      };
+
   const titleStyle = {
     color: isHomepage ? '#FFFFFF' : '#891e6d',
   };
-  const titleText = isHomepage ? 'Our Trusted Clients' : 'Our Trusted Clients';
+
+  const titleText = 'Our Trusted Clients';
 
   return (
     <>
       <style jsx>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-100%); }
+          /* FIX: Changed from -100% to -50% for a seamless loop */
+          100% { transform: translateX(-50%); }
         }
         .animate-scroll {
           animation: scroll 60s linear infinite;
@@ -43,16 +51,31 @@ export default function ClientSlideshow() {
             <div className="flex w-max animate-scroll">
               {[...logos, ...logos].map((logo, index) => (
                 <div key={index} className="flex-shrink-0 w-48 h-24 flex items-center justify-center mx-4">
-                  {/* AMENDMENT: Added rounded-xl and increased padding for better appearance */}
-                  <div className={isHomepage ? 'bg-white rounded-xl p-3' : ''}> 
-                    <Image
+                  {isHomepage ? (
+                    <div
+                      className="bg-white rounded-2xl w-full h-full"
+                      style={{
+                        backgroundImage: `url(${logo})`,
+                        backgroundSize: '150px 80px',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                      }}
+                      role="img"
+                      aria-label={`Client logo ${index + 1}`}
+                    ></div>
+                  ) : (
+                    <img
                       src={logo}
                       alt={`Client logo ${index + 1}`}
-                      width={150}
-                      height={80}
-                      style={{ objectFit: 'contain' }}
+                      width="150"
+                      height="80"
+                      style={{
+                        objectFit: 'contain',
+                        width: 'auto',
+                        height: 'auto',
+                      }}
                     />
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -62,3 +85,4 @@ export default function ClientSlideshow() {
     </>
   );
 }
+
