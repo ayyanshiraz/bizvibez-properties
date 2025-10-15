@@ -112,7 +112,7 @@ const PropertyConsultantPage = () => {
             {/* --- HERO SECTION --- */}
             <section 
                 className="relative h-[60vh] bg-cover bg-center text-white" 
-                style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/careers.webp')" }}
+                style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/careers2.png')" }}
             >
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
                     <h1 className="text-5xl md:text-7xl font-bold">Careers</h1>
@@ -129,6 +129,7 @@ const PropertyConsultantPage = () => {
                         </div>
                         <div className="bg-[#891e6d] text-white rounded-lg shadow-lg p-8 md:p-10 space-y-6 leading-relaxed">
                             <h3 className="text-2xl font-bold border-b border-white/50 pb-3">Job Description</h3>
+                            <p className="text-sm text-gray-300">Dated: October 10, 2025</p>
                             <p><strong>Experienced Property Consultant – Join our Dynamic Real Estate Team in the UAE</strong></p>
                             <p>We seek talented and motivated individuals to join our growing team of Property Consultants and contribute to our ambitious vision. This is an opportunity for ambitious professionals to thrive in a fast-paced environment, supported by industry veterans and comprehensive training programs.</p>
                             <div>

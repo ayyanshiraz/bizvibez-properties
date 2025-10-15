@@ -36,7 +36,7 @@ const CareersPage = () => {
             {/* --- HERO SECTION --- */}
             <section 
                 className="relative h-[60vh] bg-cover bg-center text-white" 
-                style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/careers.webp')" }}
+                style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/careers2.png')" }}
             >
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
                     <h1 className="text-5xl md:text-7xl font-bold">Careers</h1>
@@ -46,16 +46,29 @@ const CareersPage = () => {
             
             {/* --- CURRENT OPENINGS SECTION --- */}
             <section className="py-24 bg-white">
-                <div className="container mx-auto px-6 text-center">
+                <div className="container mx-auto px-6 relative">
+                    {/* Image positioned absolutely in the top-right, now respecting padding */}
+                    <div className="absolute top-[-6.2rem] right-20 hidden md:block">
+                        <img 
+                            src="/great2.png" 
+                            alt="Great Place to Work Certified Badge" 
+                            className="h-auto w-full max-w-[150px]" 
+                        />
+                    </div>
                     <AnimatedSection>
-                        <h2 className="text-4xl font-bold text-[#891e6d] mb-16">Current Openings</h2>
+                        <div className="text-center">
+                            <h2 className="text-4xl font-bold text-[#891e6d] mb-16">Current Openings</h2>
+                        </div>
                         <div className="max-w-4xl mx-auto">
                             {/* Job Opening Card */}
                             <div 
                                 className="bg-[#891e6d] text-white rounded-2xl shadow-lg text-left overflow-hidden"
                             >
                                 <div className="p-8">
-                                    <h3 className="text-3xl font-bold text-white mb-4">Property Consultant</h3>
+                                    <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-4">
+                                      <h3 className="text-3xl font-bold text-white mb-2 sm:mb-0">Property Consultant</h3>
+                                      <p className="text-sm text-gray-300">October 15, 2025</p>
+                                    </div>
                                     <p className="text-gray-200 leading-relaxed">
                                         To achieve our ambitious goals and fulfill our company's mission, we seek highly motivated Property Consultants who demonstrate resourcefulness, initiative, and a dedication to exceeding expectations. We require strong communication skills, a commitment to professional excellence, and a positive "can-do" attitude that fosters productive relationships with clients and colleagues.
                                     </p>
