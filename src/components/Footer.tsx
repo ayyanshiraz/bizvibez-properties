@@ -26,7 +26,7 @@ const LinkedInIcon = () => (
 export default function Footer() {
   // Style for the patterned purple background
   const footerBackgroundStyle = {
-    backgroundColor: '#891e6d',
+    backgroundColor: '#970060',
     backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-1 1 l2-2 M0 10 l10-10 M9 11 l2-2' stroke='%23FFF' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/svg%3E")`,
   };
 
@@ -39,7 +39,6 @@ export default function Footer() {
           {/* Column 1: Logo and Address */}
           <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
             <div className="space-y-4 flex flex-col items-center md:items-start">
-              <img src="/headergif.gif" alt="FNL Logo" width={128} height={40} />
               <p className="text-sm text-white">
                 <strong className="block text-white">Address:</strong>
                 602 Bays Water Tower, <br/>
@@ -110,7 +109,7 @@ export default function Footer() {
         {/* --- New Sub-Footer Section --- */}
         <div className="border-t border-white border-opacity-20 mt-12 pt-8 text-center">
             <p className="text-sm text-white mb-8">
-                BizVibez Shines As Part Of The BizVibez Groups, Ensuring Excellence And Innovation.
+                Ensuring Business Solution With Excellence And Innovation
             </p>
             <div className="flex justify-center mb-8">
                 <a 
@@ -119,15 +118,14 @@ export default function Footer() {
                     rel="noopener noreferrer" 
                     className="inline-flex items-center justify-center bg-white rounded-lg px-4 py-0 transition-transform duration-300 hover:scale-105"
                 >
-                    <img src="/confooter.png" alt="BizVibez Consultants" className="h-10 w-auto" />
+                    <img src="/footer.jpg" alt="BizVibez Consultants" className="h-10 w-auto" />
                 </a>
             </div>
             <div className="flex justify-center space-x-4 mb-8">
                 <a href="https://www.facebook.com/bizvibezproperties" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><FacebookIcon /></a>
                 <a href="https://www.instagram.com/bizvibez_properties" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><InstagramIcon /></a>
-                <a href="https://www.tiktok.com/@bizvibezconsultants" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><TikTokIcon /></a>
-                <a href="https://www.youtube.com/channel/UCFP5Xm2jExtrsarWm-r317w" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><YouTubeIcon /></a>
-                <a href="https://www.linkedin.com/company/bizvibezconsultants/" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><LinkedInIcon /></a>
+                <a href="https://www.tiktok.com/@bizvibez.properties?_t=ZS-90TK8DI95uh&_r=1" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><TikTokIcon /></a>
+                <a href="https://www.linkedin.com/company/bizvibez-properties/" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><LinkedInIcon /></a>
             </div>
             <p className="text-sm text-white">
                 © BizVibez Properties - All rights reserved
