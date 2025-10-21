@@ -101,6 +101,7 @@ export default function Footer() {
                 <li><a href="/careers" className="text-white hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Careers</a></li>
                 <li><a href="/mortgage-calculator" className="text-white hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Mortgage Calculator</a></li>
                 <li><a href="/privacy-policy" className="text-white hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Privacy Policy</a></li>
+                <li><a href="/blogs" className="text-white hover:text-white inline-flex items-center justify-center md:justify-start"><ArrowIcon />Blogs</a></li>
               </ul>
             </div>
           </div>
