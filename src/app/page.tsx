@@ -7,6 +7,10 @@ import { useRouter } from 'next/navigation';
 // --- Import your unified data and type ---
 import { allProperties, Property } from '../data/properties'; // Adjust this path if your folder structure is different
 
+// --- ADDED IMPORTS FOR BLOGS ---
+import { blogPosts } from '@/lib/blog-data';
+import { BlogCard as HomeBlogCard } from './blogs/BlogCard'; // Renamed to avoid conflicts if you create another BlogCard component here
+
 // --- ADDED IMPORT FOR THE SLIDESHOW ---
 import ClientSlideshow from '../components/ClientSlideshow';
 import WhyChooseUs from '../components/WhyChooseUs';
@@ -150,6 +154,70 @@ const AnimatedCounter = ({ end, duration, suffix = '' }: { end: number; duration
 const featuredPlots = [ { title: 'Plot For Sale In Jumeirah Garden City', location: 'Jumeirah Garden City, Dubai', size: '10,000', price: 'AED 28,000,000', images: ['/p12.webp','/p11.webp', '/p14.webp', '/p13.webp'] }, { title: 'Land For Sale In Al Furjan (Mixed Use)', location: 'Al Furjan, Dubai', size: '23,000', price: 'AED 35,000,000', images: ['/p21.webp', '/p22.webp', '/p23.webp' , '/p24.webp'] }, { title: 'G+Unlimited Plot For Sale In JVC', location: 'Jumeirah Village Circle, Dubai', size: '16,700', price: 'AED 44,000,000', images: ['/p31.webp', '/p32.webp', '/p33.webp' , '/p34.webp'] },];
 const locations = ["Dubai", "Dubai Hills", "Downtown Dubai", "Dubai Marina", "Palm Jumeirah"];
 
+// --- NEW LATEST BLOGS SECTION COMPONENT ---
+const LatestBlogsSection = () => {
+    const latestPosts = blogPosts.slice(0, 3);
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
+    return (
+        <section ref={sectionRef} className="relative py-24 overflow-hidden">
+            {/* Background Image & Overlay */}
+            <div className="absolute inset-0">
+                <img src="/blog1.webp" alt="Decorative background with a blurred cityscape" className="w-full h-full object-cover blur-[2px]" />
+                <div className="absolute inset-0 bg-black/60"></div> {/* Overlay for better text readability */}
+            </div>
+
+            {/* Animated Content Container */}
+            <div className={`relative container mx-auto px-6 transition-all duration-1000 ease-in-out transform ${isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-10'}`}>
+                <div className="flex flex-col md:flex-row justify-between md:items-center mb-16 text-center md:text-left">
+                    <div>
+                        <h2 className="text-5xl font-bold text-[white]">From Our Blogs</h2>
+                        <p className="text-white text-lg mt-2 max-w-xl">Latest news, tips, and insights from the Dubai real estate market.</p>
+                    </div>
+                    <Link href="/blogs" className="hidden md:inline-block mt-4 md:mt-0 bg-transparent text-[white] font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:bg-[#970060] hover:text-white shadow-md hover:shadow-lg border-2 border-[white] hover:border-[#970060]">
+                        Explore All Blogs &rarr;
+                    </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {latestPosts.map((post) => (
+                        <HomeBlogCard key={post.slug} post={post} />
+                    ))}
+                </div>
+                <div className="text-center mt-16 md:hidden">
+                     <Link href="/blogs" className="inline-block bg-[#970060] text-white font-bold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-105">
+                        Explore All Blogs
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+
 // --- HOMEPAGE COMPONENT ---
 const HomePage = () => {
     const router = useRouter();
@@ -227,7 +295,7 @@ const HomePage = () => {
             <div style={{ backgroundColor: '#fefefe' }} className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}><img src="/preloader.gif" alt="Loading..." width={1000} height={1000} /></div>
             
             <section className="relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
-                <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0"><source src="/hero-video.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
+                <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0"><source src="/hero-video1.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
                 <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
                 <div className="relative z-20 flex flex-col items-center px-4 w-full mb-20">
                     <div className="min-h-[150px] flex flex-col justify-center w-full max-w-4xl text-center">
@@ -281,12 +349,16 @@ const HomePage = () => {
 
         </div>
     </div>
-</div>                           <ReviewsSection />
+</div>                                  <ReviewsSection />
                     </div>
                 </div>
             </section>
+
+            {/* --- ADDED BLOGS SECTION --- */}
+            <LatestBlogsSection />
         </>
     );
 };
 
 export default HomePage;
+
