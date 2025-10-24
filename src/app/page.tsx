@@ -292,7 +292,7 @@ const HomePage = () => {
 
     return (
         <>
-            <div style={{ backgroundColor: '#fefefe' }} className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}><img src="/preloader.gif" alt="Loading..." width={1000} height={1000} /></div>
+            <div style={{ backgroundColor: '#fefefe' }} className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}><img src="/preloader1.gif" alt="Loading..." width={1000} height={1000} /></div>
             
             <section className="relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
                 <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0"><source src="/hero-video1.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
