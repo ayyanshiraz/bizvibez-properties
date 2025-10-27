@@ -48,7 +48,7 @@ const CareersPage = () => {
             <section className="py-24 bg-white">
                 <div className="container mx-auto px-6 relative">
                     {/* Image positioned absolutely in the top-right, now respecting padding */}
-                    <div className="absolute top-[-6.2rem] right-20 hidden md:block">
+                    <div className="absolute top-[-6.2rem] right-10 hidden md:block">
                         <img 
                             src="/great2.png" 
                             alt="Great Place to Work Certified Badge" 
