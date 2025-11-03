@@ -118,7 +118,7 @@ try {
                  <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
                      <div className="flex justify-center mb-2"><Phone /></div>
                      <p className="text-white font-semibold">Call Us</p>
-                     <p className="text-gray-200 text-sm break-words">+971 54 201 9999</p>
+                     <p className="text-gray-200 text-sm break-words">+971 4 456 9917</p>
                  </div>
                  <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
                      <div className="flex justify-center mb-2"><Mail /></div>
@@ -128,8 +128,8 @@ try {
                  <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
                      <div className="flex justify-center mb-2"><WhatsApp /></div>
                      <p className="text-white font-semibold">WhatsApp</p>
-                     <a href="https://wa.me/97144569917" target="_blank" rel="noopener noreferrer" className="text-gray-200 text-sm break-words hover:text-white transition-colors">
-                       +971 4 456 9917
+                     <a href="https://wa.me/971542019999" target="_blank" rel="noopener noreferrer" className="text-gray-200 text-sm break-words hover:text-white transition-colors">
+                       +971 54 201 9999
                      </a>
                  </div>
                </div>
