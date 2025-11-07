@@ -15,10 +15,10 @@ const teamMembers = [
     whatsapp: 'https://wa.me/97144569917',
   },
   {
-    name: 'Naazia Khan',
-    title: 'Property & Investment Advisor',
-    imageUrl: '/nazia11.png',
-    languages: 'English, Urdu, Hindi, Pashto',
+    name: 'Sadia Awan',
+    title: 'HR & Marketing Manager',
+    imageUrl: '/sadia11.png',
+    languages: 'Urdu, Hindi',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
     whatsapp: 'https://wa.me/97144569917',
@@ -42,13 +42,14 @@ const teamMembers = [
     whatsapp: 'https://wa.me/97144569917',
   },
   {
-    name: 'Sadia Awan',
-    title: 'HR & Marketing Manager',
-    imageUrl: '/sadia11.png',
-    languages: 'Urdu, Hindi',
+        name: 'Naazia Khan',
+    title: 'Property & Investment Advisor',
+    imageUrl: '/nazia11.png',
+    languages: 'English, Urdu, Hindi, Pashto',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
     whatsapp: 'https://wa.me/97144569917',
+
   },
 ];
 
@@ -175,25 +176,40 @@ export default function OurTeamPage() {
 
           {/* Other Team Members Grid */}
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            {otherMembers.map((member, index) => (
-              <AnimatedCard key={index}>
-                <div 
-                  className="rounded-xl shadow-lg overflow-hidden text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 h-full"
-                  style={cardBackgroundStyle}
-                >
-                  <div className="h-64 w-full flex items-center justify-center" style={{ backgroundColor: '#dfdfe4' }}>
-                    <img className="max-h-full max-w-full object-contain" src={member.imageUrl} alt={member.name} />
+            {otherMembers.map((member, index) => {
+              
+              // --- THIS IS THE ADDED LOGIC ---
+              // It checks the name (and trims whitespace) to decide if the image needs a flip.
+              const needsFlip = member.name.trim() === 'Saman Imran' || member.name.trim() === 'Naazia Khan';
+
+              return (
+                <AnimatedCard key={index}>
+                  <div 
+                    className="rounded-xl shadow-lg overflow-hidden text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 h-full"
+                    style={cardBackgroundStyle}
+                  >
+                    <div className="h-64 w-full flex items-center justify-center" style={{ backgroundColor: '#dfdfe4' }}>
+                      <img 
+                        className="max-h-full max-w-full object-contain" 
+                        src={member.imageUrl} 
+                        alt={member.name}
+                        
+                        // --- THIS STYLE PROP IS ADDED ---
+                        // It conditionally applies the 'scaleX(-1)' transform
+                        style={{ transform: needsFlip ? 'scaleX(-1)' : 'none' }}
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white">{member.name}</h3>
+                      <p className="text-gray-300 mt-1">{member.title}</p>
+                      <p className="text-sm text-gray-200 mt-4 flex items-center justify-center">
+                        <span className="text-green-300 mr-2">✔</span> {member.languages}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white">{member.name}</h3>
-                    <p className="text-gray-300 mt-1">{member.title}</p>
-                    <p className="text-sm text-gray-200 mt-4 flex items-center justify-center">
-                      <span className="text-green-300 mr-2">✔</span> {member.languages}
-                    </p>
-                  </div>
-                </div>
-              </AnimatedCard>
-            ))}
+                </AnimatedCard>
+              );
+            })}
           </div>
 
         </div>
@@ -201,4 +217,3 @@ export default function OurTeamPage() {
     </div>
   );
 }
-
