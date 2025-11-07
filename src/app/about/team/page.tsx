@@ -15,9 +15,9 @@ const teamMembers = [
     whatsapp: 'https://wa.me/97144569917',
   },
   {
-    name: 'Abrar Qureshi',
-    title: 'Property Sales Manager',
-    imageUrl: '/abrar2.jpg',
+    name: 'Naazia Khan',
+    title: 'Property & Investment Advisor',
+    imageUrl: '/nazia11.png',
     languages: 'English, Urdu, Hindi, Pashto',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
@@ -26,7 +26,7 @@ const teamMembers = [
   {
     name: ' Saman Imran',
     title: 'Admin Executive',
-    imageUrl: '/saman.png',
+    imageUrl: '/saman11.png',
     languages: 'English, Hindi, Urdu',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
@@ -35,7 +35,7 @@ const teamMembers = [
   {
     name: 'Wasi Ahmed',
     title: 'Head of Operations',
-    imageUrl: '/wasi.png',
+    imageUrl: '/wasi11.png',
     languages: 'English, Hindi, Urdu, Punjabi',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
@@ -44,7 +44,7 @@ const teamMembers = [
   {
     name: 'Sadia Awan',
     title: 'HR & Marketing Manager',
-    imageUrl: '/sadia.png',
+    imageUrl: '/sadia11.png',
     languages: 'Urdu, Hindi',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
@@ -130,9 +130,9 @@ export default function OurTeamPage() {
             {/* --- CORRECTED IMAGE CONTENT --- */}
             <div className="hidden md:block absolute bottom-0 right-0 w-1/2 h-full z-10">
               <img 
-                src="/team.png" 
+                src="/teams11.png" 
                 alt="Team decorative graphic" 
-                className="absolute bottom-[-73%] right-0 h-[220%] w-auto object-contain"
+                className="absolute bottom-[-33%] right-0 h-[220%] w-auto object-contain"
               />
             </div>
           </div>
