@@ -132,7 +132,7 @@ export default function OurTeamPage() {
               <img 
                 src="/teams11.png" 
                 alt="Team decorative graphic" 
-                className="absolute bottom-[-73%] right-0 h-[220%] w-auto object-contain"
+                className="absolute bottom-[-53%] right-0 h-[220%] w-auto object-contain"
               />
             </div>
           </div>
