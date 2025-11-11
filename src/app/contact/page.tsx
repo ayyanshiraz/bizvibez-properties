@@ -99,7 +99,7 @@ try {
       <section className="bg-white py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#891e6d' }}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#8D0169' }}>
               Contact Us
             </h2>
             <p className="text-gray-600 text-lg">We offer unique properties suitable for any kind of comfort.</p>
@@ -110,22 +110,22 @@ try {
             {/* Left Column: Contact Details & Map */}
             <div className="space-y-8">
                <div className="grid grid-cols-2 gap-4 text-center">
-                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
+                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#8D0169'}}>
                      <div className="flex justify-center mb-2"><MapPin /></div>
                      <p className="text-white font-semibold">Our Address</p>
                      <p className="text-gray-200 text-sm break-words">602 Bays Water Tower, Business Bay Dubai, United Arab Emirates</p>
                  </div>
-                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
+                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#8D0169'}}>
                      <div className="flex justify-center mb-2"><Phone /></div>
                      <p className="text-white font-semibold">Call Us</p>
                      <p className="text-gray-200 text-sm break-words">+971 4 456 9917</p>
                  </div>
-                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
+                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#8D0169'}}>
                      <div className="flex justify-center mb-2"><Mail /></div>
                      <p className="text-white font-semibold">Email Us</p>
                      <p className="text-gray-200 text-sm break-words">info@bizvibezproperties.com</p>
                  </div>
-                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#891e6d'}}>
+                 <div className="p-4 rounded-lg flex flex-col" style={{backgroundColor: '#8D0169'}}>
                      <div className="flex justify-center mb-2"><WhatsApp /></div>
                      <p className="text-white font-semibold">WhatsApp</p>
                      <a href="https://wa.me/971542019999" target="_blank" rel="noopener noreferrer" className="text-gray-200 text-sm break-words hover:text-white transition-colors">
@@ -155,19 +155,19 @@ try {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                  <input type="text" name="fullName" id="fullName" required value={formData.fullName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" />
+                  <input type="text" name="fullName" id="fullName" required value={formData.fullName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                  <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" />
+                  <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" />
                 </div>
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                  <input type="text" name="subject" id="subject" required value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" />
+                  <input type="text" name="subject" id="subject" required value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <textarea name="message" id="message" rows={5} required value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]"></textarea>
+                  <textarea name="message" id="message" rows={5} required value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]"></textarea>
                 </div>
                 
                 {statusMessage && (
@@ -181,7 +181,7 @@ try {
                     type="submit"
                     disabled={loading}
                     className="w-full text-white px-6 py-3 font-semibold rounded-md transition-all duration-300 hover:opacity-90 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: '#891e6d' }}
+                    style={{ backgroundColor: '#8D0169' }}
                   >
                     {loading ? 'Sending...' : 'Send Message'}
                   </button>

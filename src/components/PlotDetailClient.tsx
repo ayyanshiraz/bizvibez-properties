@@ -623,17 +623,17 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
                           <User className="w-4 h-4 mr-2 text-gray-500" />
                           <p className="font-semibold text-gray-800">BizVibez Properties</p>
                         </div>
-                        <a href="#" className="text-sm text-[#891e6d] hover:underline ml-6">View Listings</a>
+                        <a href="#" className="text-sm text-[#8D0169] hover:underline ml-6">View Listings</a>
                     </div>
                   </div>
                   <form onSubmit={handleSubmit} className="space-y-4 pt-6">
-                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.fullName} onChange={handleChange} />
-                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.email} onChange={handleChange} />
-                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#891e6d]">
+                    <input type="text" name="fullName" placeholder="Full Name" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#8D0169] outline-none" value={formData.fullName} onChange={handleChange} />
+                    <input type="email" name="email" placeholder="Email" required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#8D0169] outline-none" value={formData.email} onChange={handleChange} />
+                    <div className="flex items-center border rounded-md focus-within:ring-1 focus-within:ring-[#8D0169]">
                       <CountryCodePicker selectedCountry={selectedCountry} onCountrySelect={setSelectedCountry} />
                       <input type="tel" name="phone" placeholder="050 123 4567" required className="w-full p-3 text-sm placeholder:text-gray-400 outline-none rounded-r-md" value={formData.phone} onChange={handleChange} />
                     </div>
-                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#891e6d] outline-none" value={formData.message} onChange={handleChange}></textarea>
+                    <textarea name="message" placeholder="I am interested in this property" rows={4} required className="w-full border p-3 rounded-md text-sm focus:ring-1 focus:ring-[#8D0169] outline-none" value={formData.message} onChange={handleChange}></textarea>
                     
                     {/* Add this block to show success/error messages */}
                     {statusMessage && (
@@ -642,7 +642,7 @@ export default function PlotDetailClient({ plot }: { plot: Plot }) {
                       </div>
                     )}
 
-                    <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
+                    <button type="submit" disabled={loading} className="w-full bg-[#8D0169] text-white font-bold py-3 rounded-md hover:bg-[#721a5a] transition-colors disabled:opacity-70">
                       {loading ? 'Sending...' : 'Request Information'}
                     </button>
                   </form>

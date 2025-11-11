@@ -904,7 +904,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {    co
                     <p className="text-white font-bold text-lg">Start From AED {property.price}</p>
                 </div>
             </div>
-            <div className="p-6 flex-grow flex flex-col transition-colors duration-300 group-hover:bg-[#891e6d]">
+            <div className="p-6 flex-grow flex flex-col transition-colors duration-300 group-hover:bg-[#8D0169]">
                 <h3 className="text-xl font-bold mb-1 flex-grow text-gray-800 group-hover:text-white">{property.name}</h3>
                 <p className="text-gray-600 mb-4 group-hover:text-gray-200">{property.location}</p>
                 <div className="border-t pt-4 flex items-center justify-between text-sm mt-auto group-hover:border-gray-500">

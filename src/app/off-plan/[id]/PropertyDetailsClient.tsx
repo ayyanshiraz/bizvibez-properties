@@ -259,7 +259,7 @@ const ContactForm: React.FC<{ propertyName: string }> = ({ propertyName }) => {
                 </div>
                 <div>
                     <p className="font-bold text-gray-800">BizVibez Property</p>
-                    <a href="#" className="text-sm text-[#891e6d] hover:underline">View Listings</a>
+                    <a href="#" className="text-sm text-[#8D0169] hover:underline">View Listings</a>
                 </div>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -338,7 +338,7 @@ const ContactForm: React.FC<{ propertyName: string }> = ({ propertyName }) => {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#891e6d] text-white font-bold py-3 px-4 rounded-md hover:bg-[#721a5a] transition duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full bg-[#8D0169] text-white font-bold py-3 px-4 rounded-md hover:bg-[#721a5a] transition duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     {loading ? 'Sending...' : 'Request Information'}
                 </button>
@@ -483,7 +483,7 @@ const PropertyDetailsClient: React.FC<{ property: Property }> = ({ property }) =
                              </div>
                              <div className="text-right flex-shrink-0 mt-4 lg:mt-0">
                                   <p className="text-gray-500 text-sm">Start From</p>
-                                  <p className="text-3xl font-extrabold text-[#891e6d]">AED {property.price}</p> 
+                                  <p className="text-3xl font-extrabold text-[#8D0169]">AED {property.price}</p> 
                              </div>
                         </div>
 

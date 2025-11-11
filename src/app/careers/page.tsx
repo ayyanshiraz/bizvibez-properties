@@ -57,12 +57,12 @@ const CareersPage = () => {
                     </div>
                     <AnimatedSection>
                         <div className="text-center">
-                            <h2 className="text-4xl font-bold text-[#891e6d] mb-16">Current Openings</h2>
+                            <h2 className="text-4xl font-bold text-[#8D0169] mb-16">Current Openings</h2>
                         </div>
                         <div className="max-w-4xl mx-auto">
                             {/* Job Opening Card */}
                             <div 
-                                className="bg-[#891e6d] text-white rounded-2xl shadow-lg text-left overflow-hidden"
+                                className="bg-[#8D0169] text-white rounded-2xl shadow-lg text-left overflow-hidden"
                             >
                                 <div className="p-8">
                                     <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-4">

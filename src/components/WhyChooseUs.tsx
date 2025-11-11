@@ -39,7 +39,7 @@ export default function WhyChooseUs() {
             </p>
             <Link 
               href="/about"
-              className="inline-block border border-[#891e6d] text-[#891e6d] font-bold py-3 px-8 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white"
+              className="inline-block border border-[#8D0169] text-[#8D0169] font-bold py-3 px-8 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white"
             >
               FIND OUT MORE
             </Link>

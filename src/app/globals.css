@@ -38,7 +38,7 @@ body {
 }
 
 .featured-tag {
-  background-color: #891e6d; /* A gold/yellow color for featured tags */
+  background-color: #8D0169; /* A gold/yellow color for featured tags */
 }
 /* Add this to the bottom of src/app/globals.css */
 
@@ -55,8 +55,8 @@ body {
 }
 
 .hero-btn:hover {
-  background-color: #891e6d; /* Your purple color */
-  border-color: #891e6d;
+  background-color: #8D0169; /* Your purple color */
+  border-color: #8D0169;
   color: white;
   transform: scale(1.05); /* This creates the "pop up" effect */
 }

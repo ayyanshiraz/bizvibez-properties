@@ -122,7 +122,7 @@ export default function OurTeamPage() {
               </h1>
               <a 
                 href="/contact" 
-                className="inline-block bg-white text-[#891e6d] font-bold py-3 px-8 rounded-md mt-8 transition-transform duration-300 hover:scale-105"
+                className="inline-block bg-white text-[#8D0169] font-bold py-3 px-8 rounded-md mt-8 transition-transform duration-300 hover:scale-105"
               >
                 Get started today
               </a>

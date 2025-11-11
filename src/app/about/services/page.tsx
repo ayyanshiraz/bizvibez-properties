@@ -147,13 +147,13 @@ const App = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-4">
                                 Extraordinary Real Estate Service
                             </h2>
                             <p className="text-gray-600 mb-6 leading-relaxed">
                                 Our reputation is built on delivering unparalleled real estate services that consistently surpass client expectations. By fostering strong alliances with the most respected property developers across the UAE, we guarantee a premium experience. Our core mission is to cultivate lasting relationships founded on trust, ensuring every client feels valued and receives the highest standard of care in their real estate journey.
                             </p>
-                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#891e6d] text-[#891e6d] font-semibold rounded-md hover:bg-[#891e6d] hover:text-white transition-colors">
+                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#8D0169] text-[#8D0169] font-semibold rounded-md hover:bg-[#8D0169] hover:text-white transition-colors">
                                 Schedule Your Meeting NOW!
                             </a>
                         </div>
@@ -167,7 +167,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-4">
                                 Buy Property
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
@@ -176,7 +176,7 @@ const App = () => {
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 "Unlock Your new home address: Schedule a meeting with us. Join our exclusive offers community, and benefit from our top UAE real estate developers' alliance and our reputation."
                             </p>
-                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#891e6d] text-[#891e6d] font-semibold rounded-md hover:bg-[#891e6d] hover:text-white transition-colors">
+                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#8D0169] text-[#8D0169] font-semibold rounded-md hover:bg-[#8D0169] hover:text-white transition-colors">
                                 Schedule Your Meeting NOW!
                             </a>
                         </div>
@@ -190,7 +190,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-4">
                                 Sell Property
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
@@ -199,7 +199,7 @@ const App = () => {
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 "Unlock the True Value of Your Property: Schedule a valuation with us. Join our exclusive client list, and benefit from our marketing exposure."
                             </p>
-                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#891e6d] text-[#891e6d] font-semibold rounded-md hover:bg-[#891e6d] hover:text-white transition-colors">
+                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#8D0169] text-[#8D0169] font-semibold rounded-md hover:bg-[#8D0169] hover:text-white transition-colors">
                                 Schedule Your Meeting NOW!
                             </a>
                         </div>
@@ -213,7 +213,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-4">
                                 Leasing Property
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
@@ -222,7 +222,7 @@ const App = () => {
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 "Unlock the True Value of Your Property: Schedule a valuation with us. Join our exclusive client list, and benefit from our marketing exposure."
                             </p>
-                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#891e6d] text-[#891e6d] font-semibold rounded-md hover:bg-[#891e6d] hover:text-white transition-colors">
+                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#8D0169] text-[#8D0169] font-semibold rounded-md hover:bg-[#8D0169] hover:text-white transition-colors">
                                 Schedule Your Meeting NOW!
                             </a>
                         </div>
@@ -236,7 +236,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-4">
                                 Property Management
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
@@ -245,7 +245,7 @@ const App = () => {
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 "Unlock the True Value of Your Property: Schedule a valuation with us. Join our exclusive client list, and benefit from our marketing exposure."
                             </p>
-                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#891e6d] text-[#891e6d] font-semibold rounded-md hover:bg-[#891e6d] hover:text-white transition-colors">
+                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#8D0169] text-[#8D0169] font-semibold rounded-md hover:bg-[#8D0169] hover:text-white transition-colors">
                                 Schedule Your Meeting NOW!
                             </a>
                         </div>
@@ -259,7 +259,7 @@ const App = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 z-10">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-4">
                                 Concierge Services
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
@@ -268,7 +268,7 @@ const App = () => {
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 We prioritize your comfort by arranging for one of our luxurious vehicles to pick you up from your residence or workplace, ensuring a comfortable trip to your property. Following your coordinated viewing, your assigned chauffeur will efficiently transport you to your next destination, reflecting our dedication to providing the utmost convenience and sophistication in your real estate journey.
                             </p>
-                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#891e6d] text-[#891e6d] font-semibold rounded-md hover:bg-[#891e6d] hover:text-white transition-colors">
+                            <a href="https://bizvibezproperties.com/contact" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 border-2 border-[#8D0169] text-[#8D0169] font-semibold rounded-md hover:bg-[#8D0169] hover:text-white transition-colors">
                                 Schedule Your Meeting NOW!
                             </a>
                         </div>
@@ -279,17 +279,17 @@ const App = () => {
             {/* --- UPDATED CONTACT FORM SECTION --- */}
             <section id="contact" className="bg-gray-100 py-16 px-6">
                 <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-[#891e6d]">Contact Us</h2>
+                    <h2 className="text-3xl font-bold text-center text-[#8D0169]">Contact Us</h2>
                     <form onSubmit={handleSubmit} className="mt-10 space-y-6 max-w-2xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-6">
-                            <input type="text" name="firstName" placeholder="First Name" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.firstName} onChange={handleChange} required />
-                            <input type="text" name="lastName" placeholder="Last Name" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.lastName} onChange={handleChange} required />
+                            <input type="text" name="firstName" placeholder="First Name" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.firstName} onChange={handleChange} required />
+                            <input type="text" name="lastName" placeholder="Last Name" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.lastName} onChange={handleChange} required />
                         </div>
                         <div className="grid md:grid-cols-2 gap-6">
-                            <input type="email" name="email" placeholder="Email" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.email} onChange={handleChange} required />
-                            <input type="tel" name="phone" placeholder="Phone" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.phone} onChange={handleChange} required />
+                            <input type="email" name="email" placeholder="Email" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.email} onChange={handleChange} required />
+                            <input type="tel" name="phone" placeholder="Phone" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.phone} onChange={handleChange} required />
                         </div>
-                        <select name="service" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm bg-white focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.service} onChange={handleChange} required >
+                        <select name="service" className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm bg-white focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.service} onChange={handleChange} required >
                             <option value="">Select a service</option>
                             <option value="Buy Property">Buy Property</option>
                             <option value="Sell Property">Sell Property</option>
@@ -298,7 +298,7 @@ const App = () => {
                             <option value="Concierge Services">Concierge Services</option>
                             <option value="General Inquiry">General Inquiry</option>
                         </select>
-                        <textarea name="message" placeholder="Your Message" rows={4} className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.message} onChange={handleChange} required />
+                        <textarea name="message" placeholder="Your Message" rows={4} className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.message} onChange={handleChange} required />
                         
                         {/* Status Message Display */}
                         {statusMessage && (
@@ -307,7 +307,7 @@ const App = () => {
                             </div>
                         )}
 
-                        <button type="submit" disabled={loading} className="w-full bg-[#891e6d] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 disabled:bg-opacity-70 transition" >
+                        <button type="submit" disabled={loading} className="w-full bg-[#8D0169] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 disabled:bg-opacity-70 transition" >
                             {loading ? "Sending..." : "Submit"}
                         </button>
                     </form>
@@ -317,12 +317,12 @@ const App = () => {
             {/* --- FINAL CTA (Unchanged) --- */}
             <section className="bg-gray-50 py-16 text-center">
                  <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold text-[#891e6d]">Ready to Find Your Perfect Property?</h2>
+                    <h2 className="text-3xl font-bold text-[#8D0169]">Ready to Find Your Perfect Property?</h2>
                     <p className="mt-4 text-gray-600">
                         Partner with us for expert real estate services that drive results.
                     </p>
                     <a href="https://bizvibezproperties.com/contact">
-                        <button className="mt-6 bg-[#891e6d] px-8 py-3 rounded-md text-white font-semibold hover:scale-105 transition">
+                        <button className="mt-6 bg-[#8D0169] px-8 py-3 rounded-md text-white font-semibold hover:scale-105 transition">
                             Contact Our Team
                         </button>
                     </a>

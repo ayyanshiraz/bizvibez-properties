@@ -188,18 +188,18 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
                         <div className="sticky top-10 border border-gray-300 rounded-sm p-6 shadow-lg">
                             <div className="flex items-center mb-6">
                                 <div className="h-12 w-12 bg-gray-200 rounded-full flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg></div>
-                                <div><p className="font-bold text-black">BizVibez Property</p><Link href="#" className="text-sm hover:underline" style={{ color: '#891e6d' }}>View Listings</Link></div>
+                                <div><p className="font-bold text-black">BizVibez Property</p><Link href="#" className="text-sm hover:underline" style={{ color: '#8D0169' }}>View Listings</Link></div>
                             </div>
 
                             {/* --- UPDATED FORM WITH NETLIFY LOGIC --- */}
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <input type="text" name="fullName" placeholder="Full Name" required value={formData.fullName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:border-[#891e6d] text-black placeholder-gray-500" />
-                                <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:border-[#891e6d] text-black placeholder-gray-500" />
-                                <div className="flex items-stretch w-full border border-gray-300 rounded-sm focus-within:ring-1 focus-within:border-[#891e6d]">
+                                <input type="text" name="fullName" placeholder="Full Name" required value={formData.fullName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:border-[#8D0169] text-black placeholder-gray-500" />
+                                <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:border-[#8D0169] text-black placeholder-gray-500" />
+                                <div className="flex items-stretch w-full border border-gray-300 rounded-sm focus-within:ring-1 focus-within:border-[#8D0169]">
                                     <CountrySelector onSelect={handleCountrySelect} />
                                     <input type="tel" name="phone" placeholder="050 123 4567" required value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 bg-transparent focus:outline-none text-black placeholder-gray-500" />
                                 </div>
-                                <textarea name="message" rows={5} required value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:border-[#891e6d] text-black placeholder-gray-500"></textarea>
+                                <textarea name="message" rows={5} required value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:border-[#8D0169] text-black placeholder-gray-500"></textarea>
                                 
                                 {statusMessage && (
                                     <div className={`p-3 text-center rounded-md text-sm ${statusMessage.toLowerCase().includes('error') ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
@@ -207,7 +207,7 @@ const PropertyDetailClientView = ({ propertyData }: { propertyData: ForSalePrope
                                     </div>
                                 )}
                                 
-                                <button type="submit" disabled={loading} style={{ backgroundColor: '#891e6d' }} className="w-full text-white font-bold py-3 px-4 rounded-sm hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed">
+                                <button type="submit" disabled={loading} style={{ backgroundColor: '#8D0169' }} className="w-full text-white font-bold py-3 px-4 rounded-sm hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed">
                                     {loading ? 'Sending...' : 'Request Information'}
                                 </button>
                             </form>

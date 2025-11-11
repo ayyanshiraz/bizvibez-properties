@@ -62,10 +62,10 @@ export default function AboutPage() {
             BizVibez Properties
           </h1>
           <div className="mt-8 flex justify-center gap-4">
-            <a href="/about/team" className="bg-transparent border-2 border-white text-white px-8 py-3 font-semibold transition-all duration-300 hover:bg-[#891e6d] hover:border-[#891e6d] hover:scale-105">
+            <a href="/about/team" className="bg-transparent border-2 border-white text-white px-8 py-3 font-semibold transition-all duration-300 hover:bg-[#8D0169] hover:border-[#8D0169] hover:scale-105">
               OUR TEAM
             </a>
-            <a href="/contact" className="bg-transparent border-2 border-white text-white px-8 py-3 font-semibold transition-all duration-300 hover:bg-[#891e6d] hover:border-[#891e6d] hover:scale-105">
+            <a href="/contact" className="bg-transparent border-2 border-white text-white px-8 py-3 font-semibold transition-all duration-300 hover:bg-[#8D0169] hover:border-[#8D0169] hover:scale-105">
               CONTACT US
             </a>
           </div>
@@ -76,7 +76,7 @@ export default function AboutPage() {
       <section className="bg-white py-20">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6" style={{ color: '#891e6d' }}>
+            <h2 className="text-3xl font-bold mb-6" style={{ color: '#8D0169' }}>
               OUR STORY
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-4">
@@ -96,28 +96,28 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             
             <div className="border-r border-gray-200">
-              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#891e6d' }}>
+              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#8D0169' }}>
                 <AnimatedCounter end={25} duration={2000} />+
               </h3>
               <p className="text-gray-500 mt-2">Real Estate Agents</p>
             </div>
 
             <div className="md:border-r border-gray-200">
-              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#891e6d' }}>
+              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#8D0169' }}>
                 <AnimatedCounter end={170} duration={2000} />M+
               </h3>
               <p className="text-gray-500 mt-2">Worth of Sales</p>
             </div>
 
             <div className="border-r border-gray-200">
-              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#891e6d' }}>
+              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#8D0169' }}>
                 <AnimatedCounter end={7} duration={2000} />
               </h3>
               <p className="text-gray-500 mt-2">Cities Covered</p>
             </div>
 
             <div>
-              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#891e6d' }}>
+              <h3 className="text-4xl md:text-5xl font-bold" style={{ color: '#8D0169' }}>
                 {/* Duration changed to 3000 for a 3-second animation */}
                 <AnimatedCounter end={2100} duration={3000} />+
               </h3>
@@ -140,7 +140,7 @@ export default function AboutPage() {
             </div>
             {/* CEO Message Content */}
             <div className="md:w-3/5 text-gray-600">
-              <p className="text-6xl font-serif -mb-4" style={{ color: '#891e6d' }}>“</p>
+              <p className="text-6xl font-serif -mb-4" style={{ color: '#8D0169' }}>“</p>
               <p className="text-md text-justify leading-relaxed mb-6">
                 At Bizvibez Properties, we believe that real estate is more than just a transaction; it's the foundation upon which dreams are built and ambitions are realized. As the property arm of the esteemed Bizvibez Management Consultants Co., we bring over a decade of market leadership in the UAE, having proudly served this dynamic region since 2009.
               </p>
@@ -150,7 +150,7 @@ export default function AboutPage() {
               <p className="text-md text-justify leading-relaxed">
                 Our team of dedicated agents leverages deep local knowledge, cutting-edge technology, and real-time market insights to uncover opportunities that align perfectly with your goals. Our practice is built on a foundation of unwavering core values: transparency, integrity, and collaboration. We are passionate not just about finding the perfect property, but about building lasting relationships and contributing positively to the communities we serve.
               </p>
-              <p className="text-6xl font-serif text-right -mt-4" style={{ color: '#891e6d' }}>”</p>
+              <p className="text-6xl font-serif text-right -mt-4" style={{ color: '#8D0169' }}>”</p>
               <div className="mt-4">
                 <h4 className="font-bold text-lg text-gray-800">Emran Ahmed</h4>
                 <p className="text-sm text-gray-500">CEO, Bizvibez Group of Companies</p>
@@ -177,7 +177,7 @@ export default function AboutPage() {
               {/* Card 1: Our Approach */}
               <div 
                 className="aspect-square flex flex-col justify-center items-center p-8 text-center rounded-lg shadow-2xl transform hover:-translate-y-2 transition-transform duration-300"
-                style={{ backgroundColor: '#891e6d' }}
+                style={{ backgroundColor: '#8D0169' }}
               >
                 <div className="flex justify-center items-center mb-4 h-16">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
@@ -193,7 +193,7 @@ export default function AboutPage() {
               {/* Card 2: Our Goal -- ICON UPDATED TO USE EXTERNAL SVG FILE */}
               <div 
                 className="aspect-square flex flex-col justify-center items-center p-8 text-center rounded-lg shadow-2xl transform hover:-translate-y-2 transition-transform duration-300"
-                style={{ backgroundColor: '#891e6d' }}
+                style={{ backgroundColor: '#8D0169' }}
               >
                 <div className="flex justify-center items-center mb-4 h-16">
                   <div
@@ -220,7 +220,7 @@ export default function AboutPage() {
               {/* Card 3: Our Experts */}
               <div 
                 className="aspect-square flex flex-col justify-center items-center p-8 text-center rounded-lg shadow-2xl transform hover:-translate-y-2 transition-transform duration-300"
-                style={{ backgroundColor: '#891e6d' }}
+                style={{ backgroundColor: '#8D0169' }}
               >
                 <div className="flex justify-center items-center mb-4 h-16">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">

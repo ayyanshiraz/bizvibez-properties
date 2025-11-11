@@ -99,7 +99,7 @@ export default function AreaGuidesPage() {
               <Link 
                 href={`/area-guides/${guide.slug}`}
                 key={guide.slug} 
-                className="group block rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:bg-[#891e6d] hover:border-[#891e6d]"
+                className="group block rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:bg-[#8D0169] hover:border-[#8D0169]"
               >
                 <div className="flex flex-col h-full">
                   <div className="rounded-t-xl overflow-hidden">

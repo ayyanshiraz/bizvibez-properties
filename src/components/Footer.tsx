@@ -123,10 +123,10 @@ export default function Footer() {
                 </a>
             </div>
             <div className="flex justify-center space-x-4 mb-8">
-                <a href="https://www.facebook.com/bizvibezproperties" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><FacebookIcon /></a>
-                <a href="https://www.instagram.com/bizvibez_properties" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><InstagramIcon /></a>
-                <a href="https://www.tiktok.com/@bizvibez.properties?_t=ZS-90TK8DI95uh&_r=1" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><TikTokIcon /></a>
-                <a href="https://www.linkedin.com/company/bizvibez-properties/" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#891e6d] transition-colors"><LinkedInIcon /></a>
+                <a href="https://www.facebook.com/bizvibezproperties" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#8D0169] transition-colors"><FacebookIcon /></a>
+                <a href="https://www.instagram.com/bizvibez_properties" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#8D0169] transition-colors"><InstagramIcon /></a>
+                <a href="https://www.tiktok.com/@bizvibez.properties?_t=ZS-90TK8DI95uh&_r=1" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#8D0169] transition-colors"><TikTokIcon /></a>
+                <a href="https://www.linkedin.com/company/bizvibez-properties/" target="_blank" rel="noopener noreferrer" className="text-white border border-white rounded-full p-3 hover:bg-white hover:text-[#8D0169] transition-colors"><LinkedInIcon /></a>
             </div>
             <p className="text-sm text-white">
                 © BizVibez Properties - All rights reserved

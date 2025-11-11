@@ -56,7 +56,7 @@ const PropertyCard: React.FC<{ property: ForRentProperty }> = ({ property }) => 
     return (
         <a 
             href={`/rent/${property.id}`}
-            className="block bg-white rounded-lg shadow-md hover:shadow-[#891e6d]/30 hover:shadow-lg transition-all duration-300 overflow-hidden border relative group"
+            className="block bg-white rounded-lg shadow-md hover:shadow-[#8D0169]/30 hover:shadow-lg transition-all duration-300 overflow-hidden border relative group"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             aria-label={`View details for ${property.title}`}
@@ -69,7 +69,7 @@ const PropertyCard: React.FC<{ property: ForRentProperty }> = ({ property }) => 
                 </div>
             </div>
 
-            <div className={`p-4 transition-colors duration-300 ${isHovered ? 'bg-[#891e6d]' : 'bg-white'}`}>
+            <div className={`p-4 transition-colors duration-300 ${isHovered ? 'bg-[#8D0169]' : 'bg-white'}`}>
                 <h3 className={`text-lg font-semibold truncate ${isHovered ? 'text-white' : 'text-black'}`}>{property.title}</h3>
                 <p className={`text-sm mb-3 ${isHovered ? 'text-white/70' : 'text-gray-500'}`}>{property.location}</p>
                 

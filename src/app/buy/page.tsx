@@ -38,7 +38,7 @@ const PropertyCard: React.FC<{ property: ForSaleProperty }> = ({ property }) => 
   return (
     <Link 
       href={`/buy/${property.id}`} 
-      className={`block rounded-lg shadow-md transition-all duration-300 overflow-hidden ${isHovered ? 'bg-[#891e6d] text-white shadow-xl transform scale-105' : 'bg-white text-gray-800 hover:shadow-xl'}`}
+      className={`block rounded-lg shadow-md transition-all duration-300 overflow-hidden ${isHovered ? 'bg-[#8D0169] text-white shadow-xl transform scale-105' : 'bg-white text-gray-800 hover:shadow-xl'}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

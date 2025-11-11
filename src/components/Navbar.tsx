@@ -19,11 +19,11 @@ export default function Navbar() {
 
         {/* --- Desktop Menu --- */}
         <div className="hidden md:flex items-center space-x-2">
-          <a href="/" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Home</a>
+          <a href="/" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Home</a>
           
           {/* About Dropdown with robust fix */}
           <div className="relative group">
-            <a href="/about" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 group-hover:bg-[#891e6d] group-hover:text-white flex items-center">
+            <a href="/about" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 group-hover:bg-[#8D0169] group-hover:text-white flex items-center">
               About
               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
             </a>
@@ -31,20 +31,20 @@ export default function Navbar() {
             <div className="absolute top-full left-0 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
               <div style={{ backgroundColor: '#fefefe' }} className="w-48 rounded-md shadow-lg py-1">
                 {/* --- ADDED THIS LINE FOR DESKTOP --- */}
-                <a href="/about" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#891e6d] hover:text-white">About Us</a>
-                <a href="/about/team" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#891e6d] hover:text-white">Our Team</a>
-                <a href="/about/services" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#891e6d] hover:text-white">Our Services</a>
+                <a href="/about" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#8D0169] hover:text-white">About Us</a>
+                <a href="/about/team" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#8D0169] hover:text-white">Our Team</a>
+                <a href="/about/services" className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#8D0169] hover:text-white">Our Services</a>
               </div>
             </div>
           </div>
 
-          <a href="/buy" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Buy</a>
-          <a href="/rent" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Rent</a>
-          <a href="/off-plan" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Off Plan</a>
-          <a href="/sell" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Sell</a>
-          <a href="/land-for-sale" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Land for sale</a>
-          <a href="/area-guides" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Area Guides</a>
-          <a href="/contact" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#891e6d] hover:text-white">Contact</a>
+          <a href="/buy" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Buy</a>
+          <a href="/rent" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Rent</a>
+          <a href="/off-plan" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Off Plan</a>
+          <a href="/sell" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Sell</a>
+          <a href="/land-for-sale" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Land for sale</a>
+          <a href="/area-guides" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Area Guides</a>
+          <a href="/contact" className="text-gray-700 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-[#8D0169] hover:text-white">Contact</a>
         </div>
 
         {/* --- Mobile Menu Button --- */}

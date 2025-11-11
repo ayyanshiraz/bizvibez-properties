@@ -90,9 +90,9 @@ export default function MortgageCalculatorPage() {
       <section className="border-b border-gray-200">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <p className="text-lg text-gray-700">
-            Need More Help? <span className="font-semibold" style={{ color: '#891e6d' }}>+971 54 201 9999</span>
+            Need More Help? <span className="font-semibold" style={{ color: '#8D0169' }}>+971 54 201 9999</span>
           </p>
-          <a href="/contact" className="bg-[#891e6d] text-white font-bold py-2 px-6 rounded-md hover:opacity-90 transition-opacity">
+          <a href="/contact" className="bg-[#8D0169] text-white font-bold py-2 px-6 rounded-md hover:opacity-90 transition-opacity">
             GET IN TOUCH
           </a>
         </div>
@@ -127,7 +127,7 @@ export default function MortgageCalculatorPage() {
                   step="50000"
                   value={propertyPrice}
                   onChange={(e) => setPropertyPrice(Number(e.target.value))}
-                  className="w-full mt-2 accent-[#891e6d]" 
+                  className="w-full mt-2 accent-[#8D0169]" 
                 />
               </div>
               
@@ -137,19 +137,19 @@ export default function MortgageCalculatorPage() {
                  <div className="flex border border-gray-300 rounded-md overflow-hidden">
                     <button 
                       onClick={() => setResidency('uae-national')}
-                      className={`w-1/3 py-2 text-sm transition-colors duration-300 ${residency === 'uae-national' ? 'bg-[#891e6d] text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                      className={`w-1/3 py-2 text-sm transition-colors duration-300 ${residency === 'uae-national' ? 'bg-[#8D0169] text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
                     >
                       UAE national
                     </button>
                      <button 
                       onClick={() => setResidency('uae-resident')}
-                      className={`w-1/3 py-2 text-sm border-l border-r transition-colors duration-300 ${residency === 'uae-resident' ? 'bg-[#891e6d] text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                      className={`w-1/3 py-2 text-sm border-l border-r transition-colors duration-300 ${residency === 'uae-resident' ? 'bg-[#8D0169] text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
                     >
                       UAE resident
                     </button>
                      <button 
                       onClick={() => setResidency('non-resident')}
-                      className={`w-1/3 py-2 text-sm transition-colors duration-300 ${residency === 'non-resident' ? 'bg-[#891e6d] text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                      className={`w-1/3 py-2 text-sm transition-colors duration-300 ${residency === 'non-resident' ? 'bg-[#8D0169] text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
                     >
                       Non-resident
                     </button>
@@ -175,7 +175,7 @@ export default function MortgageCalculatorPage() {
                   max={propertyPrice * 0.8}
                   value={downPayment}
                   onChange={(e) => setDownPayment(Number(e.target.value))}
-                  className="w-full mt-2 accent-[#891e6d]" 
+                  className="w-full mt-2 accent-[#8D0169]" 
                 />
               </div>
 
@@ -197,7 +197,7 @@ export default function MortgageCalculatorPage() {
                   max="30" 
                   value={loanDuration}
                   onChange={(e) => setLoanDuration(Number(e.target.value))}
-                  className="w-full mt-2 accent-[#891e6d]" 
+                  className="w-full mt-2 accent-[#8D0169]" 
                 />
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function MortgageCalculatorPage() {
             {/* --- Results Display --- */}
             <div className="bg-[#fdf9f3] p-8 rounded-2xl shadow-lg text-center border border-gray-200">
                 <p className="text-gray-600">Your Estimated Monthly Payment</p>
-                <h3 className="text-5xl font-bold my-4" style={{ color: '#891e6d' }}>
+                <h3 className="text-5xl font-bold my-4" style={{ color: '#8D0169' }}>
                   {monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} AED
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -214,7 +214,7 @@ export default function MortgageCalculatorPage() {
                  <p className="text-xs text-gray-500 mt-4">
                   <strong>Disclaimer:</strong> Rates May Vary Based On Bank Policies. T&C's Apply
                 </p>
-                <a href="/contact" className="mt-8 inline-block w-full bg-[#891e6d] text-white font-bold py-3 px-6 rounded-md hover:opacity-90 transition-opacity">
+                <a href="/contact" className="mt-8 inline-block w-full bg-[#8D0169] text-white font-bold py-3 px-6 rounded-md hover:opacity-90 transition-opacity">
                   GET A MORTGAGE QUOTE
                 </a>
             </div>

@@ -24,7 +24,7 @@ export default function ClientSlideshow() {
       };
 
   const titleStyle = {
-    color: isHomepage ? '#FFFFFF' : '#891e6d',
+    color: isHomepage ? '#FFFFFF' : '#8D0169',
   };
 
   const titleText = 'Our Trusted Clients';

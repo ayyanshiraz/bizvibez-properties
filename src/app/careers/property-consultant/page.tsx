@@ -125,9 +125,9 @@ const PropertyConsultantPage = () => {
                     {/* --- JOB DESCRIPTION SECTION --- */}
                     <AnimatedSection>
                         <div className="text-center">
-                            <h2 className="text-4xl font-bold text-[#891e6d] mb-12">Property Consultant - Apply Now</h2>
+                            <h2 className="text-4xl font-bold text-[#8D0169] mb-12">Property Consultant - Apply Now</h2>
                         </div>
-                        <div className="bg-[#891e6d] text-white rounded-lg shadow-lg p-8 md:p-10 space-y-6 leading-relaxed">
+                        <div className="bg-[#8D0169] text-white rounded-lg shadow-lg p-8 md:p-10 space-y-6 leading-relaxed">
                             <h3 className="text-2xl font-bold border-b border-white/50 pb-3">Job Description</h3>
                             <p className="text-sm text-gray-300">Dated: October 10, 2025</p>
                             <p><strong>Experienced Property Consultant – Join our Dynamic Real Estate Team in the UAE</strong></p>
@@ -177,7 +177,7 @@ const PropertyConsultantPage = () => {
                     {/* --- APPLICATION FORM --- */}
                     <AnimatedSection>
                         <div className="mt-20">
-                            <h2 className="text-3xl font-bold text-center text-[#891e6d] mb-10">Submit Your Application</h2>
+                            <h2 className="text-3xl font-bold text-center text-[#8D0169] mb-10">Submit Your Application</h2>
                             <form 
                                 name="application-form"
                                 onSubmit={handleSubmit} 
@@ -188,30 +188,30 @@ const PropertyConsultantPage = () => {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                        <input type="text" name="name" id="name" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.name} onChange={handleChange} />
+                                        <input type="text" name="name" id="name" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.name} onChange={handleChange} />
                                     </div>
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                        <input type="email" name="email" id="email" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.email} onChange={handleChange} />
+                                        <input type="email" name="email" id="email" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.email} onChange={handleChange} />
                                     </div>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone No.</label>
-                                        <input type="tel" name="phone" id="phone" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.phone} onChange={handleChange} />
+                                        <input type="tel" name="phone" id="phone" required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.phone} onChange={handleChange} />
                                     </div>
                                     <div>
                                         <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 mb-1">LinkedIn Profile (URL)</label>
-                                        <input type="url" name="linkedin" id="linkedin" className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.linkedin} onChange={handleChange} />
+                                        <input type="url" name="linkedin" id="linkedin" className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.linkedin} onChange={handleChange} />
                                     </div>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Upload Resume</label>
-                                    <input ref={fileInputRef} type="file" name="resume" required className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#891e6d]/10 file:text-[#891e6d] hover:file:bg-[#891e6d]/20" onChange={handleFileChange}/>
+                                    <input ref={fileInputRef} type="file" name="resume" required className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#8D0169]/10 file:text-[#8D0169] hover:file:bg-[#8D0169]/20" onChange={handleFileChange}/>
                                 </div>
                                 <div>
                                     <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-1">Cover Letter</label>
-                                    <textarea name="coverLetter" id="coverLetter" rows={6} required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#891e6d] focus:border-[#891e6d]" value={formData.coverLetter} onChange={handleChange}></textarea>
+                                    <textarea name="coverLetter" id="coverLetter" rows={6} required className="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#8D0169] focus:border-[#8D0169]" value={formData.coverLetter} onChange={handleChange}></textarea>
                                 </div>
 
                                 {statusMessage && (
@@ -224,7 +224,7 @@ const PropertyConsultantPage = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-[#891e6d] hover:bg-opacity-90 disabled:bg-opacity-70"
+                                        className="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-[#8D0169] hover:bg-opacity-90 disabled:bg-opacity-70"
                                     >
                                         {loading ? "Submitting..." : "Submit"}
                                     </button>

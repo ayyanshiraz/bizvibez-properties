@@ -119,14 +119,14 @@ const SellPage = () => {
                     transform: scale(1.25);
                 }
                 .form-input {
-                    border: 1px solid #891e6d;
+                    border: 1px solid #8D0169;
                     padding: 0.75rem 1rem;
                     border-radius: 0.5rem;
                     background-color: transparent;
                     width: 100%;
                 }
                 .form-input::placeholder {
-                    color: #891e6d;
+                    color: #8D0169;
                 }
             `}</style>
             <div className="font-sans bg-white text-gray-800">
@@ -162,7 +162,7 @@ const SellPage = () => {
                                     </div>
                                 </div>
                                 <div className="lg:w-6/12 text-left">
-                                    <h2 className="text-4xl md:text-5xl font-bold text-[#891e6d] leading-tight mb-6">Sell With Confidence,<br/>Partner With Our<br/>Proven Professionals</h2>
+                                    <h2 className="text-4xl md:text-5xl font-bold text-[#8D0169] leading-tight mb-6">Sell With Confidence,<br/>Partner With Our<br/>Proven Professionals</h2>
                                     <p className="text-gray-700 text-lg leading-relaxed">
                                         Effortless For You. Our dedicated area specialist, daily buyers registrations, Real Estate portal exposure, professional videography/photography creation, VIP concierge service, SEO/PPC/SMM, automated messaging/emails, and our real estate investors database all ensure your property stands out to interested buyers.
                                     </p>
@@ -176,48 +176,48 @@ const SellPage = () => {
                 <section className="py-20 bg-white">
                     <div className="container mx-auto px-6 text-center">
                         <AnimatedSection>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#891e6d]">Tailored Solutions For Your Property Sale</h2>
-                            <div className="max-w-6xl mx-auto border-4 border-[#891e6d] rounded-2xl shadow-lg px-8 md:px-12 py-20 md:py-24 bg-[#FEF8F1]">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#8D0169]">Tailored Solutions For Your Property Sale</h2>
+                            <div className="max-w-6xl mx-auto border-4 border-[#8D0169] rounded-2xl shadow-lg px-8 md:px-12 py-20 md:py-24 bg-[#FEF8F1]">
                                 <div className="grid md:grid-cols-3 gap-y-16 gap-x-8">
                                     <div className="flex items-start text-left gap-4">
                                         <ValuationIcon />
                                         <div>
-                                            <h3 className="text-3xl font-bold mb-2 text-[#891e6d]">Valuation</h3>
+                                            <h3 className="text-3xl font-bold mb-2 text-[#8D0169]">Valuation</h3>
                                             <p className="text-gray-700 leading-relaxed">Our representatives will offer a dependable property assessment, enabling you to initiate the selling process.</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start text-left gap-4">
                                         <AdviceIcon />
                                         <div>
-                                            <h3 className="text-3xl font-bold mb-2 text-[#891e6d]">Professional Advice</h3>
+                                            <h3 className="text-3xl font-bold mb-2 text-[#8D0169]">Professional Advice</h3>
                                             <p className="text-gray-700 leading-relaxed">At Seven Luxury Real Estate, our agents stay current with the latest market trends. Armed with expert insights, they can protect the interests of their clients.</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start text-left gap-4">
                                         <MarketingIcon />
                                         <div>
-                                            <h3 className="text-3xl font-bold mb-2 text-[#891e6d]">In The Realm of Marketing</h3>
+                                            <h3 className="text-3xl font-bold mb-2 text-[#8D0169]">In The Realm of Marketing</h3>
                                             <p className="text-gray-700 leading-relaxed">Our committed in-house team possesses a deep understanding of the real estate industry. They implement highly effective marketing strategies tailored for optimal lead generation.</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start text-left gap-4">
                                         <TeamIcon />
                                         <div>
-                                            <h3 className="text-3xl font-bold mb-2 text-[#891e6d]">Committed Team</h3>
+                                            <h3 className="text-3xl font-bold mb-2 text-[#8D0169]">Committed Team</h3>
                                             <p className="text-gray-700 leading-relaxed">Our team undergoes training to ensure clients receive a memorable experience throughout their entire real estate journey.</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start text-left gap-4">
                                         <ServiceIcon />
                                         <div>
-                                            <h3 className="text-3xl font-bold mb-2 text-[#891e6d]">Customer Service</h3>
+                                            <h3 className="text-3xl font-bold mb-2 text-[#8D0169]">Customer Service</h3>
                                             <p className="text-gray-700 leading-relaxed">The culture at Seven Luxury Real Estate places a strong emphasis on delivering top-notch customer service, making it a paramount priority within our firm.</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start text-left gap-4">
                                         <SecurityIcon />
                                         <div>
-                                            <h3 className="text-3xl font-bold mb-2 text-[#891e6d]">Security</h3>
+                                            <h3 className="text-3xl font-bold mb-2 text-[#8D0169]">Security</h3>
                                             <p className="text-gray-700 leading-relaxed">Ensuring client confidentiality is our foremost priority. We adhere strictly to the rules and regulations set forth by Dubai's Real Estate Regulatory Agency (RERA).</p>
                                         </div>
                                     </div>
@@ -242,7 +242,7 @@ const SellPage = () => {
                                 href="https://bizvibezproperties.com/contact"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-8 inline-block px-10 py-3 bg-[#891e6d] text-white font-semibold rounded-lg border-2 border-white transition-all"
+                                className="mt-8 inline-block px-10 py-3 bg-[#8D0169] text-white font-semibold rounded-lg border-2 border-white transition-all"
                             >
                                 Get Started
                             </a>
@@ -254,7 +254,7 @@ const SellPage = () => {
                     <div className="container mx-auto px-6">
                         <AnimatedSection>
                             <div className="max-w-2xl mx-auto text-center">
-                                <h2 className="text-3xl md:text-4xl font-bold text-[#891e6d] mb-12">Contact Us</h2>
+                                <h2 className="text-3xl md:text-4xl font-bold text-[#8D0169] mb-12">Contact Us</h2>
                                 {/* MODIFIED: This form no longer needs Netlify attributes, it uses JS */}
                                 <form 
                                     onSubmit={handleSubmit} 
@@ -307,7 +307,7 @@ const SellPage = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="w-full bg-[#891e6d] text-[#F5B041] py-4 rounded-full font-semibold text-lg hover:bg-[#F5B041] hover:text-[#891e6d] transition-colors duration-300 disabled:bg-opacity-70 disabled:cursor-not-allowed uppercase tracking-wider"
+                                        className="w-full bg-[#8D0169] text-[#F5B041] py-4 rounded-full font-semibold text-lg hover:bg-[#F5B041] hover:text-[#8D0169] transition-colors duration-300 disabled:bg-opacity-70 disabled:cursor-not-allowed uppercase tracking-wider"
                                     >
                                         {loading ? "SENDING..." : "SUBMIT"}
                                     </button>
