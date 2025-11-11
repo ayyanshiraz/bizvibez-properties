@@ -23,14 +23,14 @@ export default function WhyChooseUs() {
             {/* --- THIS TEXT IS NOW PURPLE --- */}
             <p 
               className="text-sm font-semibold uppercase tracking-widest mb-3"
-              style={{ color: '#970060' }}
+              style={{ color: '#8D0169' }}
             >
               WHY CHOOSE BIZVIBEZ?
             </p>
             {/* --- THIS TEXT IS NOW PURPLE --- */}
             <h2 
               className="text-3xl md:text-4xl font-bold mb-4 leading-tight"
-              style={{ color: '#970060' }}
+              style={{ color: '#8D0169' }}
             >
               BizVibez Properties is Dubai&apos;s fastest-growing real estate brokerage firm.
             </h2>

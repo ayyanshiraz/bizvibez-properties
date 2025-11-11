@@ -12,7 +12,7 @@ export default function GuidePageClient({ guide }: { guide: Guide }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const headingStyles = {
-    color: '#970060'
+    color: '#8D0169'
   };
 
   const openLightbox = (index: number) => {
@@ -104,7 +104,7 @@ export default function GuidePageClient({ guide }: { guide: Guide }) {
               <ul className="list-disc list-inside space-y-3 mb-12 text-lg">
                 {guide.locationFeatures.map((feature, index) => (
                     <li key={index} className="text-gray-800">
-                      <span style={{ color: '#970060', fontWeight: 'bold' }}>•</span> {feature}
+                      <span style={{ color: '#8D0169', fontWeight: 'bold' }}>•</span> {feature}
                     </li>
                 ))}
               </ul>
@@ -121,7 +121,7 @@ export default function GuidePageClient({ guide }: { guide: Guide }) {
           <div className="text-center pt-10">
             <Link 
               href="/area-guides"
-              className="inline-block bg-[#970060] text-white font-bold py-4 px-10 rounded-lg text-xl transition-all duration-300 hover:bg-[#800050] hover:scale-105 shadow-xl"
+              className="inline-block bg-[#8D0169] text-white font-bold py-4 px-10 rounded-lg text-xl transition-all duration-300 hover:bg-[#800050] hover:scale-105 shadow-xl"
             >
               Back to Area Guides
             </Link>

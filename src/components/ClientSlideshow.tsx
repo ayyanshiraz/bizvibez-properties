@@ -10,13 +10,13 @@ export default function ClientSlideshow() {
 
   const sectionStyle = isHomepage
     ? {
-        backgroundColor: '#970060',
+        backgroundColor: '#8D0169',
         backgroundImage: `repeating-linear-gradient(
           45deg,
           #a11474,
           #a11474 1px,
-          #970060 1px,
-          #970060 10px
+          #8D0169 1px,
+          #8D0169 10px
         )`,
       }
     : {

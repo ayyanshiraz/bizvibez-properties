@@ -26,7 +26,7 @@ const LinkedInIcon = () => (
 export default function Footer() {
   // Style for the patterned purple background
   const footerBackgroundStyle = {
-    backgroundColor: '#970060',
+    backgroundColor: '#8D0169',
     backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-1 1 l2-2 M0 10 l10-10 M9 11 l2-2' stroke='%23FFF' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/svg%3E")`,
   };
 

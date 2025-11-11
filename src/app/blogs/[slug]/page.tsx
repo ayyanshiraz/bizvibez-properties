@@ -51,7 +51,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="px-4 py-12 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                <Link href="/blogs" className="text-[#970060] hover:text-[#7d004e] text-sm font-semibold transition-colors duration-200">
+                <Link href="/blogs" className="text-[#8D0169] hover:text-[#7d004e] text-sm font-semibold transition-colors duration-200">
                   &larr; Back to all blogs
                 </Link>
                 <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
@@ -69,7 +69,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             
               {/* --- Second "Back to all blogs" link --- */}
               <div className="mt-12 text-center">
-                   <Link href="/blogs" className="text-[#970060] hover:text-[#7d004e] text-sm font-semibold transition-colors duration-200">
+                   <Link href="/blogs" className="text-[#8D0169] hover:text-[#7d004e] text-sm font-semibold transition-colors duration-200">
                       &larr; Back to all blogs
                   </Link>
               </div>

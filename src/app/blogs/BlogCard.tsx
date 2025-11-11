@@ -17,12 +17,12 @@ export function BlogCard({ post }: { post: BlogPost }) {
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <p className="text-sm text-gray-500 mb-1">{post.publishDate}</p>
-          <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#970060] transition-colors duration-300">
+          <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#8D0169] transition-colors duration-300">
             {post.title}
           </h3>
           <p className="mt-3 text-gray-600 flex-grow">{post.excerpt}</p>
           <div className="mt-4">
-            <span className="font-semibold text-[#970060] group-hover:underline">
+            <span className="font-semibold text-[#8D0169] group-hover:underline">
               Read More &rarr;
             </span>
           </div>
