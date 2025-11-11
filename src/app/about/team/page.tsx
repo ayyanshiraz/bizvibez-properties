@@ -18,7 +18,7 @@ const teamMembers = [
     name: 'Sadia Awan',
     title: 'HR & Marketing Manager',
     imageUrl: '/sadia11.png',
-    languages: 'Urdu, Hindi',
+    languages: 'English, Urdu, Hindi',
     email: 'mailto:info@bizvibezproperties.com',
     phone: 'tel:+971542019999',
     whatsapp: 'https://wa.me/97144569917',
