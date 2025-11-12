@@ -295,8 +295,8 @@ const HomePage = () => {
             <div style={{ backgroundColor: '#fefefe' }} className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}><img src="/preloader1.gif" alt="Loading..." width={1000} height={1000} /></div>
             
             <section className="relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
-                <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0"><source src="/hero-video1.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
-                <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
+                <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover z-0"><source src="/heromain.mp4" type="video/mp4" />Your browser does not support the video tag.</video>
+                <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 z-0"></div>
                 <div className="relative z-20 flex flex-col items-center px-4 w-full mb-20">
                     <div className="min-h-[150px] flex flex-col justify-center w-full max-w-4xl text-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">Search Luxury Homes<br />In <span style={{ color: 'white' }}>{displayedText}</span><span className="animate-ping">|</span></h1>
