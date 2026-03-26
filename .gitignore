@@ -1,0 +1,12 @@
+# Dependencies
+/node_modules
+
+# Local Environment Variables
+.env*.local
+
+# Production
+/out
+/.next
+
+# Local Netlify folder
+.netlify
