@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-// Import the new conditional component instead of the original one
+// Import the new conditional component instead 
 import ConditionalSlideshow from "../components/ConditionalSlideshow";
 
 export const metadata: Metadata = {
